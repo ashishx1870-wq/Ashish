@@ -1,1 +1,1582 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<title>Pallavi's Little Room</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --warm:#ffdca0;
+    --cream:#f7ead3;
+    --brown:#3a2920;
+    --dark:#090b12;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    background:#090b12;
+    font-family:Georgia,"Times New Roman",serif;
+    color:var(--cream);
+}
+
+/* =====================================
+   INTRO
+===================================== */
+
+.intro{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    background:
+        radial-gradient(circle at center,#292735,#080910 75%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transition:1.2s ease;
+}
+
+.intro.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.intro-content{
+    animation:introIn 1.5s ease both;
+}
+
+.intro-small{
+    font-size:10px;
+    letter-spacing:5px;
+    opacity:.55;
+}
+
+.intro h1{
+    margin-top:20px;
+    font-size:clamp(35px,9vw,70px);
+    font-weight:400;
+    letter-spacing:3px;
+}
+
+.intro-name{
+    margin-top:12px;
+    color:#e7bb78;
+    letter-spacing:8px;
+    font-size:20px;
+}
+
+.start{
+    margin-top:45px;
+    padding:14px 30px;
+    background:transparent;
+    color:#f6e7cb;
+    border:1px solid rgba(255,220,160,.4);
+    font-family:inherit;
+    letter-spacing:3px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.start:hover{
+    background:#f6e7cb;
+    color:#17151a;
+}
+
+@keyframes introIn{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+
+/* =====================================
+   ROOM
+===================================== */
+
+.room{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    opacity:0;
+    transition:1.5s ease;
+}
+
+.room.visible{
+    opacity:1;
+}
+
+
+/* =====================================
+   WALL
+===================================== */
+
+.wall{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035),
+            transparent 35%,
+            rgba(0,0,0,.15)
+        ),
+        linear-gradient(
+            #302c37,
+            #1d1b24
+        );
+}
+
+
+/* subtle wall texture */
+
+.wall::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    opacity:.08;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 5px,
+            rgba(255,255,255,.12) 6px
+        );
+}
+
+
+/* =====================================
+   FLOOR
+===================================== */
+
+.floor{
+    position:absolute;
+    left:-5%;
+    bottom:-2%;
+    width:110%;
+    height:30%;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #30231d 0 80px,
+            #392a22 81px 160px
+        );
+    transform:perspective(500px) rotateX(35deg);
+    transform-origin:bottom;
+    box-shadow:0 -20px 40px rgba(0,0,0,.4);
+}
+
+
+/* =====================================
+   WINDOW
+===================================== */
+
+.window{
+    position:absolute;
+    top:8%;
+    left:7%;
+    width:min(310px,35vw);
+    height:min(360px,48vh);
+    background:#090d1c;
+    border:12px solid #392b25;
+    box-shadow:
+        inset 0 0 30px rgba(0,0,0,.7),
+        0 15px 30px rgba(0,0,0,.35);
+    cursor:pointer;
+    overflow:hidden;
+}
+
+.sky{
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 70% 25%,#e7e1c4 0 2%,transparent 3%),
+        radial-gradient(circle at 20% 20%,#fff 0 1%,transparent 2%),
+        radial-gradient(circle at 45% 40%,#fff 0 1%,transparent 2%),
+        linear-gradient(#101a3d,#090b18);
+}
+
+.moon{
+    position:absolute;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    right:22%;
+    top:15%;
+    background:#eee5c7;
+    box-shadow:0 0 25px rgba(255,240,190,.5);
+}
+
+.window-cross-v,
+.window-cross-h{
+    position:absolute;
+    background:#3d2e28;
+    z-index:5;
+}
+
+.window-cross-v{
+    width:7px;
+    height:100%;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.window-cross-h{
+    height:7px;
+    width:100%;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.curtain{
+    position:absolute;
+    top:0;
+    width:18%;
+    height:100%;
+    background:#4b2630;
+    z-index:10;
+    transition:1s ease;
+}
+
+.curtain.left{
+    left:0;
+}
+
+.curtain.right{
+    right:0;
+}
+
+.window.open .curtain.left{
+    transform:translateX(-90%);
+}
+
+.window.open .curtain.right{
+    transform:translateX(90%);
+}
+
+
+/* =====================================
+   FRAME
+===================================== */
+
+.frame{
+    position:absolute;
+    top:10%;
+    right:13%;
+    width:150px;
+    height:190px;
+    padding:12px;
+    background:#6c4b2e;
+    box-shadow:0 18px 25px rgba(0,0,0,.35);
+    cursor:pointer;
+    transform:rotate(2deg);
+    transition:.3s;
+}
+
+.frame:hover{
+    transform:rotate(2deg) scale(1.04);
+}
+
+.frame-inner{
+    width:100%;
+    height:100%;
+    padding:6px;
+    background:#eee5d3;
+}
+
+.frame img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#b7aea0;
+}
+
+
+/* =====================================
+   DESK
+===================================== */
+
+.desk{
+    position:absolute;
+    bottom:25%;
+    right:7%;
+    width:330px;
+    height:130px;
+    background:#4a3024;
+    border-radius:5px;
+    box-shadow:0 20px 30px rgba(0,0,0,.4);
+}
+
+.desk::before{
+    content:"";
+    position:absolute;
+    left:-15px;
+    right:-15px;
+    top:-14px;
+    height:18px;
+    background:#644331;
+    border-radius:4px;
+}
+
+.desk-leg{
+    position:absolute;
+    bottom:-150px;
+    width:20px;
+    height:150px;
+    background:#3a271f;
+}
+
+.leg1{
+    left:20px;
+}
+
+.leg2{
+    right:20px;
+}
+
+
+/* =====================================
+   LAMP
+===================================== */
+
+.lamp{
+    position:absolute;
+    left:20px;
+    top:-115px;
+    width:90px;
+    height:120px;
+    cursor:pointer;
+}
+
+.lamp-shade{
+    position:absolute;
+    top:0;
+    left:15px;
+    width:60px;
+    height:50px;
+    background:#b78249;
+    clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);
+}
+
+.lamp-stick{
+    position:absolute;
+    top:45px;
+    left:43px;
+    width:5px;
+    height:60px;
+    background:#2b211c;
+}
+
+.lamp-light{
+    position:absolute;
+    width:280px;
+    height:280px;
+    top:-100px;
+    left:-95px;
+    border-radius:50%;
+    background:radial-gradient(
+        circle,
+        rgba(255,210,120,.3),
+        rgba(255,190,80,.08) 40%,
+        transparent 70%
+    );
+    pointer-events:none;
+    transition:.5s;
+}
+
+.lamp.off .lamp-light{
+    opacity:0;
+}
+
+
+/* =====================================
+   RADIO
+===================================== */
+
+.radio{
+    position:absolute;
+    left:35px;
+    bottom:8px;
+    width:105px;
+    height:65px;
+    border-radius:7px;
+    background:#382b25;
+    box-shadow:0 8px 12px rgba(0,0,0,.35);
+    cursor:pointer;
+}
+
+.radio-screen{
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:38px;
+    height:18px;
+    background:#151714;
+    color:#e2bd7d;
+    font-size:7px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.radio-knob{
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    border:3px solid #80664e;
+}
+
+.radio-speaker{
+    position:absolute;
+    left:10px;
+    bottom:8px;
+    width:80px;
+    height:28px;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #1e1815 0 3px,
+            #594439 4px 5px
+        );
+}
+
+
+/* =====================================
+   LETTER
+===================================== */
+
+.letter{
+    position:absolute;
+    left:150px;
+    bottom:15px;
+    width:85px;
+    height:60px;
+    background:#e8d7b8;
+    box-shadow:0 8px 12px rgba(0,0,0,.25);
+    cursor:pointer;
+    transform:rotate(-4deg);
+}
+
+.letter::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            135deg,
+            transparent 49%,
+            #cbb792 50%,
+            transparent 51%
+        ),
+        linear-gradient(
+            225deg,
+            transparent 49%,
+            #cbb792 50%,
+            transparent 51%
+        );
+}
+
+
+/* =====================================
+   GIFT BOX
+===================================== */
+
+.gift{
+    position:absolute;
+    bottom:27%;
+    left:18%;
+    width:110px;
+    height:90px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.gift:hover{
+    transform:translateY(-5px);
+}
+
+.gift-box{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:70px;
+    background:#8b4652;
+    box-shadow:0 12px 18px rgba(0,0,0,.35);
+}
+
+.gift-lid{
+    position:absolute;
+    top:0;
+    left:-7px;
+    width:calc(100% + 14px);
+    height:25px;
+    background:#a65a67;
+    transition:.8s cubic-bezier(.2,.8,.2,1);
+    z-index:3;
+}
+
+.ribbon-v{
+    position:absolute;
+    left:44%;
+    width:14%;
+    height:100%;
+    background:#d7b06d;
+}
+
+.ribbon-h{
+    position:absolute;
+    top:25%;
+    width:100%;
+    height:18%;
+    background:#d7b06d;
+}
+
+.gift.open .gift-lid{
+    transform:
+        translateY(-80px)
+        rotate(-12deg);
+}
+
+
+/* =====================================
+   PLANT
+===================================== */
+
+.plant{
+    position:absolute;
+    right:39%;
+    bottom:25%;
+    width:100px;
+    height:150px;
+    cursor:pointer;
+}
+
+.pot{
+    position:absolute;
+    bottom:0;
+    left:25px;
+    width:55px;
+    height:60px;
+    background:#a75e43;
+    clip-path:polygon(10% 0,90% 0,78% 100%,22% 100%);
+}
+
+.leaf{
+    position:absolute;
+    width:45px;
+    height:70px;
+    border-radius:100% 0 100% 0;
+    background:#3e704b;
+    transform-origin:bottom;
+    transition:.7s;
+}
+
+.leaf1{
+    left:25px;
+    bottom:45px;
+    transform:rotate(-25deg);
+}
+
+.leaf2{
+    left:35px;
+    bottom:55px;
+    transform:rotate(20deg);
+}
+
+.leaf3{
+    left:10px;
+    bottom:70px;
+    transform:rotate(-50deg) scale(.8);
+}
+
+.plant.bloom .leaf{
+    background:#4e8c5d;
+}
+
+.plant.bloom::after{
+    content:"✿";
+    position:absolute;
+    left:43px;
+    top:5px;
+    color:#e9a2b0;
+    font-size:28px;
+}
+
+
+/* =====================================
+   MIRROR
+===================================== */
+
+.mirror{
+    position:absolute;
+    left:39%;
+    top:11%;
+    width:130px;
+    height:210px;
+    border:12px solid #493428;
+    border-radius:60px 60px 10px 10px;
+    background:
+        radial-gradient(circle at 35% 25%,rgba(255,255,255,.18),transparent 20%),
+        linear-gradient(135deg,#53616a,#1d2730);
+    box-shadow:0 18px 25px rgba(0,0,0,.35);
+    cursor:pointer;
+    overflow:hidden;
+}
+
+.mirror-text{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:15px;
+    font-family:"Segoe Print","Comic Sans MS",cursive;
+    font-size:13px;
+    line-height:1.6;
+    color:#f5dfb4;
+    opacity:0;
+    transition:.8s;
+}
+
+.mirror.reveal .mirror-text{
+    opacity:1;
+}
+
+
+/* =====================================
+   BED
+===================================== */
+
+.bed{
+    position:absolute;
+    left:18%;
+    bottom:20%;
+    width:300px;
+    height:110px;
+}
+
+.mattress{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:70px;
+    border-radius:15px 15px 5px 5px;
+    background:#8c7881;
+    box-shadow:0 15px 20px rgba(0,0,0,.3);
+}
+
+.pillow{
+    position:absolute;
+    right:15px;
+    bottom:42px;
+    width:100px;
+    height:45px;
+    border-radius:12px;
+    background:#c2aeb0;
+}
+
+.headboard{
+    position:absolute;
+    left:-20px;
+    bottom:50px;
+    width:20px;
+    height:110px;
+    background:#4c3327;
+}
+
+
+/* =====================================
+   OVERLAY
+===================================== */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    z-index:500;
+    background:rgba(4,5,8,.72);
+    backdrop-filter:blur(8px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    visibility:hidden;
+    transition:.4s;
+    padding:20px;
+}
+
+.overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.popup{
+    position:relative;
+    width:min(520px,92vw);
+    max-height:85vh;
+    overflow:auto;
+    background:#f2e5ce;
+    color:#30261f;
+    padding:28px;
+    box-shadow:0 30px 70px rgba(0,0,0,.6);
+    text-align:center;
+    transform:scale(.92);
+    transition:.4s;
+}
+
+.overlay.show .popup{
+    transform:scale(1);
+}
+
+.close{
+    position:absolute;
+    top:10px;
+    right:14px;
+    border:0;
+    background:none;
+    font-size:25px;
+    cursor:pointer;
+    color:#49372b;
+}
+
+.popup h2{
+    font-weight:400;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.popup p{
+    line-height:1.8;
+    font-size:14px;
+}
+
+.popup img{
+    width:100%;
+    max-height:55vh;
+    object-fit:contain;
+    background:#d5cbbb;
+    margin-bottom:18px;
+}
+
+
+/* =====================================
+   FINAL
+===================================== */
+
+.final-screen{
+    position:fixed;
+    inset:0;
+    z-index:900;
+    background:
+        radial-gradient(circle,#27304b,#070911 70%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    opacity:0;
+    visibility:hidden;
+    transition:1.5s;
+}
+
+.final-screen.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.final-content{
+    transform:translateY(25px);
+    transition:1.5s;
+}
+
+.final-screen.show .final-content{
+    transform:none;
+}
+
+.final-small{
+    font-size:10px;
+    letter-spacing:6px;
+    opacity:.5;
+}
+
+.final h1{
+    margin-top:25px;
+    font-size:clamp(35px,9vw,80px);
+    font-weight:400;
+    letter-spacing:3px;
+}
+
+.final-name{
+    margin-top:12px;
+    color:#e7bd78;
+    font-family:"Segoe Print","Comic Sans MS",cursive;
+    font-size:28px;
+}
+
+.final-message{
+    margin-top:25px;
+    font-size:14px;
+    line-height:1.8;
+    opacity:.7;
+}
+
+
+/* =====================================
+   PARTICLES
+===================================== */
+
+.star{
+    position:fixed;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:#fff;
+    pointer-events:none;
+    opacity:.5;
+    animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.15}
+    to{opacity:.8}
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:700px){
+
+    .window{
+        left:4%;
+        top:7%;
+        width:155px;
+        height:190px;
+        border-width:7px;
+    }
+
+    .frame{
+        right:5%;
+        top:9%;
+        width:95px;
+        height:125px;
+        padding:7px;
+    }
+
+    .mirror{
+        left:38%;
+        top:7%;
+        width:85px;
+        height:135px;
+        border-width:8px;
+    }
+
+    .mirror-text{
+        font-size:9px;
+    }
+
+    .desk{
+        right:4%;
+        bottom:27%;
+        width:220px;
+        height:95px;
+    }
+
+    .desk-leg{
+        height:100px;
+        bottom:-100px;
+    }
+
+    .lamp{
+        transform:scale(.75);
+        transform-origin:top left;
+    }
+
+    .radio{
+        transform:scale(.75);
+        transform-origin:bottom left;
+    }
+
+    .letter{
+        left:105px;
+        transform:scale(.8) rotate(-4deg);
+    }
+
+    .plant{
+        right:34%;
+        bottom:28%;
+        transform:scale(.72);
+        transform-origin:bottom;
+    }
+
+    .gift{
+        left:9%;
+        bottom:29%;
+        transform:scale(.75);
+        transform-origin:bottom;
+    }
+
+    .bed{
+        left:3%;
+        bottom:18%;
+        width:220px;
+        transform:scale(.8);
+        transform-origin:left bottom;
+    }
+
+    .floor{
+        height:25%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================
+     INTRO
+===================================== -->
+
+<section class="intro" id="intro">
+
+    <div class="intro-content">
+
+        <div class="intro-small">
+            I MADE A LITTLE PLACE
+        </div>
+
+        <h1>A Little Room</h1>
+
+        <div class="intro-name">
+            FOR PALLAVI
+        </div>
+
+        <button class="start" id="start">
+            ENTER
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     ROOM
+===================================== -->
+
+<div class="room" id="room">
+
+    <div class="wall"></div>
+
+    <div class="floor"></div>
+
+
+    <!-- WINDOW -->
+
+    <div class="window" id="window">
+
+        <div class="sky"></div>
+
+        <div class="moon"></div>
+
+        <div class="window-cross-v"></div>
+        <div class="window-cross-h"></div>
+
+        <div class="curtain left"></div>
+        <div class="curtain right"></div>
+
+    </div>
+
+
+    <!-- PHOTO FRAME -->
+
+    <div class="frame" id="frame">
+
+        <div class="frame-inner">
+
+            <img src="photo1.jpg" alt="Pallavi">
+
+        </div>
+
+    </div>
+
+
+    <!-- MIRROR -->
+
+    <div class="mirror" id="mirror">
+
+        <div class="mirror-text">
+            Some people don't realize<br>
+            how special they are.
+        </div>
+
+    </div>
+
+
+    <!-- BED -->
+
+    <div class="bed">
+
+        <div class="headboard"></div>
+        <div class="mattress"></div>
+        <div class="pillow"></div>
+
+    </div>
+
+
+    <!-- PLANT -->
+
+    <div class="plant" id="plant">
+
+        <div class="leaf leaf1"></div>
+        <div class="leaf leaf2"></div>
+        <div class="leaf leaf3"></div>
+
+        <div class="pot"></div>
+
+    </div>
+
+
+    <!-- GIFT -->
+
+    <div class="gift" id="gift">
+
+        <div class="gift-lid"></div>
+
+        <div class="gift-box">
+
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DESK -->
+
+    <div class="desk">
+
+        <div class="desk-leg leg1"></div>
+        <div class="desk-leg leg2"></div>
+
+
+        <!-- LAMP -->
+
+        <div class="lamp" id="lamp">
+
+            <div class="lamp-light"></div>
+            <div class="lamp-shade"></div>
+            <div class="lamp-stick"></div>
+
+        </div>
+
+
+        <!-- RADIO -->
+
+        <div class="radio" id="radio">
+
+            <div class="radio-screen">
+                00:00
+            </div>
+
+            <div class="radio-knob"></div>
+
+            <div class="radio-speaker"></div>
+
+        </div>
+
+
+        <!-- LETTER -->
+
+        <div class="letter" id="letter"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     POPUP
+===================================== -->
+
+<div class="overlay" id="overlay">
+
+    <div class="popup">
+
+        <button class="close" id="close">
+            ×
+        </button>
+
+        <div id="popupContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     FINAL
+===================================== -->
+
+<div class="final-screen" id="finalScreen">
+
+    <div class="final-content">
+
+        <div class="final-small">
+            YOU FOUND EVERYTHING
+        </div>
+
+        <h1>
+            HAPPY BIRTHDAY
+        </h1>
+
+        <div class="final-name">
+            Pallavi ♡
+        </div>
+
+        <div class="final-message">
+            I hope this little room<br>
+            gave you at least one reason to smile.
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   ELEMENTS
+===================================== */
+
+const intro =
+    document.getElementById("intro");
+
+const start =
+    document.getElementById("start");
+
+const room =
+    document.getElementById("room");
+
+const windowEl =
+    document.getElementById("window");
+
+const frame =
+    document.getElementById("frame");
+
+const mirror =
+    document.getElementById("mirror");
+
+const plant =
+    document.getElementById("plant");
+
+const gift =
+    document.getElementById("gift");
+
+const lamp =
+    document.getElementById("lamp");
+
+const radio =
+    document.getElementById("radio");
+
+const letter =
+    document.getElementById("letter");
+
+const overlay =
+    document.getElementById("overlay");
+
+const popupContent =
+    document.getElementById("popupContent");
+
+const close =
+    document.getElementById("close");
+
+const finalScreen =
+    document.getElementById("finalScreen");
+
+
+/* =====================================
+   PROGRESS
+===================================== */
+
+const found = {
+    window:false,
+    frame:false,
+    mirror:false,
+    plant:false,
+    gift:false,
+    lamp:false,
+    radio:false,
+    letter:false
+};
+
+
+function checkEverything(){
+
+    if(
+        Object.values(found).every(Boolean)
+    ){
+
+        setTimeout(()=>{
+
+            finalScreen.classList.add("show");
+
+            createStars(60);
+
+        },1200);
+
+    }
+
+}
+
+
+/* =====================================
+   INTRO
+===================================== */
+
+start.addEventListener("click",()=>{
+
+    intro.classList.add("hide");
+
+    setTimeout(()=>{
+
+        room.classList.add("visible");
+
+    },500);
+
+});
+
+
+/* =====================================
+   POPUP
+===================================== */
+
+function showPopup(html){
+
+    popupContent.innerHTML = html;
+
+    overlay.classList.add("show");
+
+}
+
+close.addEventListener("click",()=>{
+
+    overlay.classList.remove("show");
+
+});
+
+overlay.addEventListener("click",(e)=>{
+
+    if(e.target===overlay){
+
+        overlay.classList.remove("show");
+
+    }
+
+});
+
+
+/* =====================================
+   WINDOW
+===================================== */
+
+windowEl.addEventListener("click",()=>{
+
+    windowEl.classList.toggle("open");
+
+    if(!found.window){
+
+        found.window=true;
+
+        showPopup(`
+            <h2>A Quiet Night 🌙</h2>
+            <p>
+                Kabhi kabhi bas thoda ruk kar
+                stars dekhna bhi zaroori hota hai.
+                <br><br>
+                Happy Birthday, Pallavi.
+            </p>
+        `);
+
+        checkEverything();
+
+    }
+
+});
+
+
+/* =====================================
+   PHOTO FRAME
+===================================== */
+
+frame.addEventListener("click",()=>{
+
+    if(!found.frame){
+
+        found.frame=true;
+
+        showPopup(`
+            <img src="photo1.jpg" alt="Pallavi">
+            <h2>One Little Memory</h2>
+            <p>
+                Some pictures don't need a long caption.
+                They just deserve a place to stay.
+            </p>
+        `);
+
+        checkEverything();
+
+    }
+
+});
+
+
+/* =====================================
+   MIRROR
+===================================== */
+
+mirror.addEventListener("click",()=>{
+
+    mirror.classList.add("reveal");
+
+    if(!found.mirror){
+
+        found.mirror=true;
+
+        showPopup(`
+            <h2>Look Again 🪞</h2>
+            <p>
+                You probably don't realize it,
+                but you are part of a lot of
+                good memories.
+            </p>
+        `);
+
+        checkEverything();
+
+    }
+
+});
+
+
+/* =====================================
+   PLANT
+===================================== */
+
+plant.addEventListener("click",()=>{
+
+    plant.classList.add("bloom");
+
+    if(!found.plant){
+
+        found.plant=true;
+
+        showPopup(`
+            <h2>A Little Wish 🌸</h2>
+            <p>
+                May this next year of your life
+                grow into something beautiful.
+            </p>
+        `);
+
+        checkEverything();
+
+    }
+
+});
+
+
+/* =====================================
+   GIFT
+===================================== */
+
+gift.addEventListener("click",()=>{
+
+    gift.classList.add("open");
+
+    if(!found.gift){
+
+        found.gift=true;
+
+        showPopup(`
+            <img src="photo2.jpg" alt="Memory">
+            <h2>A Small Surprise 🎁</h2>
+            <p>
+                Not everything that matters
+                comes wrapped in a box.
+            </p>
+        `);
+
+        checkEverything();
+
+    }
+
+});
+
+
+/* =====================================
+   LAMP
+===================================== */
+
+lamp.addEventListener("click",()=>{
+
+    lamp.classList.toggle("off");
+
+    if(!found.lamp){
+
+        found.lamp=true;
+
+        showPopup(`
+            <h2>Lights On ✨</h2>
+            <p>
+                Every little room needs a little light.
+                <br><br>
+                And every birthday deserves some extra.
+            </p>
+        `);
+
+        checkEverything();
+
+    }
+
+});
+
+
+/* =====================================
+   RADIO
+===================================== */
+
+radio.addEventListener("click",()=>{
+
+    if(!found.radio){
+
+        found.radio=true;
+
+        showPopup(`
+            <h2>Radio 📻</h2>
+            <p>
+                Imagine your favourite song
+                playing quietly in the background
+                while this little room stays awake.
+                <br><br>
+                🎵
+            </p>
+        `);
+
+        checkEverything();
+
+    }
+
+});
+
+
+/* =====================================
+   LETTER
+===================================== */
+
+letter.addEventListener("click",()=>{
+
+    if(!found.letter){
+
+        found.letter=true;
+
+        showPopup(`
+            <h2>Dear Pallavi 💌</h2>
+            <p>
+                I wanted to make you something
+                that wasn't just another message.
+                <br><br>
+
+                Something you could open,
+                explore and remember.
+                <br><br>
+
+                So I made this little room.
+                <br><br>
+
+                I hope you liked being here.
+                <br><br>
+
+                — Ashish
+            </p>
+        `);
+
+        checkEverything();
+
+    }
+
+});
+
+
+/* =====================================
+   STARS
+===================================== */
+
+function createStars(amount){
+
+    for(let i=0;i<amount;i++){
+
+        const star =
+            document.createElement("div");
+
+        star.className="star";
+
+        star.style.left =
+            Math.random()*100+"vw";
+
+        star.style.top =
+            Math.random()*100+"vh";
+
+        star.style.animationDelay =
+            Math.random()*3+"s";
+
+        document.body.appendChild(star);
+
+    }
+
+}
+
+createStars(25);
+
+
+/* =====================================
+   ESCAPE KEY
+===================================== */
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+
+        overlay.classList.remove("show");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
