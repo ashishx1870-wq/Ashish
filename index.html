@@ -1,338 +1,415 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>17 Years · For Pallavi 🩵</title>
+<title>For Pallavi — A Little Memory</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Italianno&family=Libre+Baskerville:wght@400;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
-  --bg:#faf7f3;
+  --bg:#f8f4f1;
   --paper:#fffdfa;
-  --ink:#40373a;
-  --muted:#8b7e82;
-  --rose:#b66b79;
-  --rose2:#e8c3c9;
-  --gold:#d7bc75;
-  --lav:#ded9e8;
-  --line:rgba(70,50,57,.13);
-  --shadow:0 28px 80px rgba(65,45,53,.14);
+  --ink:#383235;
+  --soft:#766a6e;
+  --rose:#ad6675;
+  --rose2:#d9a5af;
+  --gold:#c7a75a;
+  --green:#8fa99a;
+  --line:rgba(70,50,55,.12);
+
+  --display:"DM Serif Display",Georgia,serif;
+  --clean:"Manrope",sans-serif;
+  --elegant:"Marcellus",serif;
+
   --ease:cubic-bezier(.22,.75,.18,1);
-  --serif:"Libre Baskerville",Georgia,serif;
-  --clean:"Manrope","DM Sans",sans-serif;
-  --script:"Italianno",cursive;
 }
 
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
   width:100%;
   height:100%;
   overflow:hidden;
 }
 
 body{
-  font-family:var(--clean);
-  color:var(--ink);
   background:var(--bg);
+  color:var(--ink);
+  font-family:var(--clean);
 }
 
 button{
   font-family:var(--clean);
 }
 
+/* =========================================================
+   APP
+========================================================= */
+
 #app{
   position:fixed;
   inset:0;
   overflow:hidden;
+
   background:
-    radial-gradient(circle at 5% 10%,rgba(232,195,201,.48),transparent 28%),
-    radial-gradient(circle at 95% 88%,rgba(222,217,232,.55),transparent 32%),
-    radial-gradient(circle at 50% 110%,rgba(242,216,199,.42),transparent 35%),
-    var(--bg);
+    radial-gradient(
+      circle at 12% 10%,
+      rgba(224,185,192,.38),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(190,211,201,.32),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #faf6f3,
+      #f7f2ee
+    );
 }
 
-/* =========================
-   WATERMARK BUTTERFLIES
-========================= */
+/* subtle paper grain */
 
-.butterfly{
-  position:absolute;
-  width:45px;
-  height:32px;
-  opacity:.075;
-  pointer-events:none;
-  z-index:1;
-  transform:rotate(-12deg);
-  animation:butterflyFloat 12s ease-in-out infinite alternate;
-}
-
-.butterfly:before,
-.butterfly:after{
+#app:after{
   content:"";
   position:absolute;
-  width:25px;
-  height:29px;
-  top:0;
-  border:1px solid var(--rose);
-  background:rgba(255,255,255,.14);
-  border-radius:75% 20% 70% 30%;
+  inset:0;
+  pointer-events:none;
+  opacity:.025;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.butterfly:before{
-  left:0;
-  transform:rotate(25deg);
-}
+/* =========================================================
+   WATERMARK BUTTERFLIES + LOTUS
+========================================================= */
 
-.butterfly:after{
-  right:0;
-  transform:scaleX(-1) rotate(25deg);
-}
-
-.butterfly i{
+.watermark{
   position:absolute;
-  left:21px;
-  top:5px;
-  width:3px;
-  height:25px;
-  background:var(--rose);
-  border-radius:5px;
+  pointer-events:none;
+  user-select:none;
+  z-index:1;
+  opacity:.11;
+  filter:blur(.1px);
 }
 
-.b1{left:7%;top:18%;animation-delay:-2s}
-.b2{right:7%;top:30%;transform:scale(.7) rotate(18deg);animation-delay:-6s}
-.b3{left:13%;bottom:15%;transform:scale(.55) rotate(-20deg);animation-delay:-8s}
-.b4{right:14%;bottom:18%;transform:scale(.8) rotate(15deg);animation-delay:-4s}
+.butterfly{
+  font-family:Arial,sans-serif;
+  font-size:78px;
+  color:#ad6675;
+  opacity:.13;
+}
 
-@keyframes butterflyFloat{
-  to{
-    transform:translate(25px,-20px) rotate(8deg);
+.lotus{
+  font-family:Georgia,serif;
+  font-size:95px;
+  color:#8fa99a;
+  opacity:.10;
+}
+
+.wm1{
+  left:-15px;
+  top:12%;
+  transform:rotate(-18deg);
+}
+
+.wm2{
+  right:-18px;
+  top:27%;
+  transform:rotate(15deg) scale(.75);
+}
+
+.wm3{
+  left:5%;
+  bottom:-18px;
+  transform:rotate(5deg) scale(.85);
+}
+
+.wm4{
+  right:2%;
+  bottom:7%;
+  transform:rotate(-12deg) scale(.7);
+}
+
+/* =========================================================
+   FLOATING PARTICLES
+========================================================= */
+
+.float{
+  position:absolute;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#c7a75a;
+  opacity:0;
+  pointer-events:none;
+  animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+  0%{
+    transform:translateY(110vh) scale(.6);
+    opacity:0;
+  }
+
+  15%{
+    opacity:.18;
+  }
+
+  80%{
+    opacity:.08;
+  }
+
+  100%{
+    transform:translateY(-15vh) scale(1);
+    opacity:0;
   }
 }
 
-/* =========================
-   LOTUS WATERMARK
-========================= */
-
-.lotus{
-  position:absolute;
-  width:100px;
-  height:55px;
-  opacity:.06;
-  pointer-events:none;
-  z-index:1;
-}
-
-.lotus span{
-  position:absolute;
-  bottom:0;
-  left:50%;
-  width:34px;
-  height:48px;
-  border:1px solid var(--rose);
-  border-radius:100% 0 100% 0;
-  transform-origin:bottom center;
-}
-
-.lotus span:nth-child(1){transform:translateX(-50%) rotate(-48deg)}
-.lotus span:nth-child(2){transform:translateX(-50%) rotate(-24deg)}
-.lotus span:nth-child(3){transform:translateX(-50%)}
-.lotus span:nth-child(4){transform:translateX(-50%) rotate(24deg)}
-.lotus span:nth-child(5){transform:translateX(-50%) rotate(48deg)}
-
-.l1{left:-10px;bottom:10%}
-.l2{right:-12px;top:15%;transform:scale(.75)}
-
-/* =========================
+/* =========================================================
    SCENES
-========================= */
+========================================================= */
 
 .scene{
   position:absolute;
   inset:0;
-  z-index:5;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:18px;
+
+  padding:20px;
+
   opacity:0;
   visibility:hidden;
   pointer-events:none;
-  transform:translateY(24px) scale(.985);
-  filter:blur(5px);
-  transition:
-    opacity .75s ease,
-    transform .9s var(--ease),
-    filter .75s ease,
-    visibility 0s linear .9s;
-}
 
-.scene.active{
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-  transform:none;
-  filter:none;
+  transform:translateY(22px) scale(.985);
+  filter:blur(5px);
+
   transition:
     opacity .75s ease,
     transform .9s var(--ease),
     filter .75s ease;
 }
 
+.scene.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+
+  transform:none;
+  filter:none;
+}
+
 .content{
+  position:relative;
+  z-index:5;
   width:min(92vw,720px);
   text-align:center;
-  position:relative;
-  z-index:4;
 }
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
 
 .eyebrow{
-  font-size:8px;
-  font-weight:600;
-  letter-spacing:4px;
+  font-family:var(--elegant);
+  font-size:9px;
+  letter-spacing:3.5px;
   text-transform:uppercase;
-  color:#998b90;
-  margin-bottom:17px;
+  color:#9a8c91;
+  margin-bottom:15px;
 }
 
-h1,h2{
-  font-family:var(--serif);
+h1,
+h2{
+  font-family:var(--display);
   font-weight:400;
-  letter-spacing:-1px;
+  letter-spacing:-.7px;
 }
 
 h1{
-  font-size:clamp(37px,10vw,70px);
-  line-height:1.08;
+  font-size:clamp(43px,10vw,78px);
+  line-height:1.02;
 }
 
 h2{
-  font-size:clamp(29px,7vw,50px);
-  line-height:1.15;
+  font-size:clamp(31px,7vw,53px);
+  line-height:1.08;
 }
 
 .accent{
   color:var(--rose);
 }
 
-.script{
-  font-family:var(--script);
+.serif{
+  font-family:var(--display);
+  font-style:italic;
 }
 
 p{
-  max-width:520px;
-  margin:16px auto 0;
-  color:var(--muted);
+  color:var(--soft);
   font-size:12px;
-  line-height:1.9;
+  line-height:1.8;
 }
+
+/* =========================================================
+   BUTTON
+========================================================= */
 
 .btn{
   border:1px solid var(--line);
-  background:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.82);
+
   color:var(--ink);
-  border-radius:100px;
+
   padding:12px 22px;
-  margin-top:24px;
+  border-radius:100px;
+
   font-size:9px;
-  font-weight:600;
-  letter-spacing:1.7px;
+  font-weight:700;
+  letter-spacing:1.6px;
+
   cursor:pointer;
-  box-shadow:0 10px 32px rgba(70,50,55,.07);
+
+  margin-top:22px;
+
+  box-shadow:
+    0 10px 30px rgba(70,50,55,.07);
+
+  opacity:0;
+  transform:translateY(10px);
+
   transition:
-    transform .3s var(--ease),
-    box-shadow .3s ease,
-    background .3s ease;
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
 }
 
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 14px 38px rgba(70,50,55,.12);
+.scene.active .btn{
+  animation:buttonIn .8s .9s var(--ease) forwards;
+}
+
+.btn.primary{
+  border:none;
+  background:
+    linear-gradient(
+      135deg,
+      #e8c1c8,
+      #d9a5af
+    );
 }
 
 .btn:active{
   transform:scale(.95);
 }
 
-.btn.primary{
-  background:var(--rose2);
-  border-color:transparent;
+.btn:hover{
+  box-shadow:
+    0 14px 35px rgba(70,50,55,.12);
 }
 
-/* =========================
-   01 OPENING
-========================= */
+@keyframes buttonIn{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* =========================================================
+   SCENE 1 — OPENING
+========================================================= */
 
 .opening{
-  min-height:420px;
+  min-height:430px;
   display:flex;
   flex-direction:column;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
 }
 
-.date{
-  font-size:8px;
-  letter-spacing:5px;
-  color:#9a8d91;
+.small-date{
+  font-family:var(--elegant);
+  font-size:9px;
+  letter-spacing:4px;
+  color:#9b8d91;
+
   opacity:0;
   transform:translateY(12px);
 }
 
-.scene.active .date{
-  animation:up .9s .35s var(--ease) forwards;
+.scene.active .small-date{
+  animation:up 1s .35s var(--ease) forwards;
 }
 
 .opening-title{
-  margin-top:24px;
+  margin-top:25px;
+
+  font-family:var(--display);
+  font-size:clamp(38px,9vw,67px);
+  line-height:1.04;
+
   opacity:0;
   transform:translateY(20px);
 }
 
 .scene.active .opening-title{
-  animation:up 1.1s .8s var(--ease) forwards;
+  animation:up 1.15s 1s var(--ease) forwards;
 }
 
-.opening-title .small{
-  display:block;
-  font-family:var(--script);
-  font-size:clamp(32px,9vw,55px);
+.opening-title span{
   color:var(--rose);
-  margin-top:7px;
+  font-style:italic;
 }
 
-.opening-sub{
-  margin-top:25px;
+.opening-story{
+  margin-top:20px;
+  max-width:470px;
+
+  font-family:var(--elegant);
+  font-size:13px;
+  line-height:1.9;
+  color:#75696d;
+
   opacity:0;
-  transform:translateY(12px);
+  transform:translateY(15px);
 }
 
-.scene.active .opening-sub{
-  animation:up .9s 1.8s var(--ease) forwards;
+.scene.active .opening-story{
+  animation:up 1s 2.2s var(--ease) forwards;
 }
 
-.opening-divider{
+.opening-line{
   width:0;
   height:1px;
   background:var(--gold);
   margin-top:23px;
 }
 
-.scene.active .opening-divider{
-  animation:grow .8s 2.4s forwards;
-}
-
-@keyframes grow{
-  to{width:100px}
+.scene.active .opening-line{
+  animation:grow .9s 3.25s var(--ease) forwards;
 }
 
 @keyframes up{
@@ -342,12 +419,18 @@ p{
   }
 }
 
-/* =========================
-   02 / 06 LETTER
-========================= */
+@keyframes grow{
+  to{
+    width:110px;
+  }
+}
 
-.envelope-stage{
-  height:340px;
+/* =========================================================
+   SCENE 2 — ENVELOPE
+========================================================= */
+
+.envelope-area{
+  height:345px;
   display:grid;
   place-items:center;
   perspective:1200px;
@@ -357,35 +440,159 @@ p{
   width:min(335px,85vw);
   height:215px;
   position:relative;
+
   cursor:pointer;
+
   transform-style:preserve-3d;
+
   opacity:0;
-  transform:translateY(25px) scale(.95);
+  transform:
+    translateY(25px)
+    scale(.94);
 }
 
 .scene.active .envelope{
-  animation:up 1s .45s var(--ease) forwards;
+  animation:
+    envelopeIn 1s .5s var(--ease) forwards;
 }
 
-.envelope-back{
+@keyframes envelopeIn{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.env-shadow{
+  position:absolute;
+  left:7%;
+  right:7%;
+  bottom:-4px;
+  height:28px;
+  background:rgba(60,40,45,.15);
+  filter:blur(16px);
+  border-radius:50%;
+}
+
+.env-back{
   position:absolute;
   inset:0;
-  border-radius:8px;
-  background:linear-gradient(145deg,#fffdf9,#f3e7df);
-  box-shadow:var(--shadow);
+
+  border-radius:7px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffefa,
+      #f0e3dc
+    );
+
+  box-shadow:
+    0 25px 70px rgba(60,40,45,.15);
+}
+
+.env-back:after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      32deg,
+      transparent 49.4%,
+      rgba(173,102,117,.13) 50%,
+      transparent 50.6%
+    ),
+    linear-gradient(
+      -32deg,
+      transparent 49.4%,
+      rgba(173,102,117,.10) 50%,
+      transparent 50.6%
+    );
+}
+
+.letter-paper{
+  position:absolute;
+  z-index:5;
+
+  left:7%;
+  width:86%;
+  height:177px;
+  bottom:9px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffefa,
+      #fffaf4
+    );
+
+  border-radius:3px;
+
+  padding:25px 22px;
+
+  box-shadow:
+    0 10px 30px rgba(60,40,45,.12);
+
+  transition:
+    transform 1.15s var(--ease),
+    box-shadow 1s ease;
+}
+
+.letter-paper:before{
+  content:"";
+  position:absolute;
+  inset:8px;
+
+  border:1px solid rgba(173,102,117,.14);
+}
+
+.letter-title{
+  position:relative;
+  font-family:var(--display);
+  font-size:22px;
+  color:var(--rose);
+}
+
+.letter-sub{
+  position:relative;
+  margin-top:9px;
+
+  font-family:var(--display);
+  font-style:italic;
+  font-size:17px;
+  color:#716467;
 }
 
 .flap{
   position:absolute;
-  z-index:8;
+  z-index:10;
+
   left:0;
   top:0;
+
   width:100%;
-  height:59%;
-  background:linear-gradient(145deg,#f7e8df,#ead0cd);
-  clip-path:polygon(0 0,100% 0,50% 100%);
+  height:60%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f5e7df,
+      #e8cfd0
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
   transform-origin:50% 0;
-  transition:transform 1.25s var(--ease);
+
+  transition:
+    transform 1.15s var(--ease);
+
   backface-visibility:hidden;
 }
 
@@ -393,306 +600,421 @@ p{
   transform:rotateX(180deg);
 }
 
-.letter{
-  position:absolute;
-  z-index:6;
-  left:7%;
-  width:86%;
-  height:178px;
-  bottom:9px;
-  padding:25px 22px;
-  background:linear-gradient(#fff,#fffdf9);
-  border-radius:3px;
-  box-shadow:0 10px 30px rgba(60,40,45,.12);
-  transition:
-    transform 1.25s .18s var(--ease),
-    box-shadow .8s ease;
-}
-
-.envelope.open .letter{
-  transform:translateY(-105px);
-  box-shadow:0 25px 60px rgba(60,40,45,.16);
-}
-
-.letter:after{
-  content:"";
-  position:absolute;
-  inset:8px;
-  border:1px solid rgba(184,109,124,.13);
-}
-
-.letter-name{
-  font-family:var(--serif);
-  font-size:20px;
-  color:var(--rose);
-}
-
-.letter-preview{
-  margin-top:13px;
-  font-family:var(--script);
-  font-size:25px;
-  color:#66585d;
+.envelope.open .letter-paper{
+  transform:translateY(-103px);
+  box-shadow:
+    0 30px 70px rgba(60,40,45,.18);
 }
 
 .seal{
   position:absolute;
   z-index:15;
+
   left:50%;
-  top:55%;
-  width:44px;
-  height:44px;
+  top:54%;
+
+  width:45px;
+  height:45px;
+
   transform:translate(-50%,-50%);
-  border-radius:50%;
+
   display:grid;
   place-items:center;
-  background:radial-gradient(circle at 35% 30%,#d78a97,#a75d6c);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #d98c9a,
+      #a95d6d
+    );
+
   color:white;
-  font-family:var(--serif);
-  box-shadow:0 8px 20px rgba(100,55,65,.2);
-  transition:.65s;
+
+  font-family:var(--display);
+  font-size:17px;
+
+  box-shadow:
+    0 8px 20px rgba(100,55,65,.2);
+
+  transition:
+    transform .7s ease,
+    opacity .5s ease;
 }
 
 .envelope.open .seal{
+  transform:
+    translate(-50%,-50%)
+    scale(.6)
+    rotate(-20deg);
+
   opacity:0;
-  transform:translate(-50%,-50%) scale(.5) rotate(-20deg);
 }
 
-.envelope-hint{
+.env-hint{
   position:absolute;
-  bottom:-34px;
+
+  bottom:-33px;
   left:50%;
+
   transform:translateX(-50%);
-  white-space:nowrap;
-  font-size:8px;
-  letter-spacing:2px;
+
+  font-size:9px;
+  letter-spacing:1.5px;
   color:#998b90;
+
+  white-space:nowrap;
+
+  opacity:0;
 }
 
-/* =========================
-   NOTE
-========================= */
+.scene.active .env-hint{
+  animation:
+    hint .8s 1.35s forwards;
+}
+
+@keyframes hint{
+  to{
+    opacity:1;
+  }
+}
+
+/* =========================================================
+   SCENE 3 — NOTE
+========================================================= */
 
 .note-card{
-  width:min(600px,92vw);
-  padding:35px 28px;
-  background:rgba(255,253,249,.93);
-  border:1px solid rgba(90,65,70,.12);
-  box-shadow:var(--shadow);
   position:relative;
-}
 
-.note-card:before,
-.note-card:after{
-  content:"";
-  position:absolute;
-  width:42px;
-  height:42px;
-  border-color:rgba(182,107,121,.25);
+  width:min(590px,92vw);
+
+  padding:35px 28px 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.95),
+      rgba(255,250,245,.92)
+    );
+
+  border:
+    1px solid rgba(100,70,78,.1);
+
+  box-shadow:
+    0 30px 85px rgba(66,45,53,.13);
+
+  border-radius:8px;
+
+  overflow:hidden;
 }
 
 .note-card:before{
-  top:13px;
-  left:13px;
-  border-top:1px solid;
-  border-left:1px solid;
+  content:"";
+  position:absolute;
+
+  width:110px;
+  height:110px;
+
+  right:-30px;
+  top:-35px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(217,165,175,.18),
+      transparent 70%
+    );
 }
 
 .note-card:after{
-  right:13px;
-  bottom:13px;
-  border-right:1px solid;
-  border-bottom:1px solid;
+  content:"";
+  position:absolute;
+
+  left:15px;
+  top:15px;
+  right:15px;
+  bottom:15px;
+
+  border:1px solid rgba(173,102,117,.10);
+
+  pointer-events:none;
 }
 
-.note-title{
-  font-family:var(--serif);
-  font-size:26px;
+.note-label{
+  font-family:var(--elegant);
+  font-size:9px;
+  letter-spacing:3px;
+  color:#9a8b90;
+}
+
+.note-heading{
+  margin-top:12px;
+
+  font-family:var(--display);
+  font-size:30px;
+
   color:var(--rose);
-  margin-bottom:18px;
 }
 
 .note-text{
-  font-family:var(--script);
-  font-size:27px;
-  line-height:1.5;
-  color:#564a4e;
+  position:relative;
+  z-index:2;
+
+  margin-top:20px;
+
+  font-family:var(--display);
+  font-size:19px;
+  line-height:1.65;
+
+  color:#51474b;
 }
 
 .note-text span{
   display:block;
+
   opacity:0;
   transform:translateY(10px);
 }
 
 .scene.active .note-text span:nth-child(1){
-  animation:up .7s .5s forwards;
+  animation:noteIn .8s .65s forwards;
 }
 
 .scene.active .note-text span:nth-child(2){
-  animation:up .7s 1.4s forwards;
+  animation:noteIn .8s 1.65s forwards;
 }
 
 .scene.active .note-text span:nth-child(3){
-  animation:up .7s 2.3s forwards;
+  animation:noteIn .8s 2.65s forwards;
 }
 
 .scene.active .note-text span:nth-child(4){
-  animation:up .7s 3.2s forwards;
+  animation:noteIn .8s 3.65s forwards;
 }
 
-/* =========================
-   03 TIMELINE
-========================= */
+.note-sign{
+  margin-top:20px;
 
-.timeline{
-  width:min(620px,90vw);
-  margin:35px auto 0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:0;
-}
-
-.time-item{
-  width:30%;
-  position:relative;
-  opacity:0;
-  transform:translateY(15px);
-}
-
-.scene.active .time-item:nth-child(1){
-  animation:up .7s .5s forwards;
-}
-
-.scene.active .time-item:nth-child(2){
-  animation:up .7s 1s forwards;
-}
-
-.scene.active .time-item:nth-child(3){
-  animation:up .7s 1.5s forwards;
-}
-
-.time-item:after{
-  content:"";
-  position:absolute;
-  top:13px;
-  left:100%;
-  width:100%;
-  height:1px;
-  background:rgba(182,107,121,.25);
-}
-
-.time-item:last-child:after{
-  display:none;
-}
-
-.time-dot{
-  width:27px;
-  height:27px;
-  margin:auto;
-  border:1px solid var(--rose);
-  border-radius:50%;
-  display:grid;
-  place-items:center;
+  font-family:var(--display);
+  font-style:italic;
   color:var(--rose);
-  font-size:8px;
+
+  opacity:0;
 }
 
-.time-year{
-  margin-top:12px;
-  font-family:var(--serif);
-  font-size:13px;
+.scene.active .note-sign{
+  animation:noteIn .8s 4.55s forwards;
 }
 
-.time-text{
-  margin-top:7px;
-  color:var(--muted);
-  font-size:9px;
-  line-height:1.6;
+.note-next{
+  opacity:0;
 }
 
-/* =========================
-   MEMORY
-========================= */
+.scene.active .note-next{
+  animation:
+    buttonIn .8s 5s forwards !important;
+}
+
+@keyframes noteIn{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* =========================================================
+   SCENE 4 — STORY
+========================================================= */
+
+.story-card{
+  width:min(570px,92vw);
+
+  padding:30px 25px;
+
+  background:rgba(255,253,250,.85);
+
+  border:1px solid var(--line);
+
+  box-shadow:
+    0 25px 70px rgba(60,45,50,.10);
+
+  border-radius:10px;
+}
+
+.story-year{
+  font-family:var(--elegant);
+  font-size:10px;
+  letter-spacing:3px;
+  color:#9a8c90;
+}
+
+.story-big{
+  margin-top:17px;
+
+  font-family:var(--display);
+  font-size:31px;
+  line-height:1.3;
+}
+
+.story-big span{
+  color:var(--rose);
+}
+
+.story-body{
+  margin-top:17px;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  font-size:18px;
+  line-height:1.65;
+
+  color:#6d6064;
+}
+
+/* =========================================================
+   SCENE 5 — MEMORIES
+========================================================= */
 
 .memory-area{
-  height:340px;
-  margin-top:15px;
+  height:345px;
+
   position:relative;
+
   display:grid;
   place-items:center;
 }
 
 .memory-card{
   position:absolute;
+
   width:min(280px,77vw);
-  padding:9px 9px 16px;
+
+  padding:9px 9px 15px;
+
   background:white;
-  box-shadow:var(--shadow);
+
+  border-radius:5px;
+
+  box-shadow:
+    0 25px 60px rgba(60,45,50,.14);
+
   opacity:0;
-  transform:translateY(25px) rotate(3deg) scale(.96);
-  transition:.8s var(--ease);
+
+  transform:
+    translateY(25px)
+    scale(.95)
+    rotate(3deg);
+
+  transition:
+    opacity .7s ease,
+    transform .85s var(--ease);
 }
 
 .memory-card.active{
   opacity:1;
-  transform:translateY(0) rotate(-2deg) scale(1);
+  transform:
+    translateY(0)
+    scale(1)
+    rotate(-2deg);
 }
 
 .memory-card img{
   width:100%;
   height:225px;
-  display:block;
+
   object-fit:contain;
+
+  display:block;
+
   background:#faf7f4;
+
+  border-radius:2px;
 }
 
 .memory-caption{
-  margin-top:9px;
-  font-family:var(--script);
-  font-size:21px;
-  color:#67595e;
+  margin-top:8px;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  font-size:16px;
+
+  color:#685b60;
 }
 
 .memory-note{
   position:absolute;
-  right:-15px;
-  top:-16px;
+
+  right:-16px;
+  top:-17px;
+
   padding:6px 10px;
-  background:#fff0a8;
-  color:#675e48;
-  font-family:var(--script);
-  font-size:15px;
+
+  background:#f8e8a7;
+
+  color:#6d6249;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  font-size:12px;
+
   transform:rotate(7deg);
+
+  box-shadow:
+    0 5px 15px rgba(50,40,20,.08);
 }
 
-.empty-memory{
+.no-photo{
   height:225px;
+
   display:flex;
   flex-direction:column;
+
   justify-content:center;
   align-items:center;
-  padding:25px;
-  background:linear-gradient(145deg,#fffdf9,#fff4ed);
-  border:1px dashed rgba(182,107,121,.3);
+
+  text-align:center;
+
+  padding:20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffefa,
+      #fff5ef
+    );
+
+  border:1px dashed rgba(173,102,117,.28);
 }
 
-.empty-memory strong{
-  font-size:12px;
-  line-height:1.6;
+.no-photo .icon{
+  font-size:28px;
+  opacity:.55;
 }
 
-.empty-memory span{
+.no-photo strong{
   margin-top:10px;
-  font-family:var(--script);
-  font-size:22px;
-  line-height:1.35;
+  font-size:12px;
+}
+
+.no-photo em{
+  margin-top:8px;
+
+  font-family:var(--display);
+  font-size:17px;
+
   color:var(--rose);
 }
 
 .dots{
   position:absolute;
-  bottom:0;
+  bottom:-1px;
+
   display:flex;
   gap:8px;
 }
@@ -700,9 +1022,12 @@ p{
 .dot{
   width:6px;
   height:6px;
+
   border-radius:50%;
+
   background:#d8ced1;
-  transition:.4s;
+
+  transition:.5s;
 }
 
 .dot.active{
@@ -710,90 +1035,150 @@ p{
   transform:scale(1.4);
 }
 
-/* =========================
-   GIFT
-========================= */
+/* =========================================================
+   SCENE 6 — GIFT
+========================================================= */
 
 .gift{
   width:160px;
-  height:145px;
+  height:150px;
+
+  margin:30px auto;
+
   position:relative;
-  margin:32px auto;
+
   cursor:pointer;
-  transform:translateY(15px);
+
   opacity:0;
+  transform:translateY(15px);
 }
 
 .scene.active .gift{
-  animation:up 1s .5s var(--ease) forwards;
+  animation:
+    giftIn 1s .65s var(--ease) forwards,
+    giftFloat 3.5s 1.8s ease-in-out infinite;
+}
+
+@keyframes giftIn{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes giftFloat{
+  50%{
+    transform:translateY(-8px);
+  }
 }
 
 .gift-body{
   position:absolute;
-  left:8px;
-  right:8px;
+
+  left:7px;
+  right:7px;
   bottom:0;
-  height:88px;
-  border-radius:5px;
-  background:linear-gradient(135deg,#edb6bf,#d993a0);
-  box-shadow:0 22px 40px rgba(100,55,65,.17);
+
+  height:90px;
+
+  border-radius:6px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eab4bd,
+      #d995a3
+    );
+
+  box-shadow:
+    0 22px 45px rgba(100,55,65,.17);
 }
 
 .gift-lid{
   position:absolute;
   z-index:4;
+
   left:0;
   right:0;
+
   top:28px;
-  height:31px;
-  border-radius:5px;
-  background:#f0c8ce;
-  transition:1s var(--ease);
+
+  height:32px;
+
+  border-radius:6px;
+
+  background:#efc6cc;
+
+  transition:
+    transform 1s var(--ease);
 }
 
 .gift.open .gift-lid{
-  transform:translateY(-65px) rotate(-5deg);
+  transform:
+    translateY(-60px)
+    rotate(-5deg);
 }
 
 .ribbon-v{
   position:absolute;
-  width:14px;
+
+  width:13px;
+
+  left:50%;
   top:0;
   bottom:0;
-  left:50%;
+
   transform:translateX(-50%);
-  background:#e3c36b;
+
+  background:#ddbf68;
 }
 
 .ribbon-h{
   position:absolute;
+
   height:9px;
+
   left:0;
   right:0;
   top:50%;
+
   transform:translateY(-50%);
-  background:#e3c36b;
+
+  background:#ddbf68;
 }
 
 .bow{
   position:absolute;
   z-index:6;
+
   left:50%;
-  top:8px;
-  width:62px;
-  height:35px;
+  top:10px;
+
+  width:58px;
+  height:32px;
+
   transform:translateX(-50%);
 }
 
 .bow:before,
 .bow:after{
   content:"";
+
   position:absolute;
-  width:30px;
-  height:22px;
-  top:2px;
+
+  top:3px;
+
+  width:29px;
+  height:21px;
+
   border-radius:70% 30% 70% 30%;
-  background:linear-gradient(145deg,#e7c66f,#d3aa4d);
+
+  background:
+    linear-gradient(
+      145deg,
+      #e5c66f,
+      #cda84f
+    );
 }
 
 .bow:before{
@@ -806,705 +1191,967 @@ p{
   transform:scaleX(-1) rotate(25deg);
 }
 
-/* =========================
-   QUESTION
-========================= */
+/* =========================================================
+   SCENE 7 — QUESTION
+========================================================= */
+
+.question-box{
+  width:min(530px,92vw);
+}
+
+.question-sub{
+  margin-top:15px;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  color:#776b70;
+
+  font-size:18px;
+}
 
 .choice{
+  margin-top:25px;
+
   display:flex;
   justify-content:center;
-  gap:13px;
-  margin-top:8px;
-  min-height:80px;
+  gap:12px;
 }
 
 .choice .btn{
   opacity:1;
   transform:none;
+  animation:none !important;
 }
 
-#noBtn{
-  transition:.45s var(--ease);
+/* =========================================================
+   SCENE 8 — FAKE END
+========================================================= */
+
+.fake-sub{
+  margin-top:20px;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  font-size:23px;
+
+  color:var(--rose);
 }
 
-/* =========================
-   CAKE
-========================= */
+/* =========================================================
+   SCENE 9 — SURPRISE
+========================================================= */
 
-.cake-stage{
-  width:min(420px,95vw);
-  height:370px;
-  margin:5px auto 0;
+.surprise-sub{
+  margin-top:18px;
+
+  font-family:var(--display);
+
+  font-size:18px;
+
+  line-height:1.7;
+
+  color:#706468;
+}
+
+/* =========================================================
+   SCENE 10 — CANDLES + CAKE
+========================================================= */
+
+.cake-area{
+  width:390px;
+  height:340px;
+
+  max-width:100%;
+
+  margin:0 auto;
+
   position:relative;
+
   touch-action:none;
   user-select:none;
 }
 
 .plate{
   position:absolute;
-  width:300px;
-  height:27px;
+
+  width:290px;
+  height:26px;
+
   left:50%;
-  bottom:20px;
+  bottom:12px;
+
   transform:translateX(-50%);
+
   border-radius:50%;
-  background:radial-gradient(ellipse,#fff,#e8dddb 68%,#d4c6c6);
-  box-shadow:0 14px 25px rgba(70,50,55,.15);
+
+  background:
+    radial-gradient(
+      ellipse,
+      #fff,
+      #e7dddd 70%,
+      #d5c8c7
+    );
+
+  box-shadow:
+    0 13px 20px rgba(60,45,50,.13);
 }
 
 .cake{
   position:absolute;
+
   width:225px;
-  height:170px;
+  height:160px;
+
   left:50%;
-  bottom:42px;
+  bottom:32px;
+
   transform:translateX(-50%);
-  filter:drop-shadow(0 15px 12px rgba(80,50,55,.12));
-  transition:.9s var(--ease);
+
+  filter:
+    drop-shadow(
+      0 15px 13px rgba(70,50,55,.11)
+    );
 }
 
 .cake-body{
   position:absolute;
+
+  left:0;
+  right:0;
   bottom:0;
-  width:100%;
-  height:108px;
-  border-radius:12px 12px 15px 15px;
+
+  height:105px;
+
+  border-radius:
+    12px 12px 15px 15px;
+
   background:
-    linear-gradient(90deg,#d9919e,#edb4bc 22%,#df9eaa 50%,#efbbc2 80%,#d98f9d);
-  overflow:hidden;
+    linear-gradient(
+      90deg,
+      #d7909d,
+      #edb5bd 22%,
+      #dfa0ab 52%,
+      #efbbc2 82%,
+      #d58d9a
+    );
+
+  box-shadow:
+    inset 0 9px 15px rgba(255,255,255,.28),
+    inset 0 -9px 12px rgba(140,70,80,.1);
 }
 
 .cake-body:before{
   content:"";
+
   position:absolute;
-  top:32px;
+
   left:0;
   right:0;
+  top:31px;
+
   height:5px;
-  background:#f8d7ce;
-  box-shadow:0 30px #f8d7ce,0 60px #f8d7ce;
+
+  background:#f8d8d0;
+
+  box-shadow:
+    0 28px 0 #f8d8d0,
+    0 55px 0 #f8d8d0;
 }
 
 .top-cake{
   position:absolute;
+
   width:195px;
   height:50px;
+
   left:15px;
   top:10px;
+
   border-radius:50%;
-  background:radial-gradient(ellipse,#fffdf7,#fae7db 60%,#edd0c4);
+
+  background:
+    radial-gradient(
+      ellipse,
+      #fffdf5,
+      #fae8da 55%,
+      #efd2c4
+    );
 }
 
 .frosting{
   position:absolute;
+
   width:205px;
-  height:34px;
+  height:32px;
+
   left:10px;
   top:32px;
-  border-radius:0 0 50% 50%;
-  background:linear-gradient(#fff8ef,#f7e1d6);
+
+  border-radius:
+    0 0 50% 50%;
+
+  background:
+    linear-gradient(
+      #fff8ef,
+      #f7e0d4
+    );
 }
 
 .drip{
   position:absolute;
+
   width:16px;
-  background:#f4ddd2;
-  border-radius:0 0 10px 10px;
+
+  background:
+    linear-gradient(
+      #fff7ed,
+      #f1d9ce
+    );
+
+  border-radius:
+    0 0 10px 10px;
 }
 
-.drip.a{height:24px;left:42px}
-.drip.b{height:18px;left:91px}
-.drip.c{height:29px;left:142px}
+.drip.a{
+  height:24px;
+  left:39px;
+}
+
+.drip.b{
+  height:18px;
+  left:89px;
+}
+
+.drip.c{
+  height:29px;
+  left:139px;
+}
+
+/* candles */
 
 .candle{
   position:absolute;
-  z-index:8;
-  bottom:122px;
+
+  z-index:7;
+
+  bottom:116px;
+
   width:12px;
-  height:42px;
-  border-radius:6px;
-  background:repeating-linear-gradient(
-    135deg,
-    #cbb1d6 0 5px,
-    #f0dff0 5px 10px
-  );
+  height:43px;
+
+  border-radius:5px;
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #b9a0c1 0 5px,
+      #eee0ef 5px 10px
+    );
+
   cursor:pointer;
+
+  transition:
+    transform .3s ease;
 }
 
-.c1{left:75px}
-.c2{left:107px}
-.c3{left:139px}
+.candle:active{
+  transform:scale(.9);
+}
+
+.c1{left:70px;}
+.c2{left:106px;}
+.c3{left:142px;}
 
 .flame{
   position:absolute;
+
   width:14px;
   height:20px;
+
   left:-1px;
-  top:-19px;
-  border-radius:50% 50% 45% 45%;
-  background:radial-gradient(
-    circle at 50% 65%,
-    #fffbd0 0 20%,
-    #f3ce67 35% 60%,
-    transparent 64%
-  );
-  filter:drop-shadow(0 0 6px rgba(240,190,80,.5));
-  animation:flame .55s ease-in-out infinite alternate;
-  transition:.5s;
+  top:-20px;
+
+  border-radius:
+    50% 50% 45% 45%;
+
+  background:
+    radial-gradient(
+      circle at 50% 65%,
+      #fff9c7 0 18%,
+      #f2ca61 30% 60%,
+      transparent 63%
+    );
+
+  filter:
+    drop-shadow(
+      0 0 6px rgba(240,190,80,.5)
+    );
+
+  animation:
+    flameMove .55s
+    ease-in-out infinite
+    alternate;
 }
 
-.candle.out .flame{
-  opacity:0;
-  transform:translateY(-18px) scale(.1);
+.candle.off .flame{
   animation:none;
+  opacity:0;
+  transform:translateY(-15px) scale(.1);
 }
 
-@keyframes flame{
-  from{transform:rotate(-3deg) scale(.92)}
-  to{transform:rotate(4deg) scale(1.08)}
+@keyframes flameMove{
+  from{
+    transform:
+      rotate(-3deg)
+      scale(.93);
+  }
+
+  to{
+    transform:
+      rotate(4deg)
+      scale(1.08);
+  }
 }
 
-.candle-number{
-  position:absolute;
-  top:48px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:7px;
-  color:#998;
-  opacity:.65;
+/* candle instruction */
+
+.candle-hint{
+  margin-top:0;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  font-size:14px;
+
+  color:#8e8085;
+
+  transition:.4s;
 }
 
-.cake.cut{
-  transform:translateX(-50%) scale(1.01);
-}
+/* knife */
 
 .knife{
   position:absolute;
-  width:140px;
-  height:13px;
-  right:0;
-  top:170px;
+
+  z-index:20;
+
+  width:145px;
+  height:14px;
+
+  right:-2px;
+  top:150px;
+
   border-radius:8px;
-  background:linear-gradient(#fff,#eee 45%,#aaa);
-  transform:rotate(-42deg);
+
+  background:
+    linear-gradient(
+      to bottom,
+      #fff,
+      #e8e8e8 45%,
+      #aaa
+    );
+
+  transform:
+    rotate(-42deg);
+
   transform-origin:100% 50%;
+
+  box-shadow:
+    0 5px 13px rgba(60,50,50,.22);
+
   cursor:grab;
-  box-shadow:0 5px 12px rgba(60,50,50,.22);
+
   opacity:0;
+
   pointer-events:none;
-  transition:transform .55s var(--ease),opacity .5s;
+
+  transition:
+    opacity .5s ease;
 }
 
-.knife.unlocked{
+.knife.ready{
   opacity:1;
   pointer-events:auto;
 }
 
 .knife:after{
   content:"";
+
   position:absolute;
+
   right:-38px;
   top:-4px;
+
   width:43px;
-  height:20px;
+  height:21px;
+
   border-radius:5px 7px 7px 5px;
-  background:linear-gradient(145deg,#9b7a80,#6d5057);
+
+  background:
+    linear-gradient(
+      145deg,
+      #9b7a80,
+      #6d5057
+    );
 }
 
 .cut-line{
   position:absolute;
-  z-index:7;
+
+  z-index:8;
+
   width:4px;
-  height:100px;
-  left:108px;
-  top:55px;
-  background:rgba(130,70,80,.35);
+  height:98px;
+
+  left:109px;
+  top:54px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(130,65,75,.4),
+      transparent
+    );
+
   opacity:0;
-  transform:rotate(4deg) scaleY(.05);
+
+  transform:
+    rotate(4deg)
+    scaleY(.05);
+
   transform-origin:top;
-  transition:.9s var(--ease);
+
+  transition:
+    transform .8s var(--ease),
+    opacity .4s;
 }
 
 .cake.cut .cut-line{
   opacity:1;
-  transform:rotate(4deg) scaleY(1);
+
+  transform:
+    rotate(4deg)
+    scaleY(1);
 }
 
-.cake-hint{
-  margin-top:-2px;
-  font-family:var(--script);
+/* =========================================================
+   SCENE 11 — BIRTHDAY
+========================================================= */
+
+.birthday-line{
+  margin-top:22px;
+
   font-size:22px;
-  color:#998d91;
-}
 
-/* =========================
-   FINAL
-========================= */
-
-.final-photos{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  margin:27px auto 22px;
-}
-
-.mini{
-  width:88px;
-  height:112px;
-  padding:5px 5px 15px;
-  background:#fff;
-  box-shadow:0 12px 28px rgba(70,50,55,.14);
-}
-
-.mini:nth-child(1){transform:rotate(-6deg)}
-.mini:nth-child(2){transform:translateY(-7px) rotate(2deg)}
-.mini:nth-child(3){transform:rotate(5deg)}
-
-.mini img{
-  width:100%;
-  height:78px;
-  object-fit:contain;
-  background:#faf7f4;
-}
-
-.mini-empty{
-  height:78px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:8px;
-  background:#fff7f1;
-  border:1px dashed rgba(182,107,121,.28);
-}
-
-.mini-empty span{
-  font-family:var(--script);
-  font-size:15px;
-  line-height:1.2;
   color:var(--rose);
 }
 
+.birthday-small{
+  margin-top:10px;
+
+  font-size:10px;
+
+  color:#96898d;
+}
+
+/* =========================================================
+   SCENE 12 — FINAL
+========================================================= */
+
+.final-title{
+  font-size:clamp(34px,8vw,56px);
+}
+
+.final-photos{
+  display:flex;
+
+  justify-content:center;
+  align-items:flex-start;
+
+  gap:11px;
+
+  margin:25px auto;
+}
+
+.photo{
+  width:91px;
+  height:116px;
+
+  padding:5px 5px 16px;
+
+  background:#fff;
+
+  box-shadow:
+    0 12px 28px rgba(60,45,50,.14);
+
+  opacity:0;
+}
+
+.scene.active .photo:nth-child(1){
+  animation:
+    photo1 .8s 1s var(--ease) forwards;
+}
+
+.scene.active .photo:nth-child(2){
+  animation:
+    photo2 .8s 1.3s var(--ease) forwards;
+}
+
+.scene.active .photo:nth-child(3){
+  animation:
+    photo3 .8s 1.6s var(--ease) forwards;
+}
+
+.photo img{
+  width:100%;
+  height:82px;
+
+  object-fit:contain;
+
+  background:#faf7f4;
+}
+
+.photo-empty{
+  height:82px;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  font-size:11px;
+
+  color:var(--rose);
+
+  background:#fff7f1;
+
+  border:1px dashed rgba(173,102,117,.25);
+}
+
 .photo-tag{
-  margin-top:4px;
-  font-family:var(--script);
-  font-size:12px;
-  color:#7e7074;
+  margin-top:5px;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  font-size:9px;
+
+  color:#776b70;
+}
+
+@keyframes photo1{
+  to{
+    opacity:1;
+    transform:rotate(-6deg);
+  }
+}
+
+@keyframes photo2{
+  to{
+    opacity:1;
+    transform:
+      translateY(-7px)
+      rotate(2deg);
+  }
+}
+
+@keyframes photo3{
+  to{
+    opacity:1;
+    transform:rotate(5deg);
+  }
 }
 
 .final-card{
-  width:min(570px,91vw);
+  width:min(560px,92vw);
+
   margin:auto;
-  padding:28px 22px;
-  background:rgba(255,255,255,.82);
-  border:1px solid var(--line);
-  border-radius:22px;
-  box-shadow:var(--shadow);
+
+  padding:27px 22px;
+
+  background:
+    rgba(255,255,255,.84);
+
+  border:
+    1px solid var(--line);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 25px 75px rgba(60,45,50,.12);
+
+  opacity:0;
+
+  transform:
+    translateY(20px)
+    scale(.97);
+}
+
+.scene.active .final-card{
+  animation:
+    finalIn 1s 2.2s var(--ease) forwards;
+}
+
+@keyframes finalIn{
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
 .final-main{
-  font-family:var(--serif);
-  font-size:22px;
-  line-height:1.55;
+  font-family:var(--display);
+
+  font-size:24px;
+
+  line-height:1.45;
 }
 
 .final-main span{
   color:var(--rose);
 }
 
-.final-wish{
-  margin-top:17px;
-  font-family:var(--script);
-  font-size:27px;
+.final-line{
+  margin-top:15px;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  font-size:20px;
+
   color:var(--rose);
 }
 
 .final-small{
-  margin-top:11px;
-  font-size:10px;
-  line-height:1.7;
-  color:#827579;
+  margin-top:9px;
+
+  color:#817478;
+
+  font-size:11px;
+
+  line-height:1.8;
 }
 
-/* =========================
+.last{
+  margin-top:20px;
+
+  font-family:var(--display);
+  font-style:italic;
+
+  font-size:20px;
+
+  color:var(--rose);
+
+  opacity:0;
+}
+
+.scene.active .last{
+  animation:
+    up 1s 3.8s forwards;
+}
+
+.end-small{
+  margin-top:8px;
+
+  font-size:9px;
+
+  color:#9b8d91;
+
+  opacity:0;
+}
+
+.scene.active .end-small{
+  animation:
+    up 1s 4.25s forwards;
+}
+
+/* =========================================================
    EFFECTS
-========================= */
+========================================================= */
 
 #flash{
   position:fixed;
   inset:0;
+
   z-index:100;
-  background:#fff;
+
+  background:white;
+
   opacity:0;
+
   pointer-events:none;
 }
 
 .confetti{
   position:fixed;
+
   top:-20px;
+
   width:6px;
   height:10px;
+
   z-index:90;
-  animation:fall 3.5s linear forwards;
+
+  animation:
+    fall 3.5s linear forwards;
 }
 
 @keyframes fall{
   to{
-    transform:translate(var(--x),110vh) rotate(700deg);
+    transform:
+      translate(var(--x),110vh)
+      rotate(700deg);
+
     opacity:0;
   }
 }
 
-/* =========================
+.crumb{
+  position:absolute;
+
+  z-index:40;
+
+  width:5px;
+  height:5px;
+
+  border-radius:50%;
+
+  background:#e6b1a7;
+
+  animation:
+    crumb .9s ease-out forwards;
+}
+
+@keyframes crumb{
+  to{
+    transform:
+      translate(var(--x),var(--y))
+      rotate(180deg);
+
+    opacity:0;
+  }
+}
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width:600px){
 
   .scene{
-    padding:14px;
+    padding:15px;
   }
 
   .opening{
-    min-height:370px;
+    min-height:380px;
+  }
+
+  .opening-title{
+    font-size:38px;
+  }
+
+  .opening-story{
+    font-size:12px;
+  }
+
+  .envelope-area{
+    height:320px;
+  }
+
+  .envelope.open .letter-paper{
+    transform:translateY(-94px);
   }
 
   .note-card{
-    padding:32px 20px;
+    padding:30px 20px;
   }
 
   .note-text{
-    font-size:24px;
+    font-size:18px;
   }
 
   .memory-area{
-    height:325px;
+    height:340px;
+  }
+
+  .memory-card{
+    width:76vw;
   }
 
   .memory-card img,
-  .empty-memory{
+  .no-photo{
     height:210px;
   }
 
-  .cake-stage{
-    transform:scale(.87);
+  .cake-area{
+    transform:scale(.84);
     transform-origin:center;
-    margin-top:-10px;
+    margin-top:-8px;
+    margin-bottom:-18px;
   }
 
   .final-photos{
-    gap:7px;
+    gap:6px;
   }
 
-  .mini{
-    width:78px;
-    height:100px;
+  .photo{
+    width:79px;
+    height:101px;
   }
 
-  .mini img,
-  .mini-empty{
-    height:67px;
+  .photo img,
+  .photo-empty{
+    height:68px;
+  }
+
+  .final-card{
+    padding:21px 17px;
   }
 
   .final-main{
-    font-size:19px;
+    font-size:21px;
   }
 
-  .final-wish{
-    font-size:24px;
+  .final-line{
+    font-size:18px;
+  }
+
+  .butterfly{
+    font-size:65px;
+  }
+
+  .lotus{
+    font-size:78px;
   }
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div id="app">
 
-  <div class="butterfly b1"><i></i></div>
-  <div class="butterfly b2"><i></i></div>
-  <div class="butterfly b3"><i></i></div>
-  <div class="butterfly b4"><i></i></div>
+  <!-- WATERMARK DECOR -->
 
-  <div class="lotus l1">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
+  <div class="watermark butterfly wm1">🦋</div>
+  <div class="watermark butterfly wm2">🦋</div>
 
-  <div class="lotus l2">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
+  <div class="watermark lotus wm3">♧</div>
+  <div class="watermark lotus wm4">♧</div>
 
-  <!-- =========================
-       01
-  ========================== -->
+
+  <!-- FLOATING PARTICLES -->
+
+  <script>
+    for(let i=0;i<34;i++){
+
+      const f=document.createElement("div");
+
+      f.className="float";
+
+      f.style.left=Math.random()*100+"%";
+
+      f.style.animationDuration=
+        (12+Math.random()*12)+"s";
+
+      f.style.animationDelay=
+        (Math.random()*12)+"s";
+
+      document
+        .getElementById("app")
+        .appendChild(f);
+    }
+  </script>
+
+
+  <!-- =====================================================
+       SCENE 1 — OPENING
+  ====================================================== -->
 
   <section class="scene active" id="s1">
+
     <div class="content">
 
       <div class="opening">
 
-        <div class="date">
-          08 · SEPTEMBER
+        <div class="small-date">
+          08 SEPTEMBER · 2026
         </div>
 
-        <h1 class="opening-title">
-          Kuch kahaniyan
-          <span class="small">
-            birthday se nahi,
-            bachpan se shuru hoti hain.
-          </span>
-        </h1>
-
-        <div class="opening-sub">
-          Pallavi ke liye — ek chhoti si kahani. 🩵
+        <div class="opening-title">
+          Kuch birthdays<br>
+          <span>sirf birthdays nahi hote…</span>
         </div>
 
-        <div class="opening-divider"></div>
+        <div class="opening-story">
 
-        <button class="btn primary" onclick="go(2)">
-          KAHANI SHURU KAREIN →
-        </button>
+          Kuch log bachpan mein milte hain,
+          phir zindagi beech mein kitni bhi door
+          le jaaye… kuch connections waise hi rehte hain.
+
+        </div>
+
+        <div class="opening-line"></div>
 
       </div>
 
+      <button class="btn primary" onclick="go(2)">
+        EK CHHOTI SI YAAD ✦
+      </button>
+
     </div>
+
   </section>
 
 
-  <!-- =========================
-       02
-  ========================== -->
+  <!-- =====================================================
+       SCENE 2 — LETTER
+  ====================================================== -->
 
   <section class="scene" id="s2">
+
     <div class="content">
 
       <div class="eyebrow">
-        It started long ago
+        A little something
       </div>
 
       <h2>
-        Lagbhag <span class="accent">17 saal</span> pehle…
+        Aapke liye<br>
+        <span class="accent">kuch likha hai.</span>
       </h2>
 
-      <p>
-        Do bachche mile the,
-        bina ye jaane ki ek chhoti si dosti
-        itne saalon tak yaad rahegi.
-      </p>
 
-      <button class="btn primary" onclick="go(3)">
-        AAGE →
-      </button>
+      <div class="envelope-area">
 
-    </div>
-  </section>
+        <div
+          class="envelope"
+          id="envelope"
+          onclick="openLetter()"
+        >
 
+          <div class="env-shadow"></div>
 
-  <!-- =========================
-       03
-  ========================== -->
+          <div class="env-back"></div>
 
-  <section class="scene" id="s3">
-    <div class="content">
+          <div class="letter-paper">
 
-      <div class="eyebrow">
-        Then life happened
-      </div>
-
-      <h2>
-        Phir zindagi<br>
-        <span class="accent">apne raste chal padi.</span>
-      </h2>
-
-      <p>
-        Main Delhi chala gaya…
-        aur waqt ke saath hum dono apni-apni
-        zindagi mein busy hote gaye.
-      </p>
-
-      <div class="timeline">
-
-        <div class="time-item">
-          <div class="time-dot">01</div>
-          <div class="time-year">Bachpan</div>
-          <div class="time-text">Dosti ki shuruaat</div>
-        </div>
-
-        <div class="time-item">
-          <div class="time-dot">02</div>
-          <div class="time-year">11 YEARS</div>
-          <div class="time-text">Doori ke saal</div>
-        </div>
-
-        <div class="time-item">
-          <div class="time-dot">03</div>
-          <div class="time-year">2026</div>
-          <div class="time-text">Phir mulaqat</div>
-        </div>
-
-      </div>
-
-      <button class="btn primary" onclick="go(4)">
-        PHIR EK DIN… →
-      </button>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       04
-  ========================== -->
-
-  <section class="scene" id="s4">
-    <div class="content">
-
-      <div class="eyebrow">
-        Eleven years later
-      </div>
-
-      <h1>
-        <span class="accent">11 saal</span> baad…
-      </h1>
-
-      <div class="script" style="font-size:38px;margin-top:18px;color:#65575b">
-        hum dobara mile.
-      </div>
-
-      <p>
-        Aur sabse achhi baat?
-      </p>
-
-      <h2 style="margin-top:10px">
-        Kuch bhi <span class="accent">badla hua nahi laga.</span>
-      </h2>
-
-      <button class="btn primary" onclick="go(5)">
-        AAGE →
-      </button>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       05 MEMORY
-  ========================== -->
-
-  <section class="scene" id="s5">
-    <div class="content">
-
-      <div class="eyebrow">
-        Still us
-      </div>
-
-      <h2>
-        Dosti ko<br>
-        <span class="accent">kisi introduction ki zarurat nahi padi.</span>
-      </h2>
-
-      <div class="memory-area">
-
-        <div class="memory-card active" id="m1">
-
-          <div class="memory-note">
-            one memory ✦
-          </div>
-
-          <img src="1000244923.png" alt="Memory">
-
-          <div class="memory-caption">
-            Ek purani si yaad.
-          </div>
-
-        </div>
-
-        <div class="memory-card" id="m2">
-
-          <div class="memory-note">
-            another one ✦
-          </div>
-
-          <img src="1000244922.png" alt="Memory">
-
-          <div class="memory-caption">
-            Aur ek pyari si yaad…
-          </div>
-
-        </div>
-
-        <div class="memory-card" id="m3">
-
-          <div class="memory-note">
-            maybe someday :)
-          </div>
-
-          <div class="empty-memory">
-
-            <strong>
-              Humari saath mein photo
-              abhi bhi missing hai 😅
-            </strong>
-
-            <span>
-              Shayad kisi aur memory
-              ke liye ek frame bachaya hai…
-            </span>
-
-          </div>
-
-          <div class="memory-caption">
-            Ek photo abhi baaki hai.
-          </div>
-
-        </div>
-
-        <div class="dots">
-          <span class="dot active" id="d1"></span>
-          <span class="dot" id="d2"></span>
-          <span class="dot" id="d3"></span>
-        </div>
-
-      </div>
-
-      <button class="btn primary" id="memoryBtn" onclick="nextMemory()">
-        NEXT MEMORY →
-      </button>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       06 LETTER
-  ========================== -->
-
-  <section class="scene" id="s6">
-    <div class="content">
-
-      <div class="eyebrow">
-        A little note
-      </div>
-
-      <h2>
-        Kuch likha hai,<br>
-        <span class="accent">sirf aapke liye.</span>
-      </h2>
-
-      <div class="envelope-stage">
-
-        <div class="envelope" id="envelope" onclick="openLetter()">
-
-          <div class="envelope-back"></div>
-
-          <div class="letter">
-
-            <div class="letter-name">
+            <div class="letter-title">
               For Pallavi,
             </div>
 
-            <div class="letter-preview">
-              “Ek chhoti si baat kehni thi…”
+            <div class="letter-sub">
+              “Ek purani dosti ke naam…”
             </div>
 
           </div>
@@ -1515,7 +2162,7 @@ p{
             P
           </div>
 
-          <div class="envelope-hint">
+          <div class="env-hint">
             TAP TO OPEN
           </div>
 
@@ -1524,23 +2171,25 @@ p{
       </div>
 
     </div>
+
   </section>
 
 
-  <!-- =========================
-       07 NOTE
-  ========================== -->
+  <!-- =====================================================
+       SCENE 3 — NOTE
+  ====================================================== -->
 
-  <section class="scene" id="s7">
+  <section class="scene" id="s3">
+
     <div class="content">
 
       <div class="note-card">
 
-        <div class="eyebrow">
-          A little note
+        <div class="note-label">
+          A LITTLE NOTE
         </div>
 
-        <div class="note-title">
+        <div class="note-heading">
           Dear Pallavi,
         </div>
 
@@ -1548,77 +2197,239 @@ p{
 
           <span>
             Aaj aapka birthday hai,
-            toh sirf “Happy Birthday” kehkar
-            baat khatam karna thoda boring laga.
+            aur sirf “Happy Birthday” kehkar
+            baat khatam karna thoda kam laga.
           </span>
 
           <span>
-            Isliye socha kuch aisa banaya jaye
-            jo aap thoda ruk kar dekhein…
+            Shayad isliye kyunki humari dosti
+            sirf aaj ki nahi hai.
+            Ye bachpan se chali aa rahi hai.
           </span>
 
           <span>
-            17 saal ki dosti, beech ke 11 saal,
-            aur phir isi saal dobara milna —
-            ye sab apne aap mein kaafi special hai.
+            Beech mein 11 saal ka gap aa gaya,
+            main Delhi chala gaya,
+            zindagi apne-apne raste chalti rahi…
+            lekin jab is saal phir mile,
+            toh honestly laga hi nahi ki itna waqt beet gaya.
           </span>
 
           <span>
-            Bas itna hi kehna tha —
-            aaj ka din bahut achha ho,
-            aur aap hamesha khush rahen. 🩵
+            Kuch cheezein badalti nahi hain.
+            Aur humari dosti shayad unhi mein se ek hai. 🩵
           </span>
 
         </div>
 
-        <button class="btn primary" onclick="go(8)">
-          MEMORIES DEKHEIN ✦
+        <div class="note-sign">
+          — bas ek purane dost ki taraf se :)
+        </div>
+
+        <button
+          class="btn primary note-next"
+          onclick="go(4)"
+        >
+          EK PURANI KAHANI ✦
         </button>
 
       </div>
 
     </div>
+
   </section>
 
 
-  <!-- =========================
-       08 WISH
-  ========================== -->
+  <!-- =====================================================
+       SCENE 4 — CHILDHOOD STORY
+  ====================================================== -->
 
-  <section class="scene" id="s8">
+  <section class="scene" id="s4">
+
+    <div class="content">
+
+      <div class="story-card">
+
+        <div class="story-year">
+          THEN · NOW
+        </div>
+
+        <div class="story-big">
+          Almost <span>17 years.</span><br>
+          Itna lamba safar…
+        </div>
+
+        <div class="story-body">
+
+          “Beech mein 11 saal tak milna nahi hua,
+          phir isi saal jab dobara mile,
+          toh woh awkward ‘itne saal baad kaise baat karein’
+          wali feeling bhi nahi aayi.”
+
+          <br><br>
+
+          “Bas baat shuru hui…
+          aur laga jaise kahani wahi se continue ho gayi
+          jahan chhodi thi.”
+
+        </div>
+
+        <button
+          class="btn primary"
+          onclick="go(5)"
+        >
+          KUCH YAADEN ✦
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       SCENE 5 — MEMORIES
+  ====================================================== -->
+
+  <section class="scene" id="s5">
+
     <div class="content">
 
       <div class="eyebrow">
-        One small wish
+        A few memories
       </div>
 
       <h2>
-        Kuch log<br>
-        <span class="accent">waqt se purane hote hain.</span>
+        Kuch photos,<br>
+        <span class="accent">kuch yaadein.</span>
       </h2>
 
-      <div class="script" style="font-size:36px;margin-top:20px;color:#66585d">
-        Aur kuch dosti… waqt se bhi zyada purani.
+      <div class="memory-area">
+
+        <!-- MEMORY 1 -->
+
+        <div
+          class="memory-card active"
+          id="m1"
+        >
+
+          <div class="memory-note">
+            one little memory
+          </div>
+
+          <img
+            src="1000244923.png"
+            alt="Memory"
+          >
+
+          <div class="memory-caption">
+            Ek chhoti si yaad.
+          </div>
+
+        </div>
+
+
+        <!-- MEMORY 2 -->
+
+        <div
+          class="memory-card"
+          id="m2"
+        >
+
+          <div class="memory-note">
+            another one
+          </div>
+
+          <img
+            src="1000244922.png"
+            alt="Memory"
+          >
+
+          <div class="memory-caption">
+            Aur ek achhi si memory…
+          </div>
+
+        </div>
+
+
+        <!-- MEMORY 3 -->
+
+        <div
+          class="memory-card"
+          id="m3"
+        >
+
+          <div class="memory-note">
+            maybe someday
+          </div>
+
+          <div class="no-photo">
+
+            <div class="icon">
+              📷
+            </div>
+
+            <strong>
+              Humari saath mein photo
+              abhi bhi nahi hai 😅
+            </strong>
+
+            <em>
+              Shayad ye frame
+              kisi future memory ke liye hai…
+            </em>
+
+          </div>
+
+          <div class="memory-caption">
+            One photo still missing.
+          </div>
+
+        </div>
+
+
+        <div class="dots">
+
+          <span
+            class="dot active"
+            id="d1"
+          ></span>
+
+          <span
+            class="dot"
+            id="d2"
+          ></span>
+
+          <span
+            class="dot"
+            id="d3"
+          ></span>
+
+        </div>
+
       </div>
 
-      <p>
-        Shayad isi liye 11 saal ki doori ke baad bhi
-        sab kuch itna familiar laga.
-      </p>
 
-      <button class="btn primary" onclick="go(9)">
-        EK CHHOTI SI BAAT →
+      <button
+        class="btn primary"
+        id="memoryBtn"
+        onclick="nextMemory()"
+      >
+        NEXT MEMORY →
       </button>
 
     </div>
+
   </section>
 
 
-  <!-- =========================
-       09 GIFT
-  ========================== -->
+  <!-- =====================================================
+       SCENE 6 — GIFT
+  ====================================================== -->
 
-  <section class="scene" id="s9">
+  <section class="scene" id="s6">
+
     <div class="content">
 
       <div class="eyebrow">
@@ -1627,10 +2438,14 @@ p{
 
       <h2>
         Ye bhi<br>
-        <span class="accent">open kijiye. 🎁</span>
+        <span class="accent">open kijiye.</span>
       </h2>
 
-      <div class="gift" id="gift" onclick="openGift()">
+      <div
+        class="gift"
+        id="gift"
+        onclick="openGift()"
+      >
 
         <div class="gift-body">
           <div class="ribbon-v"></div>
@@ -1649,46 +2464,62 @@ p{
       </p>
 
     </div>
+
   </section>
 
 
-  <!-- =========================
-       10 QUESTION
-  ========================== -->
+  <!-- =====================================================
+       SCENE 7 — QUESTION
+  ====================================================== -->
 
-  <section class="scene" id="s10">
-    <div class="content">
+  <section class="scene" id="s7">
+
+    <div class="content question-box">
 
       <div class="eyebrow">
-        Before the surprise
+        Ek chhota sa question
       </div>
 
       <h2>
-        Ready hain<br>
-        <span class="accent">birthday surprise ke liye?</span>
+        Surprise ke liye<br>
+        <span class="accent">ready?</span>
       </h2>
+
+      <div class="question-sub">
+        Is baar “haan” bol dena,
+        warna button bhaag jayega. 😌
+      </div>
 
       <div class="choice">
 
-        <button class="btn primary" onclick="yesAnswer()">
+        <button
+          class="btn primary"
+          onclick="yesAnswer()"
+        >
           HAAN 🩵
         </button>
 
-        <button class="btn" id="noBtn" onclick="noAnswer()">
+        <button
+          class="btn"
+          id="noBtn"
+          onclick="noAnswer()"
+        >
           NAHI
         </button>
 
       </div>
 
     </div>
+
   </section>
 
 
-  <!-- =========================
-       11 FAKE END
-  ========================== -->
+  <!-- =====================================================
+       SCENE 8 — FAKE END
+  ====================================================== -->
 
-  <section class="scene" id="s11">
+  <section class="scene" id="s8">
+
     <div class="content">
 
       <div class="eyebrow">
@@ -1699,19 +2530,21 @@ p{
         Bas itna hi.
       </h1>
 
-      <div class="script" style="font-size:36px;margin-top:18px;color:var(--rose)">
+      <div class="fake-sub">
         …shayad. 👀
       </div>
 
     </div>
+
   </section>
 
 
-  <!-- =========================
-       12 REAL SURPRISE
-  ========================== -->
+  <!-- =====================================================
+       SCENE 9 — REAL SURPRISE
+  ====================================================== -->
 
-  <section class="scene" id="s12">
+  <section class="scene" id="s9">
+
     <div class="content">
 
       <div class="eyebrow">
@@ -1720,93 +2553,188 @@ p{
 
       <h1>
         Aapko laga<br>
-        <span class="accent">khatam ho gaya?</span>
+        <span class="accent">
+          khatam ho gaya?
+        </span>
       </h1>
 
-      <p>
-        Nahi ji. Ek important part abhi baaki hai.
-      </p>
+      <div class="surprise-sub">
+        Nahi ji.<br>
+        Birthday ka main part abhi baaki hai.
+      </div>
 
-      <button class="btn primary" onclick="go(13)">
-        ASLI SURPRISE ✦
+      <button
+        class="btn primary"
+        onclick="go(10)"
+      >
+        CAKE TIME ✦
       </button>
 
     </div>
+
   </section>
 
 
-  <!-- =========================
-       13 CAKE
-  ========================== -->
+  <!-- =====================================================
+       SCENE 10 — CANDLES
+  ====================================================== -->
 
-  <section class="scene" id="s13">
+  <section class="scene" id="s10">
+
     <div class="content">
 
       <div class="eyebrow">
-        17 years of friendship
+        Before the cake
       </div>
 
       <h2>
-        Cake toh<br>
-        <span class="accent">banta hai. 🎂</span>
+        Pehle candles<br>
+        <span class="accent">bujhaate hain.</span>
       </h2>
 
-      <p id="cakeInstruction">
-        Pehle teenon candles bujhaaiye.
-      </p>
-
-      <div class="cake-stage" id="cakeStage">
+      <div
+        class="cake-area"
+        id="cakeArea"
+      >
 
         <div class="plate"></div>
 
-        <div class="cake" id="cake">
+        <div
+          class="cake"
+          id="cake"
+        >
 
           <div class="cake-body"></div>
 
           <div class="top-cake"></div>
 
           <div class="frosting">
+
             <div class="drip a"></div>
             <div class="drip b"></div>
             <div class="drip c"></div>
+
           </div>
 
           <div class="cut-line"></div>
 
-          <div class="candle c1" onclick="blowCandle(this,event)">
+
+          <!-- CANDLES -->
+
+          <div
+            class="candle c1"
+            onclick="blowCandle(0)"
+          >
             <div class="flame"></div>
-            <div class="candle-number">1</div>
           </div>
 
-          <div class="candle c2" onclick="blowCandle(this,event)">
+          <div
+            class="candle c2"
+            onclick="blowCandle(1)"
+          >
             <div class="flame"></div>
-            <div class="candle-number">2</div>
           </div>
 
-          <div class="candle c3" onclick="blowCandle(this,event)">
+          <div
+            class="candle c3"
+            onclick="blowCandle(2)"
+          >
             <div class="flame"></div>
-            <div class="candle-number">3</div>
           </div>
 
         </div>
 
-        <div class="knife" id="knife"></div>
+
+        <div
+          class="knife"
+          id="knife"
+        ></div>
 
       </div>
 
-      <div class="cake-hint" id="cakeHint">
-        Candle par tap kijiye ✦
+
+      <div
+        class="candle-hint"
+        id="candleHint"
+      >
+        Har candle par tap kijiye ✦
       </div>
 
     </div>
+
   </section>
 
 
-  <!-- =========================
-       14 BIRTHDAY
-  ========================== -->
+  <!-- =====================================================
+       SCENE 11 — CUT CAKE
+  ====================================================== -->
 
-  <section class="scene" id="s14">
+  <section class="scene" id="s11">
+
+    <div class="content">
+
+      <div class="eyebrow">
+        Now the important part
+      </div>
+
+      <h2>
+        Cake cut karein,<br>
+        <span class="accent">Pallavi? 🎂</span>
+      </h2>
+
+      <div
+        class="cake-area"
+        id="cutArea"
+      >
+
+        <div class="plate"></div>
+
+        <div
+          class="cake"
+          id="cutCake"
+        >
+
+          <div class="cake-body"></div>
+
+          <div class="top-cake"></div>
+
+          <div class="frosting">
+
+            <div class="drip a"></div>
+            <div class="drip b"></div>
+            <div class="drip c"></div>
+
+          </div>
+
+          <div class="cut-line"></div>
+
+        </div>
+
+        <div
+          class="knife ready"
+          id="cutKnife"
+        ></div>
+
+      </div>
+
+      <div
+        class="candle-hint"
+        id="cutHint"
+      >
+        Knife ko cake ke across smoothly drag kijiye ✦
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       SCENE 12 — BIRTHDAY
+  ====================================================== -->
+
+  <section class="scene" id="s12">
+
     <div class="content">
 
       <div class="eyebrow">
@@ -1815,166 +2743,261 @@ p{
 
       <h1>
         Happy Birthday,<br>
-        <span class="accent">Pallavi! 🎉</span>
+        <span class="accent">
+          Pallavi! 🎉
+        </span>
       </h1>
 
-      <div class="script" style="font-size:38px;margin-top:18px;color:var(--rose)">
-        08 September ✦
+      <div class="birthday-line">
+        08 September — aapka special day. ✨
       </div>
 
-      <p>
-        Aaj ka din officially aapke naam.
-      </p>
+      <div class="birthday-small">
+        Cake officially cut ho gaya. Mission successful.
+      </div>
 
-      <button class="btn primary" onclick="go(15)">
+      <button
+        class="btn primary"
+        onclick="go(13)"
+      >
         EK LAST BAAT…
       </button>
 
     </div>
+
   </section>
 
 
-  <!-- =========================
-       15 FINAL
-  ========================== -->
+  <!-- =====================================================
+       SCENE 13 — FINAL FRIENDSHIP
+  ====================================================== -->
 
-  <section class="scene" id="s15">
+  <section class="scene" id="s13">
+
     <div class="content">
 
       <div class="eyebrow">
         Aur ek last baat…
       </div>
 
-      <h2>
-        17 saal pehle shuru hui<br>
-        <span class="accent">ek dosti.</span>
+      <h2 class="final-title">
+        Kuch friendships<br>
+        <span class="accent">
+          bas bani rehni chahiye.
+        </span>
       </h2>
+
 
       <div class="final-photos">
 
-        <div class="mini">
-          <img src="1000244923.png" alt="Memory">
-          <div class="photo-tag">one memory</div>
-        </div>
+        <div class="photo">
 
-        <div class="mini">
-          <img src="1000244922.png" alt="Memory">
-          <div class="photo-tag">another one</div>
-        </div>
+          <img
+            src="1000244923.png"
+            alt="Memory"
+          >
 
-        <div class="mini">
-          <div class="mini-empty">
-            <span>
-              Our photo<br>
-              is still missing :)
-            </span>
+          <div class="photo-tag">
+            one little memory
           </div>
-          <div class="photo-tag">maybe someday</div>
+
+        </div>
+
+
+        <div class="photo">
+
+          <img
+            src="1000244922.png"
+            alt="Memory"
+          >
+
+          <div class="photo-tag">
+            another one
+          </div>
+
+        </div>
+
+
+        <div class="photo">
+
+          <div class="photo-empty">
+            Our photo<br>
+            is still missing :)
+          </div>
+
+          <div class="photo-tag">
+            maybe someday
+          </div>
+
         </div>
 
       </div>
+
 
       <div class="final-card">
 
         <div class="final-main">
-          Beech mein <span>11 saal</span> ki doori aa gayi,
-          lekin dosti wahi rahi.
+
+          Aap meri life ki<br>
+          <span>
+            first friend hain.
+          </span>
+
         </div>
 
-        <div class="final-wish">
-          Bas ek wish hai… ✨
+        <div class="final-line">
+          Aur honestly, ek hi wish hai…
         </div>
 
         <div class="final-small">
-          Life humein chahe kitni bhi alag directions mein le jaaye,
-          hum dono hamesha aise hi acche friends rahein. 🩵
+
+          17 saal ki dosti,
+          11 saal ka gap,
+          aur phir bhi kuch nahi badla.
+
+          <br>
+
+          Bas aage bhi aise hi
+          acche dost rahein —
+          chahe life humein kahin bhi le jaaye. 🩵
+
         </div>
 
       </div>
 
-      <div class="script" style="font-size:31px;color:var(--rose);margin-top:19px">
+
+      <div class="last">
         Happy Birthday once again, Pallavi. ✦
       </div>
 
-      <div style="margin-top:8px;font-size:9px;color:#9b8d90">
-        — Ashish
+      <div class="end-small">
+        Ab jaaiye… birthday enjoy kijiye. 😌🎂
       </div>
 
     </div>
+
   </section>
 
 </div>
 
+
 <div id="flash"></div>
+
 
 <script>
 
-/* =========================
+/* =========================================================
    NAVIGATION
-========================= */
+========================================================= */
 
-let busy = false;
+let busy=false;
 
 function go(n){
 
   if(busy) return;
 
-  busy = true;
+  busy=true;
 
-  document.querySelectorAll(".scene")
-    .forEach(s => s.classList.remove("active"));
+  document
+    .querySelectorAll(".scene")
+    .forEach(s=>{
+      s.classList.remove("active");
+    });
 
-  setTimeout(() => {
+  setTimeout(()=>{
 
-    const target = document.getElementById("s" + n);
+    const target=
+      document.getElementById("s"+n);
 
     if(target){
       target.classList.add("active");
     }
 
-    busy = false;
+    setTimeout(()=>{
+      busy=false;
+    },750);
 
   },120);
+
 }
 
 
-/* =========================
-   MEMORY
-========================= */
+/* =========================================================
+   LETTER
+========================================================= */
 
-let memory = 1;
+let letterOpened=false;
+
+function openLetter(){
+
+  if(letterOpened) return;
+
+  letterOpened=true;
+
+  const env=
+    document.getElementById("envelope");
+
+  if(!env) return;
+
+  env.classList.add("open");
+
+  setTimeout(()=>{
+    flash();
+  },750);
+
+  setTimeout(()=>{
+    go(3);
+  },2050);
+
+}
+
+
+/* =========================================================
+   MEMORIES
+========================================================= */
+
+let memory=1;
 
 function nextMemory(){
 
-  if(memory < 3){
+  if(memory<3){
 
-    const oldCard =
-      document.getElementById("m" + memory);
+    const old=
+      document.getElementById("m"+memory);
 
-    const oldDot =
-      document.getElementById("d" + memory);
+    const oldDot=
+      document.getElementById("d"+memory);
 
-    oldCard?.classList.remove("active");
-    oldDot?.classList.remove("active");
+    if(old)
+      old.classList.remove("active");
+
+    if(oldDot)
+      oldDot.classList.remove("active");
 
     memory++;
 
-    setTimeout(() => {
+    setTimeout(()=>{
+
+      const next=
+        document.getElementById("m"+memory);
+
+      const dot=
+        document.getElementById("d"+memory);
+
+      if(next)
+        next.classList.add("active");
+
+      if(dot)
+        dot.classList.add("active");
+
+    },180);
+
+
+    if(memory===3){
 
       document
-        .getElementById("m" + memory)
-        ?.classList.add("active");
-
-      document
-        .getElementById("d" + memory)
-        ?.classList.add("active");
-
-    },160);
-
-    if(memory === 3){
-
-      document.getElementById("memoryBtn")
-        .textContent =
+        .getElementById("memoryBtn")
+        .textContent=
         "AAGE CHALEIN ✦";
 
     }
@@ -1984,355 +3007,372 @@ function nextMemory(){
     go(6);
 
   }
-}
-
-
-/* =========================
-   LETTER
-========================= */
-
-let letterOpened = false;
-
-function openLetter(){
-
-  if(letterOpened) return;
-
-  letterOpened = true;
-
-  const envelope =
-    document.getElementById("envelope");
-
-  envelope.classList.add("open");
-
-  setTimeout(() => {
-    flash();
-  },700);
-
-  setTimeout(() => {
-    go(7);
-  },1800);
 
 }
 
 
-/* =========================
+/* =========================================================
    GIFT
-========================= */
+========================================================= */
 
-let giftOpened = false;
+let giftOpened=false;
 
 function openGift(){
 
   if(giftOpened) return;
 
-  giftOpened = true;
+  giftOpened=true;
 
-  document
-    .getElementById("gift")
-    .classList.add("open");
+  const gift=
+    document.getElementById("gift");
 
-  setTimeout(() => {
-    confetti(18);
+  gift.classList.add("open");
+
+  setTimeout(()=>{
+    confetti(20);
   },500);
 
-  setTimeout(() => {
-    go(10);
-  },1350);
+  setTimeout(()=>{
+    go(7);
+  },1450);
 
 }
 
 
-/* =========================
+/* =========================================================
    QUESTION
-========================= */
+========================================================= */
 
-let noCount = 0;
+let noCount=0;
 
 function noAnswer(){
 
-  const button =
+  const btn=
     document.getElementById("noBtn");
+
+  if(!btn) return;
 
   noCount++;
 
-  if(noCount === 1){
+  if(noCount===1){
 
-    button.style.transform =
-      "translate(35px,-5px)";
+    btn.style.transform=
+      "translate(38px,-5px)";
 
-    button.textContent =
+    btn.textContent=
       "Sochiye 😌";
 
   }
 
-  else if(noCount === 2){
+  else if(noCount===2){
 
-    button.style.transform =
+    btn.style.transform=
       "translate(-35px,12px)";
 
-    button.textContent =
+    btn.textContent=
       "Pakka? 😂";
 
   }
 
   else{
 
-    button.style.transform =
-      "translate(0,-25px)";
-
-    button.style.opacity =
-      ".35";
-
-    button.textContent =
-      "Theek hai 😅";
+    btn.style.opacity="0";
+    btn.style.pointerEvents="none";
 
   }
+
 }
 
 
 function yesAnswer(){
 
-  confetti(12);
+  confetti(16);
 
-  go(11);
+  go(8);
 
-  setTimeout(() => {
-    go(12);
+  setTimeout(()=>{
+    go(9);
   },2500);
 
 }
 
 
-/* =========================
+/* =========================================================
    CANDLES
-========================= */
+========================================================= */
 
-let candlesOut = 0;
-let cakeUnlocked = false;
+let candlesBlown=0;
 
-function blowCandle(candle,event){
+function blowCandle(index){
 
-  event.stopPropagation();
+  const candles=
+    document.querySelectorAll("#s10 .candle");
 
-  if(cakeUnlocked) return;
+  if(!candles[index]) return;
 
-  if(candle.classList.contains("out"))
+  if(
+    candles[index]
+      .classList.contains("off")
+  ){
     return;
-
-  candle.classList.add("out");
-
-  candlesOut++;
-
-  if(candlesOut === 1){
-
-    document.getElementById("cakeHint")
-      .textContent =
-      "Ek ho gayi… ✦";
-
   }
 
-  if(candlesOut === 2){
+  candles[index]
+    .classList.add("off");
 
-    document.getElementById("cakeHint")
-      .textContent =
-      "Bas ek aur… 🩵";
+  candlesBlown++;
 
-  }
-
-  if(candlesOut === 3){
-
-    cakeUnlocked = true;
-
-    document.getElementById("cakeInstruction")
-      .textContent =
-      "Perfect. Ab cake cut karte hain.";
-
-    document.getElementById("cakeHint")
-      .textContent =
-      "Knife ko cake ke across drag kijiye ✦";
+  if(candlesBlown===3){
 
     document
-      .getElementById("knife")
-      .classList.add("unlocked");
+      .getElementById("candleHint")
+      .textContent=
+      "Perfect. Ab cake cut karte hain. 🎂";
 
-    confetti(15);
+    confetti(18);
+
+    setTimeout(()=>{
+      go(11);
+    },1500);
 
   }
 
 }
 
 
-/* =========================
-   KNIFE
-========================= */
+/* =========================================================
+   CAKE CUTTING
+========================================================= */
 
-const knife =
-  document.getElementById("knife");
+const knife=
+  document.getElementById("cutKnife");
 
-const cake =
-  document.getElementById("cake");
+const cake=
+  document.getElementById("cutCake");
 
-let dragging = false;
-let cutDone = false;
-let startX = 0;
-let startY = 0;
+let dragging=false;
+let cutDone=false;
+
+let startX=0;
+let startY=0;
+
 
 function pointer(e){
 
   if(e.touches && e.touches.length){
 
-    return {
+    return{
       x:e.touches[0].clientX,
       y:e.touches[0].clientY
     };
 
   }
 
-  return {
+  return{
     x:e.clientX,
     y:e.clientY
   };
+
 }
+
 
 function knifeDown(e){
 
-  if(!cakeUnlocked || cutDone)
-    return;
+  if(cutDone) return;
 
-  const p = pointer(e);
+  const p=pointer(e);
 
-  dragging = true;
+  dragging=true;
 
-  startX = p.x;
-  startY = p.y;
+  startX=p.x;
+  startY=p.y;
 
   e.preventDefault();
+
 }
+
 
 function knifeMove(e){
 
   if(!dragging || cutDone)
     return;
 
-  const p = pointer(e);
+  const p=pointer(e);
 
-  const dx =
-    p.x - startX;
+  const dx=p.x-startX;
+  const dy=p.y-startY;
 
-  const dy =
-    p.y - startY;
+  const x=
+    Math.max(
+      -110,
+      Math.min(10,dx)
+    );
 
-  const x =
-    Math.max(-110,Math.min(10,dx));
+  const y=
+    Math.max(
+      -10,
+      Math.min(45,dy)
+    );
 
-  const y =
-    Math.max(-12,Math.min(45,dy));
+  knife.style.transform=
+    `translate3d(${x}px,${y}px,0)
+     rotate(-42deg)`;
 
-  knife.style.transform =
-    `translate3d(${x}px,${y}px,0) rotate(-42deg)`;
+  if(dx < -68){
 
-  if(dx < -65){
     cutCake();
+
   }
 
   e.preventDefault();
+
 }
+
 
 function knifeUp(){
 
   if(!dragging)
     return;
 
-  dragging = false;
+  dragging=false;
 
   if(!cutDone){
 
-    knife.style.transform =
+    knife.style.transform=
       "translate3d(0,0,0) rotate(-42deg)";
 
   }
+
 }
 
-knife.addEventListener(
-  "mousedown",
-  knifeDown
-);
 
-window.addEventListener(
-  "mousemove",
-  knifeMove
-);
+if(knife){
 
-window.addEventListener(
-  "mouseup",
-  knifeUp
-);
+  knife.addEventListener(
+    "mousedown",
+    knifeDown
+  );
 
-knife.addEventListener(
-  "touchstart",
-  knifeDown,
-  {passive:false}
-);
+  window.addEventListener(
+    "mousemove",
+    knifeMove
+  );
 
-window.addEventListener(
-  "touchmove",
-  knifeMove,
-  {passive:false}
-);
+  window.addEventListener(
+    "mouseup",
+    knifeUp
+  );
 
-window.addEventListener(
-  "touchend",
-  knifeUp
-);
+  knife.addEventListener(
+    "touchstart",
+    knifeDown,
+    {passive:false}
+  );
+
+  window.addEventListener(
+    "touchmove",
+    knifeMove,
+    {passive:false}
+  );
+
+  window.addEventListener(
+    "touchend",
+    knifeUp
+  );
+
+}
 
 
-/* =========================
-   CAKE CUT
-========================= */
+/* =========================================================
+   CUT
+========================================================= */
 
 function cutCake(){
 
-  if(cutDone)
-    return;
+  if(cutDone) return;
 
-  cutDone = true;
-  dragging = false;
+  cutDone=true;
+  dragging=false;
 
   cake.classList.add("cut");
 
-  document.getElementById("cakeHint")
-    .textContent =
+  document
+    .getElementById("cutHint")
+    .textContent=
     "Perfect! 🎂✨";
 
-  knife.style.transition =
+
+  knife.style.transition=
     "transform 1s cubic-bezier(.22,.75,.18,1)";
 
-  knife.style.transform =
+  knife.style.transform=
     "translate3d(-75px,5px,0) rotate(-42deg)";
 
-  setTimeout(() => {
+
+  /* crumbs */
+
+  setTimeout(()=>{
+
+    const area=
+      document.getElementById("cutArea");
+
+    for(let i=0;i<20;i++){
+
+      const crumb=
+        document.createElement("div");
+
+      crumb.className="crumb";
+
+      crumb.style.left=
+        (105+Math.random()*125)+"px";
+
+      crumb.style.top=
+        (140+Math.random()*30)+"px";
+
+      crumb.style.setProperty(
+        "--x",
+        ((Math.random()-.5)*130)+"px"
+      );
+
+      crumb.style.setProperty(
+        "--y",
+        (25+Math.random()*75)+"px"
+      );
+
+      area.appendChild(crumb);
+
+      setTimeout(()=>{
+        crumb.remove();
+      },1100);
+
+    }
+
+  },500);
+
+
+  setTimeout(()=>{
 
     flash();
+
     confetti(45);
 
-  },900);
+  },1000);
 
-  setTimeout(() => {
 
-    go(14);
-
-  },2400);
+  setTimeout(()=>{
+    go(12);
+  },2600);
 
 }
 
 
-/* =========================
+/* =========================================================
    FLASH
-========================= */
+========================================================= */
 
 function flash(){
 
-  const f =
+  const f=
     document.getElementById("flash");
 
   f.animate(
@@ -2349,35 +3389,35 @@ function flash(){
     }
 
   );
+
 }
 
 
-/* =========================
+/* =========================================================
    CONFETTI
-========================= */
+========================================================= */
 
 function confetti(amount){
 
-  const colors = [
+  const colors=[
     "#efcbd0",
     "#e4c56e",
-    "#dfd9eb",
-    "#f3d8c6",
+    "#dcd5e8",
+    "#efd7c5",
     "#b86d7c"
   ];
 
   for(let i=0;i<amount;i++){
 
-    const c =
+    const c=
       document.createElement("div");
 
-    c.className =
-      "confetti";
+    c.className="confetti";
 
-    c.style.left =
-      Math.random()*100 + "%";
+    c.style.left=
+      Math.random()*100+"%";
 
-    c.style.background =
+    c.style.background=
       colors[
         Math.floor(
           Math.random()*colors.length
@@ -2389,46 +3429,49 @@ function confetti(amount){
       ((Math.random()-.5)*180)+"px"
     );
 
-    c.style.animationDuration =
-      (2.2+Math.random()*1.6)+"s";
+    c.style.animationDuration=
+      (2.2+Math.random()*1.5)+"s";
 
     document.body.appendChild(c);
 
-    setTimeout(() => {
+    setTimeout(()=>{
       c.remove();
-    },4500);
+    },4200);
 
   }
+
 }
 
 
-/* =========================
+/* =========================================================
    PRELOAD
-========================= */
+========================================================= */
 
 [
   "1000244923.png",
   "1000244922.png"
-].forEach(src => {
+].forEach(src=>{
 
-  const img =
-    new Image();
-
-  img.src = src;
+  const img=new Image();
+  img.src=src;
 
 });
 
 
-/* =========================
-   PREVENT SCROLL
-========================= */
+/* =========================================================
+   NO ACCIDENTAL SCROLL
+========================================================= */
 
 document.addEventListener(
   "touchmove",
-  e => {
+  e=>{
 
-    if(!e.target.closest(".cake-stage")){
+    if(
+      !e.target.closest(".cake-area")
+    ){
+
       e.preventDefault();
+
     }
 
   },
