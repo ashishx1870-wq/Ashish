@@ -1,1266 +1,638 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday!</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-<title>A Film About Pallavi</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=DM+Sans:wght@300;400;500&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
-}
-
-:root{
-    --gold:#e7c48a;
-    --white:#f4eee4;
-    --black:#050505;
-}
-
-html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#000;
-    color:var(--white);
-    font-family:"DM Sans",sans-serif;
-}
-
-body{
-    cursor:pointer;
-}
-
-/* ================================
-   FILM GRAIN
-================================ */
-
-.grain{
-    position:fixed;
-    inset:-50%;
-    z-index:100;
-    pointer-events:none;
-    opacity:.075;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-
-    animation:grain .15s steps(2) infinite;
-}
-
-@keyframes grain{
-    0%{transform:translate(0,0)}
-    25%{transform:translate(3%,-2%)}
-    50%{transform:translate(-2%,3%)}
-    75%{transform:translate(2%,2%)}
-    100%{transform:translate(-3%,-2%)}
-}
-
-
-/* ================================
-   VIGNETTE
-================================ */
-
-.vignette{
-    position:fixed;
-    inset:0;
-    z-index:90;
-    pointer-events:none;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 35%,
-            rgba(0,0,0,.25) 65%,
-            rgba(0,0,0,.9) 120%
-        );
-}
-
-
-/* ================================
-   FILM FRAME
-================================ */
-
-.film-frame{
-    position:fixed;
-    inset:0;
-    z-index:95;
-    pointer-events:none;
-    border:2px solid rgba(255,255,255,.08);
-}
-
-
-/* ================================
-   SCENES
-================================ */
-
-.scene{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    opacity:0;
-    visibility:hidden;
-
-    transform:scale(1.04);
-
-    transition:
-        opacity 1s ease,
-        transform 1.4s cubic-bezier(.2,.7,.2,1);
-}
-
-.scene.active{
-    opacity:1;
-    visibility:visible;
-    transform:scale(1);
-}
-
-.scene.exit{
-    opacity:0;
-    transform:scale(.96);
-}
-
-
-/* ================================
-   INTRO
-================================ */
-
-#scene1{
-    background:
-        radial-gradient(
-            circle at center,
-            #171717,
-            #020202 70%
-        );
-}
-
-.intro{
-    text-align:center;
-}
-
-.tiny{
-    font-size:9px;
-    letter-spacing:7px;
-    opacity:.5;
-}
-
-.intro h1{
-    margin-top:25px;
-
-    font-family:"Bodoni Moda",serif;
-
-    font-size:
-        clamp(38px,9vw,85px);
-
-    font-weight:400;
-
-    letter-spacing:2px;
-}
-
-.director{
-    margin-top:25px;
-
-    color:var(--gold);
-
-    font-size:11px;
-    letter-spacing:5px;
-}
-
-
-/* ================================
-   SCENE 2
-================================ */
-
-#scene2{
-    background:
-        linear-gradient(
-            110deg,
-            #080808,
-            #161616
-        );
-}
-
-.beginning{
-    width:min(850px,85%);
-    text-align:center;
-}
-
-.beginning p{
-    font-family:"Bodoni Moda",serif;
-
-    font-size:
-        clamp(25px,5vw,50px);
-
-    line-height:1.35;
-}
-
-.beginning span{
-    color:var(--gold);
-}
-
-
-/* ================================
-   PHOTO SCENES
-================================ */
-
-.photo-scene{
-    overflow:hidden;
-}
-
-.photo-bg{
-    position:absolute;
-    inset:-5%;
-
-    background-size:cover;
-    background-position:center;
-
-    filter:
-        brightness(.48)
-        contrast(1.08)
-        saturate(.8);
-
-    transform:scale(1.08);
-
-    animation:
-        cameraMove 9s ease forwards;
-}
-
-@keyframes cameraMove{
-
-    from{
-        transform:scale(1.08);
+  <style>
+    :root {
+      --primary: #ff4b72;
+      --primary-hover: #e03a5f;
+      --accent: #ffd1d7;
+      --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffe3e8 50%, #fecfef 100%);
+      --glass-bg: rgba(255, 255, 255, 0.82);
+      --glass-border: rgba(255, 255, 255, 0.9);
+      --text-main: #332228;
+      --text-sub: #665259;
+      --shadow: 0 15px 35px rgba(255, 75, 114, 0.12);
     }
 
-    to{
-        transform:scale(1.18);
-    }
-}
-
-.photo-overlay{
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            0deg,
-            rgba(0,0,0,.85),
-            transparent 55%,
-            rgba(0,0,0,.25)
-        );
-}
-
-.photo-caption{
-    position:absolute;
-
-    left:7%;
-    bottom:12%;
-
-    max-width:700px;
-}
-
-.scene-number{
-    color:var(--gold);
-
-    font-size:10px;
-
-    letter-spacing:5px;
-
-    margin-bottom:18px;
-}
-
-.photo-caption h2{
-    font-family:"Bodoni Moda",serif;
-
-    font-size:
-        clamp(30px,6vw,70px);
-
-    font-weight:400;
-
-    line-height:1.1;
-}
-
-.photo-caption p{
-    margin-top:18px;
-
-    font-size:13px;
-
-    letter-spacing:1px;
-
-    opacity:.7;
-
-    max-width:470px;
-
-    line-height:1.8;
-}
-
-
-/* ================================
-   FILM STRIP
-================================ */
-
-#scene5{
-    background:#0b0b0b;
-    overflow:hidden;
-}
-
-.strip{
-    position:absolute;
-
-    width:125%;
-    height:310px;
-
-    display:flex;
-    gap:18px;
-
-    transform:
-        rotate(-7deg)
-        translateX(-10%);
-
-    animation:
-        stripMove 18s linear infinite;
-}
-
-@keyframes stripMove{
-
-    from{
-        transform:
-            rotate(-7deg)
-            translateX(-10%);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    to{
-        transform:
-            rotate(-7deg)
-            translateX(-35%);
-    }
-}
-
-.frame-photo{
-    position:relative;
-
-    flex:0 0 260px;
-
-    height:300px;
-
-    background:#111;
-
-    padding:13px;
-
-    box-shadow:
-        0 20px 45px rgba(0,0,0,.6);
-}
-
-.frame-photo::before,
-.frame-photo::after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    height:8px;
-
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #000 0 14px,
-            transparent 14px 25px
-        );
-}
-
-.frame-photo::before{
-    top:-14px;
-}
-
-.frame-photo::after{
-    bottom:-14px;
-}
-
-.frame-photo img{
-    width:100%;
-    height:100%;
-
-    object-fit:contain;
-
-    background:#1c1c1c;
-}
-
-.strip-title{
-    position:absolute;
-
-    z-index:3;
-
-    text-align:center;
-}
-
-.strip-title h2{
-    font-family:"Bodoni Moda",serif;
-
-    font-size:
-        clamp(35px,8vw,75px);
-
-    font-weight:400;
-}
-
-.strip-title p{
-    margin-top:10px;
-
-    letter-spacing:4px;
-
-    font-size:10px;
-
-    color:var(--gold);
-}
-
-
-/* ================================
-   LETTER
-================================ */
-
-#scene6{
-    background:
-        radial-gradient(
-            circle,
-            #171717,
-            #030303 75%
-        );
-}
-
-.letter-scene{
-    width:min(650px,82%);
-
-    text-align:center;
-}
-
-.letter-label{
-    color:var(--gold);
-
-    font-size:10px;
-
-    letter-spacing:6px;
-
-    margin-bottom:35px;
-}
-
-.letter-text{
-    font-family:"Bodoni Moda",serif;
-
-    font-size:
-        clamp(22px,4vw,38px);
-
-    line-height:1.65;
-
-    min-height:150px;
-}
-
-.cursor{
-    display:inline-block;
-
-    width:2px;
-    height:1em;
-
-    background:var(--gold);
-
-    margin-left:4px;
-
-    animation:blink .7s infinite;
-}
-
-@keyframes blink{
-    50%{opacity:0}
-}
-
-
-/* ================================
-   FILM STOPPED
-================================ */
-
-#scene7{
-    background:#030303;
-}
-
-.stop-screen{
-    text-align:center;
-}
-
-.stop-screen h2{
-    font-family:"Bodoni Moda",serif;
-
-    font-size:
-        clamp(45px,11vw,100px);
-
-    font-weight:400;
-
-    letter-spacing:5px;
-}
-
-.stop-screen p{
-    margin-top:20px;
-
-    color:#888;
-
-    letter-spacing:4px;
-
-    font-size:9px;
-}
-
-.play-again{
-    margin-top:40px;
-
-    padding:15px 30px;
-
-    border:1px solid rgba(231,196,138,.5);
-
-    color:var(--gold);
-
-    background:transparent;
-
-    font-family:inherit;
-
-    letter-spacing:3px;
-
-    cursor:pointer;
-}
-
-
-/* ================================
-   FINAL
-================================ */
-
-#scene8{
-    background:
-        radial-gradient(
-            circle at center,
-            #302a25,
-            #030303 70%
-        );
-}
-
-.final{
-    text-align:center;
-}
-
-.final-top{
-    font-size:9px;
-
-    letter-spacing:8px;
-
-    opacity:.55;
-}
-
-.final h1{
-    margin-top:25px;
-
-    font-family:"Bodoni Moda",serif;
-
-    font-size:
-        clamp(42px,10vw,100px);
-
-    font-weight:400;
-
-    line-height:1;
-}
-
-.final-name{
-    margin-top:20px;
-
-    color:var(--gold);
-
-    font-family:"Bodoni Moda",serif;
-
-    font-size:
-        clamp(27px,5vw,50px);
-}
-
-.final-line{
-    margin-top:35px;
-
-    font-size:13px;
-
-    line-height:2;
-
-    opacity:.65;
-
-    max-width:500px;
-}
-
-
-/* ================================
-   CONTINUE
-================================ */
-
-.continue{
-    position:fixed;
-
-    z-index:110;
-
-    bottom:30px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    font-size:9px;
-
-    letter-spacing:4px;
-
-    opacity:.55;
-
-    animation:pulse 2s infinite;
-
-    pointer-events:none;
-}
-
-@keyframes pulse{
-    50%{
-        opacity:.15;
-    }
-}
-
-
-/* ================================
-   PROGRESS
-================================ */
-
-.progress{
-    position:fixed;
-
-    z-index:110;
-
-    top:20px;
-    right:25px;
-
-    font-size:9px;
-
-    letter-spacing:3px;
-
-    opacity:.4;
-}
-
-
-/* ================================
-   FLASH
-================================ */
-
-.flash{
-    position:fixed;
-
-    inset:0;
-
-    background:white;
-
-    z-index:120;
-
-    opacity:0;
-
-    pointer-events:none;
-}
-
-.flash.active{
-    animation:flash .6s ease;
-}
-
-@keyframes flash{
-
-    0%{opacity:0}
-
-    20%{opacity:.85}
-
-    100%{opacity:0}
-}
-
-
-/* ================================
-   MOBILE
-================================ */
-
-@media(max-width:600px){
-
-    .tiny{
-        letter-spacing:4px;
+    html {
+      scroll-behavior: smooth;
     }
 
-    .director{
-        letter-spacing:3px;
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    .photo-caption{
-        left:8%;
-        right:8%;
-        bottom:13%;
+    /* Floating Canvas background */
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .photo-caption p{
-        font-size:11px;
+    /* Main Container */
+    .page-wrapper {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
     }
 
-    .frame-photo{
-        flex-basis:210px;
-        height:240px;
+    /* Glass Cards with Entrance Animation */
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-}
-</style>
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.4s; }
+    .card:nth-child(4) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Typography */
+    .tagline {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    h1.hero-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.8rem;
+      color: var(--primary);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      text-shadow: 2px 4px 10px rgba(255, 75, 114, 0.15);
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-sub);
+      max-width: 550px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+
+    /* Buttons */
+    .btn {
+      background: linear-gradient(135deg, #ff4b72 0%, #ff6b8b 100%);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255, 75, 114, 0.35);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      outline: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(255, 75, 114, 0.45);
+      background: linear-gradient(135deg, #e03a5f 0%, #ff4b72 100%);
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Realistic Interactive Cake Section */
+    .cake-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .cake-container {
+      position: relative;
+      width: 280px;
+      height: 240px;
+      margin: 20px auto;
+      cursor: pointer;
+    }
+
+    .plate {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 260px;
+      height: 18px;
+      background: #e2e8f0;
+      border-radius: 50%;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .layer {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 14px 14px 10px 10px;
+    }
+
+    .layer-bottom {
+      bottom: 15px;
+      width: 210px;
+      height: 65px;
+      background: linear-gradient(to right, #f4a261, #e76f51);
+      box-shadow: inset 0 -8px 0 rgba(0,0,0,0.1);
+    }
+
+    .layer-middle {
+      bottom: 75px;
+      width: 170px;
+      height: 55px;
+      background: linear-gradient(to right, #ffb703, #f4a261);
+      box-shadow: inset 0 -6px 0 rgba(0,0,0,0.1);
+    }
+
+    .layer-top {
+      bottom: 125px;
+      width: 130px;
+      height: 45px;
+      background: linear-gradient(to right, #ffccd5, #ffb3c1);
+      box-shadow: inset 0 -5px 0 rgba(0,0,0,0.08);
+    }
+
+    .icing {
+      position: absolute;
+      bottom: 160px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 134px;
+      height: 18px;
+      background: #ffffff;
+      border-radius: 10px 10px 8px 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    /* Candles */
+    .candle {
+      position: absolute;
+      bottom: 170px;
+      width: 10px;
+      height: 35px;
+      background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ff4b72 5px, #ff4b72 10px);
+      border-radius: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .candle:nth-child(1) { transform: translateX(-35px); }
+    .candle:nth-child(2) { transform: translateX(-5px); }
+    .candle:nth-child(3) { transform: translateX(25px); }
+
+    .flame {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 18px;
+      background: radial-gradient(ellipse at bottom, #ffea00 0%, #ff9100 60%, transparent 100%);
+      border-radius: 50% 50% 20% 20%;
+      box-shadow: 0 0 12px #ff9100, 0 0 20px #ffea00;
+      animation: flicker 0.6s infinite alternate ease-in-out;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.95; }
+      100% { transform: translateX(-50%) scale(1.15) rotate(2deg); opacity: 1; }
+    }
+
+    .flame.extinguished {
+      opacity: 0 !important;
+      transform: translateX(-50%) scale(0.2) !important;
+    }
+
+    /* Knife Animation */
+    .knife {
+      position: absolute;
+      top: -20px;
+      right: -40px;
+      width: 80px;
+      height: 20px;
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+      clip-path: polygon(0 40%, 80% 0, 100% 100%, 0% 100%);
+      transform: rotate(-35deg);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .knife-handle {
+      position: absolute;
+      right: -30px;
+      top: -5px;
+      width: 35px;
+      height: 14px;
+      background: #78350f;
+      border-radius: 4px;
+    }
+
+    .cake-container.cutting .knife {
+      opacity: 1;
+      top: 90px;
+      right: 90px;
+      transform: rotate(15deg);
+    }
+
+    .cut-line {
+      position: absolute;
+      top: 125px;
+      left: 50%;
+      width: 3px;
+      height: 0;
+      background: rgba(120, 53, 15, 0.4);
+      transition: height 0.6s ease 0.4s;
+      transform: translateX(-50%);
+    }
+
+    .cake-container.cut .cut-line {
+      height: 100px;
+    }
+
+    .instruct-text {
+      font-size: 0.95rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 10px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Aesthetic Polaroid Photo Gallery */
+    .gallery-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--text-main);
+      margin-bottom: 25px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      padding: 10px;
+    }
+
+    .polaroid {
+      background: #ffffff;
+      padding: 14px 14px 25px 14px;
+      border-radius: 6px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .polaroid:nth-child(1) { transform: rotate(-3deg); }
+    .polaroid:nth-child(2) { transform: rotate(2deg); }
+    .polaroid:nth-child(3) { transform: rotate(-2deg); }
+
+    .polaroid:hover {
+      transform: scale(1.08) rotate(0deg) !important;
+      box-shadow: 0 18px 35px rgba(255, 75, 114, 0.2);
+      z-index: 5;
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 4px;
+      filter: brightness(0.98) contrast(1.02);
+    }
+
+    .polaroid-caption {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.35rem;
+      color: var(--text-main);
+      margin-top: 14px;
+      font-weight: 700;
+    }
+
+    /* Secret Message Reveal Card */
+    .message-box {
+      display: none;
+      margin-top: 25px;
+      padding: 28px;
+      background: linear-gradient(135deg, #ffffff 0%, #fff5f7 100%);
+      border-radius: 20px;
+      border: 2px dashed #ffb3c1;
+      text-align: left;
+      line-height: 1.8;
+      color: var(--text-sub);
+      font-size: 1.05rem;
+      animation: expandMessage 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+    }
+
+    @keyframes expandMessage {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .message-box p {
+      margin-bottom: 12px;
+    }
+
+    .message-box .signature {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: var(--primary);
+      text-align: right;
+      margin-top: 15px;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-sub);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
 </head>
-
-
 <body>
 
-<!-- EFFECTS -->
+  <!-- Floating Sparkles & Hearts Canvas -->
+  <canvas id="bgCanvas"></canvas>
 
-<div class="grain"></div>
-<div class="vignette"></div>
-<div class="film-frame"></div>
-<div class="flash" id="flash"></div>
+  <div class="page-wrapper">
 
-
-<!-- PROGRESS -->
-
-<div class="progress" id="progress">
-    01 / 08
-</div>
-
-
-<!-- CONTINUE -->
-
-<div class="continue" id="continue">
-    TAP TO CONTINUE
-</div>
-
-
-<!-- ================================
-     SCENE 1
-================================ -->
-
-<section class="scene active" id="scene1">
-
-    <div class="intro">
-
-        <div class="tiny">
-            A SHORT FILM
-        </div>
-
-        <h1>
-            A Film About
-        </h1>
-
-        <div class="director">
-            PALLAVI
-        </div>
-
-        <div class="director" style="opacity:.5">
-            A FILM BY ASHISH
-        </div>
-
+    <!-- HERO HEADER CARD -->
+    <div class="card">
+      <div class="tagline">Celebrating Someone Special</div>
+      <h1 class="hero-title">Happy Birthday! 🌸</h1>
+      <p class="subtitle">
+        Wishing you a day filled with endless joy, unforgettable laughter, and all the happiness in the world!
+      </p>
     </div>
 
-</section>
+    <!-- REALISTIC CAKE CUTTING SECTION -->
+    <div class="card">
+      <div class="tagline">Interactive Experience</div>
+      <h2 style="font-family:'Cinzel', serif; font-size:1.5rem; color:var(--text-main); margin-bottom:8px;">Make a Wish & Cut the Cake</h2>
+      <p style="font-size:0.95rem; color:var(--text-sub);">Click on the candles to blow them out, then click the cake to cut!</p>
 
+      <div class="cake-section">
+        <div class="cake-container" id="cakeContainer" onclick="handleCakeClick()">
+          <!-- Knife -->
+          <div class="knife"><div class="knife-handle"></div></div>
+          
+          <!-- Candles with Flames -->
+          <div class="candle"><div class="flame" id="flame1"></div></div>
+          <div class="candle"><div class="flame" id="flame2"></div></div>
+          <div class="candle"><div class="flame" id="flame3"></div></div>
 
-<!-- ================================
-     SCENE 2
-================================ -->
+          <!-- Cake Layers -->
+          <div class="icing"></div>
+          <div class="layer layer-top"></div>
+          <div class="layer layer-middle"></div>
+          <div class="layer layer-bottom"></div>
+          <div class="plate"></div>
+          
+          <!-- Cut Line Indicator -->
+          <div class="cut-line"></div>
+        </div>
 
-<section class="scene" id="scene2">
-
-    <div class="beginning">
-
-        <p>
-            Every story begins
-            <span>somewhere.</span>
-        </p>
-
+        <div class="instruct-text" id="cakeStatus">✨ Tap the cake to blow candles & cut! ✨</div>
+      </div>
     </div>
 
-</section>
+    <!-- POLAROID PHOTO GALLERY -->
+    <div class="card">
+      <div class="tagline">Memory Lane</div>
+      <div class="gallery-title">Unforgettable Moments 📸</div>
 
-
-<!-- ================================
-     SCENE 3
-================================ -->
-
-<section class="scene photo-scene" id="scene3">
-
-    <div
-        class="photo-bg"
-        style="background-image:url('photo1.jpg')">
+      <div class="gallery-grid">
+        <div class="polaroid">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=500&q=80" alt="Fun Times">
+          <div class="polaroid-caption">Funniest Moments 🤪</div>
+        </div>
+        <div class="polaroid">
+          <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=500&q=80" alt="Adventures">
+          <div class="polaroid-caption">Crazy Adventures ✨</div>
+        </div>
+        <div class="polaroid">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Late Night Talks">
+          <div class="polaroid-caption">Late Night Talks ☕</div>
+        </div>
+      </div>
     </div>
 
-    <div class="photo-overlay"></div>
+    <!-- SURPRISE LETTER REVEAL -->
+    <div class="card">
+      <div class="tagline">A Special Note</div>
+      <h2 style="font-family:'Cinzel', serif; font-size:1.5rem; color:var(--text-main); margin-bottom:15px;">A Little Message For You 💌</h2>
+      
+      <button class="btn" onclick="revealSurprise()">
+        <span>Open Birthday Wish</span>
+        <span>✨</span>
+      </button>
 
-    <div class="photo-caption">
-
-        <div class="scene-number">
-            SCENE 03
-        </div>
-
-        <h2>
-            Little moments.
-        </h2>
-
-        <p>
-            The kind of moments that don't seem
-            important when they happen...
-            but somehow become memories later.
-        </p>
-
+      <div class="message-box" id="secretMessage">
+        <p><strong>Dearest Bestie,</strong></p>
+        <p>Happy Birthday! I hope your day is as bright, beautiful, and amazing as you are. Thank you for always bringing so much joy, crazy laughs, and wonderful memories into my life.</p>
+        <p>May this year bring you all the success, happiness, good health, and delicious food you deserve. Keep shining bright and never stop being your awesome self!</p>
+        <div class="signature">With lots of love & hugs ❤️</div>
+      </div>
     </div>
 
-</section>
-
-
-<!-- ================================
-     SCENE 4
-================================ -->
-
-<section class="scene photo-scene" id="scene4">
-
-    <div
-        class="photo-bg"
-        style="background-image:url('photo2.jpg')">
-    </div>
-
-    <div class="photo-overlay"></div>
-
-    <div class="photo-caption">
-
-        <div class="scene-number">
-            SCENE 04
-        </div>
-
-        <h2>
-            Some memories stay.
-        </h2>
-
-        <p>
-            Not because they were perfect.
-            Just because they meant something.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- ================================
-     SCENE 5
-================================ -->
-
-<section class="scene" id="scene5">
-
-    <div class="strip">
-
-        <div class="frame-photo">
-            <img src="photo1.jpg">
-        </div>
-
-        <div class="frame-photo">
-            <img src="photo2.jpg">
-        </div>
-
-        <div class="frame-photo">
-            <img src="photo3.jpg">
-        </div>
-
-        <div class="frame-photo">
-            <img src="photo4.jpg">
-        </div>
-
-        <div class="frame-photo">
-            <img src="photo5.jpg">
-        </div>
-
-        <div class="frame-photo">
-            <img src="photo6.jpg">
-        </div>
-
-        <!-- duplicate for continuous movement -->
-
-        <div class="frame-photo">
-            <img src="photo1.jpg">
-        </div>
-
-        <div class="frame-photo">
-            <img src="photo2.jpg">
-        </div>
-
-    </div>
-
-    <div class="strip-title">
-
-        <h2>
-            The memories.
-        </h2>
-
-        <p>
-            ROLLING...
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- ================================
-     SCENE 6
-================================ -->
-
-<section class="scene" id="scene6">
-
-    <div class="letter-scene">
-
-        <div class="letter-label">
-            A NOTE FROM THE DIRECTOR
-        </div>
-
-        <div class="letter-text">
-            <span id="typed"></span>
-            <span class="cursor"></span>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================================
-     SCENE 7
-================================ -->
-
-<section class="scene" id="scene7">
-
-    <div class="stop-screen">
-
-        <h2>
-            WAIT.
-        </h2>
-
-        <p>
-            THE FILM ISN'T OVER YET.
-        </p>
-
-        <button class="play-again" id="play">
-            PLAY THE LAST SCENE
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- ================================
-     SCENE 8
-================================ -->
-
-<section class="scene" id="scene8">
-
-    <div class="final">
-
-        <div class="final-top">
-            THE FINAL SCENE
-        </div>
-
-        <h1>
-            HAPPY<br>
-            BIRTHDAY
-        </h1>
-
-        <div class="final-name">
-            Pallavi ♡
-        </div>
-
-        <div class="final-line">
-            Some people become a beautiful part
-            of your story without even realizing it.
-            <br><br>
-            I hope this little film gave you
-            something worth remembering.
-        </div>
-
-    </div>
-
-</section>
-
-
-<script>
-
-/* =====================================
-   VARIABLES
-===================================== */
-
-const scenes =
-    document.querySelectorAll(".scene");
-
-const progress =
-    document.getElementById("progress");
-
-const continueText =
-    document.getElementById("continue");
-
-const flash =
-    document.getElementById("flash");
-
-const play =
-    document.getElementById("play");
-
-const typed =
-    document.getElementById("typed");
-
-
-let current = 0;
-
-let locked = false;
-
-
-/* =====================================
-   SCENE CHANGE
-===================================== */
-
-function changeScene(next){
-
-    if(
-        locked ||
-        next < 0 ||
-        next >= scenes.length
-    ){
-        return;
+    <footer>
+      Crafted with ❤️ for a wonderful birthday celebration.
+    </footer>
+
+  </div>
+
+  <script>
+    // 1. Background Floating Particles (Hearts & Stars)
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + 20;
+        this.size = Math.random() * 12 + 8;
+        this.speedY = Math.random() * 1.5 + 0.8;
+        this.speedX = Math.random() * 0.6 - 0.3;
+        this.opacity = Math.random() * 0.7 + 0.3;
+        this.type = Math.random() > 0.4 ? '❤️' : '✨';
+      }
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        if (this.y < -20) this.reset();
+      }
+      draw() {
+        ctx.globalAlpha = this.opacity;
+        ctx.font = `${this.size}px serif`;
+        ctx.fillText(this.type, this.x, this.y);
+      }
     }
 
-    locked = true;
-
-
-    /* flash transition */
-
-    flash.classList.remove("active");
-
-    void flash.offsetWidth;
-
-    flash.classList.add("active");
-
-
-    scenes[current].classList.remove("active");
-
-    scenes[current].classList.add("exit");
-
-
-    setTimeout(()=>{
-
-        scenes[current].classList.remove("exit");
-
-        current = next;
-
-        scenes[current].classList.add("active");
-
-        updateUI();
-
-        locked = false;
-
-        if(current === 5){
-
-            startTyping();
-
-        }
-
-    },550);
-
-}
-
-
-/* =====================================
-   UI
-===================================== */
-
-function updateUI(){
-
-    progress.textContent =
-        String(current+1).padStart(2,"0")
-        +" / 08";
-
-
-    if(current === 0){
-
-        continueText.textContent =
-            "TAP TO BEGIN";
-
+    for (let i = 0; i < 25; i++) {
+      particles.push(new Particle());
     }
 
-    else if(current === 6){
+    function animateBg() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
 
-        continueText.textContent =
-            "USE THE BUTTON";
+    // 2. Realistic Cake Cutting & Candle Blowing Logic
+    let isFlamesOut = false;
+    let isCakeCut = false;
 
+    function handleCakeClick() {
+      const cakeContainer = document.getElementById('cakeContainer');
+      const cakeStatus = document.getElementById('cakeStatus');
+
+      if (!isFlamesOut) {
+        // Step 1: Extinguish flames
+        document.querySelectorAll('.flame').forEach(flame => {
+          flame.classList.add('extinguished');
+        });
+        isFlamesOut = true;
+        cakeStatus.innerText = "🎉 Wish Made! Now tap again to cut the cake! 🍰";
+        
+        // Small confetti pop
+        confetti({
+          particleCount: 40,
+          spread: 60,
+          origin: { y: 0.6 }
+        });
+      } else if (!isCakeCut) {
+        // Step 2: Animate knife & cut line
+        cakeContainer.classList.add('cutting');
+        setTimeout(() => {
+          cakeContainer.classList.add('cut');
+          cakeStatus.innerText = "🥳 Yay! Happy Birthday! Enjoy your day! 🎂";
+          
+          // Big Confetti Celebration
+          triggerGrandConfetti();
+        }, 500);
+        isCakeCut = true;
+      }
     }
 
-    else if(current === 7){
+    // 3. Grand Confetti Burst
+    function triggerGrandConfetti() {
+      const duration = 3 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
 
-        continueText.textContent =
-            "";
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
 
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 } }));
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 } }));
+      }, 250);
     }
 
-    else{
-
-        continueText.textContent =
-            "TAP TO CONTINUE";
-
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
     }
 
-}
+    // 4. Reveal Secret Message & Trigger Confetti
+    function revealSurprise() {
+      const msg = document.getElementById('secretMessage');
+      if (msg.style.display === 'block') {
+        msg.style.display = 'none';
+      } else {
+        msg.style.display = 'block';
+        msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-
-/* =====================================
-   SCREEN TAP
-===================================== */
-
-document.body.addEventListener("click",(e)=>{
-
-    /* don't advance when button clicked */
-
-    if(
-        e.target === play
-    ){
-        return;
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.8 },
+          colors: ['#ff4b72', '#ffccd5', '#ffd1d7', '#ffffff']
+        });
+      }
     }
-
-
-    if(
-        current === 6
-    ){
-        return;
-    }
-
-
-    if(
-        current < scenes.length - 1
-    ){
-
-        changeScene(current+1);
-
-    }
-
-});
-
-
-/* =====================================
-   LAST SCENE BUTTON
-===================================== */
-
-play.addEventListener("click",()=>{
-
-    changeScene(7);
-
-});
-
-
-/* =====================================
-   TYPEWRITER
-===================================== */
-
-let typingStarted = false;
-
-const message =
-`Pallavi,
-
-I could have just written
-a normal birthday message.
-
-But that felt too ordinary.
-
-So I made this little film instead.
-
-Not because a website can capture
-everything about a person...
-
-but because some memories
-deserve a little more than a text message.
-
-Happy Birthday.
-
-I hope this year gives you
-a lot of reasons to smile.`;
-
-function startTyping(){
-
-    if(typingStarted){
-        return;
-    }
-
-    typingStarted = true;
-
-    let i = 0;
-
-    typed.textContent = "";
-
-    function type(){
-
-        if(i < message.length){
-
-            typed.textContent +=
-                message.charAt(i);
-
-            i++;
-
-            setTimeout(
-                type,
-                message.charAt(i-1)==="\n"
-                ? 500
-                : 38
-            );
-
-        }
-
-    }
-
-    type();
-
-}
-
-
-/* =====================================
-   START UI
-===================================== */
-
-updateUI();
-
-
-/* =====================================
-   KEYBOARD
-===================================== */
-
-document.addEventListener(
-    "keydown",
-    e => {
-
-        if(e.key === "ArrowRight"){
-
-            if(current < scenes.length-1){
-
-                changeScene(current+1);
-
-            }
-
-        }
-
-        if(e.key === "ArrowLeft"){
-
-            if(current > 0){
-
-                changeScene(current-1);
-
-            }
-
-        }
-
-    }
-);
-
-</script>
-
+  </script>
 </body>
 </html>
