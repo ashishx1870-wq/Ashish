@@ -2834,3 +2834,2506 @@ document.addEventListener(
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<title>For Pallavi ✦</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+rel="stylesheet">
+
+<style>
+
+:root{
+  --bg:#0b0a10;
+  --bg2:#14111a;
+  --paper:#fffaf6;
+  --ink:#302a30;
+  --muted:#aaa0a8;
+
+  --rose:#d88798;
+  --rose2:#f0b8c2;
+  --gold:#e8cc82;
+  --lav:#aaa3d0;
+
+  --white:#fff;
+  --glass:rgba(255,255,255,.075);
+  --glass2:rgba(255,255,255,.12);
+
+  --line:rgba(255,255,255,.12);
+
+  --serif:"Playfair Display",Georgia,serif;
+  --script:"Cormorant Garamond",Georgia,serif;
+  --sans:"DM Sans",sans-serif;
+
+  --ease:cubic-bezier(.22,.75,.18,1);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#09080d;
+}
+
+body{
+  font-family:var(--sans);
+  color:white;
+}
+
+button{
+  font-family:var(--sans);
+}
+
+#app{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(210,119,143,.20),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(133,125,190,.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(226,188,120,.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      #09080d,
+      #111019 48%,
+      #0b0910
+    );
+}
+
+/* subtle cinematic grain */
+
+#app:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+
+  opacity:.035;
+
+  background-image:url(
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"
+  );
+}
+
+/* ambient lights */
+
+.aurora{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  pointer-events:none;
+  opacity:.3;
+  animation:auroraMove 18s ease-in-out infinite alternate;
+}
+
+.aurora.a{
+  width:320px;
+  height:320px;
+  left:-170px;
+  top:-100px;
+  background:rgba(220,130,150,.35);
+}
+
+.aurora.b{
+  width:350px;
+  height:350px;
+  right:-180px;
+  bottom:-140px;
+  background:rgba(130,120,200,.28);
+  animation-delay:-7s;
+}
+
+.aurora.c{
+  width:180px;
+  height:180px;
+  left:42%;
+  top:40%;
+  background:rgba(236,198,126,.09);
+  animation-delay:-11s;
+}
+
+@keyframes auroraMove{
+  to{
+    transform:
+      translate(50px,30px)
+      scale(1.12);
+  }
+}
+
+/* stars */
+
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  border-radius:50%;
+  background:white;
+  opacity:.25;
+  animation:twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle{
+  50%{
+    opacity:.85;
+    transform:scale(1.8);
+  }
+}
+
+/* scenes */
+
+.scene{
+  position:absolute;
+  inset:0;
+  z-index:10;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  transform:
+    translateY(22px)
+    scale(.985);
+
+  filter:blur(8px);
+
+  transition:
+    opacity .65s ease,
+    transform .85s var(--ease),
+    filter .7s ease,
+    visibility 0s linear .9s;
+}
+
+.scene.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+
+  transform:none;
+  filter:blur(0);
+
+  transition:
+    opacity .65s ease,
+    transform .85s var(--ease),
+    filter .7s ease;
+}
+
+.content{
+  width:min(92vw,720px);
+  text-align:center;
+  position:relative;
+}
+
+.eyebrow{
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:#a69ca7;
+  margin-bottom:17px;
+}
+
+h1,h2{
+  font-family:var(--serif);
+  font-weight:400;
+  letter-spacing:-1.5px;
+}
+
+h1{
+  font-size:clamp(43px,10vw,76px);
+  line-height:1.02;
+}
+
+h2{
+  font-size:clamp(31px,7.8vw,55px);
+  line-height:1.08;
+}
+
+.accent{
+  color:var(--rose2);
+}
+
+.serif{
+  font-family:var(--script);
+  font-style:italic;
+}
+
+p{
+  max-width:520px;
+  margin:15px auto 0;
+  color:#aaa2aa;
+  font-size:12px;
+  line-height:1.85;
+}
+
+/* button */
+
+.btn{
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(12px);
+
+  color:#fff;
+
+  border-radius:100px;
+  padding:12px 22px;
+
+  margin-top:25px;
+
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:1.7px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.22);
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    border .3s ease;
+}
+
+.btn:hover{
+  background:rgba(255,255,255,.13);
+}
+
+.btn:active{
+  transform:scale(.94);
+}
+
+.btn.primary{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(226,139,157,.95),
+      rgba(191,105,126,.95)
+    );
+
+  border-color:transparent;
+}
+
+/* =========================
+   SCENE 1
+========================= */
+
+.hero{
+  min-height:390px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-kicker{
+  font-size:8px;
+  letter-spacing:5px;
+  color:#a9a0a7;
+
+  opacity:0;
+  transform:translateY(12px);
+}
+
+.scene.active .hero-kicker{
+  animation:rise .9s .35s var(--ease) forwards;
+}
+
+.hero-title{
+  margin-top:25px;
+
+  font-family:var(--serif);
+  font-size:clamp(42px,11vw,78px);
+  line-height:1.01;
+
+  opacity:0;
+  transform:translateY(18px);
+}
+
+.scene.active .hero-title{
+  animation:rise 1.1s .8s var(--ease) forwards;
+}
+
+.hero-title em{
+  display:block;
+  color:var(--rose2);
+  font-style:italic;
+}
+
+.hero-line{
+  width:0;
+  height:1px;
+
+  margin-top:27px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold),
+      transparent
+    );
+}
+
+.scene.active .hero-line{
+  animation:growLine 1s 1.9s var(--ease) forwards;
+}
+
+.hero-sub{
+  margin-top:18px;
+
+  font-family:var(--script);
+  font-size:18px;
+  color:#aaa1a8;
+
+  opacity:0;
+}
+
+.scene.active .hero-sub{
+  animation:fadeIn 1s 2.25s forwards;
+}
+
+@keyframes rise{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes fadeIn{
+  to{
+    opacity:1;
+  }
+}
+
+@keyframes growLine{
+  to{
+    width:130px;
+  }
+}
+
+/* =========================
+   SCENE 2
+   ENVELOPE
+========================= */
+
+.letter-stage{
+  height:350px;
+
+  display:grid;
+  place-items:center;
+
+  perspective:1100px;
+}
+
+.envelope{
+  width:min(330px,84vw);
+  height:215px;
+
+  position:relative;
+
+  cursor:pointer;
+
+  transform-style:preserve-3d;
+
+  opacity:0;
+  transform:
+    translateY(20px)
+    scale(.92);
+}
+
+.scene.active .envelope{
+  animation:
+    envelopeIn 1s .45s var(--ease) forwards;
+}
+
+@keyframes envelopeIn{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.env-shadow{
+  position:absolute;
+
+  left:8%;
+  right:8%;
+  bottom:-4px;
+
+  height:27px;
+
+  border-radius:50%;
+
+  background:rgba(0,0,0,.55);
+
+  filter:blur(15px);
+}
+
+.env-body{
+  position:absolute;
+  inset:0;
+
+  overflow:hidden;
+
+  border-radius:8px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f8ede8,
+      #dfc7c4
+    );
+
+  box-shadow:
+    0 35px 70px rgba(0,0,0,.45);
+}
+
+.env-body:after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      32deg,
+      transparent 49.5%,
+      rgba(160,91,110,.18) 50%,
+      transparent 50.5%
+    ),
+    linear-gradient(
+      -32deg,
+      transparent 49.5%,
+      rgba(160,91,110,.15) 50%,
+      transparent 50.5%
+    );
+}
+
+.flap{
+  position:absolute;
+  z-index:8;
+
+  left:0;
+  top:0;
+
+  width:100%;
+  height:58%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f9e8e2,
+      #dfc3c4
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  transform-origin:50% 0;
+
+  transition:
+    transform 1.1s var(--ease);
+}
+
+.envelope.open .flap{
+  transform:rotateX(180deg);
+}
+
+.letter{
+  position:absolute;
+  z-index:6;
+
+  left:7%;
+  width:86%;
+  height:176px;
+
+  bottom:10px;
+
+  padding:25px 22px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffdf9,
+      #f9f0eb
+    );
+
+  color:#41373b;
+
+  border-radius:4px;
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.25);
+
+  transition:
+    transform 1.1s .15s var(--ease),
+    box-shadow .8s ease;
+}
+
+.envelope.open .letter{
+  transform:translateY(-102px);
+
+  box-shadow:
+    0 35px 70px rgba(0,0,0,.3);
+}
+
+.letter:after{
+  content:"";
+  position:absolute;
+  inset:8px;
+
+  border:1px solid rgba(184,109,124,.15);
+}
+
+.letter-name{
+  font-family:var(--serif);
+  font-size:21px;
+  color:#bd7182;
+}
+
+.letter-preview{
+  margin-top:10px;
+
+  font-family:var(--script);
+  font-style:italic;
+
+  font-size:18px;
+  line-height:1.4;
+}
+
+.seal{
+  position:absolute;
+  z-index:14;
+
+  left:50%;
+  top:54%;
+
+  width:43px;
+  height:43px;
+
+  transform:translate(-50%,-50%);
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #df9ba9,
+      #9f586b
+    );
+
+  color:white;
+
+  font-family:var(--serif);
+  font-size:17px;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.25);
+
+  transition:.65s;
+}
+
+.envelope.open .seal{
+  transform:
+    translate(-50%,-50%)
+    scale(.5)
+    rotate(-25deg);
+
+  opacity:0;
+}
+
+.tap-hint{
+  position:absolute;
+
+  bottom:-34px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  white-space:nowrap;
+
+  font-size:8px;
+  letter-spacing:2px;
+
+  color:#91888f;
+}
+
+/* =========================
+   SCENE 3
+========================= */
+
+.note-card{
+  width:min(580px,92vw);
+
+  padding:32px 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.10),
+      rgba(255,255,255,.045)
+    );
+
+  border:
+    1px solid rgba(255,255,255,.11);
+
+  backdrop-filter:blur(20px);
+
+  border-radius:18px;
+
+  box-shadow:
+    0 35px 100px rgba(0,0,0,.3);
+}
+
+.note-label{
+  font-size:8px;
+  letter-spacing:3px;
+  color:#a69ba2;
+}
+
+.note-title{
+  margin-top:15px;
+
+  font-family:var(--serif);
+  font-size:29px;
+
+  color:var(--rose2);
+}
+
+.note-text{
+  margin-top:22px;
+
+  font-family:var(--script);
+  font-size:21px;
+  line-height:1.6;
+
+  color:#ddd4d8;
+}
+
+.note-text span{
+  display:block;
+
+  opacity:0;
+  transform:translateY(10px);
+}
+
+.scene.active .note-text span:nth-child(1){
+  animation:rise .7s .55s forwards;
+}
+
+.scene.active .note-text span:nth-child(2){
+  animation:rise .7s 1.35s forwards;
+}
+
+.scene.active .note-text span:nth-child(3){
+  animation:rise .7s 2.15s forwards;
+}
+
+/* =========================
+   SCENE 4
+   MEMORY GALLERY
+========================= */
+
+.gallery{
+  height:350px;
+
+  position:relative;
+
+  display:grid;
+  place-items:center;
+}
+
+.photo{
+  position:absolute;
+
+  width:min(275px,76vw);
+
+  padding:8px 8px 15px;
+
+  background:#f9f5f1;
+
+  border-radius:4px;
+
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.45);
+
+  color:#564b50;
+
+  transition:
+    transform .8s var(--ease),
+    opacity .6s ease;
+}
+
+.photo:nth-child(1){
+  transform:rotate(-7deg) translateX(-20px);
+}
+
+.photo:nth-child(2){
+  transform:rotate(5deg) translateX(22px) translateY(10px);
+}
+
+.photo:nth-child(3){
+  transform:rotate(-2deg) scale(.96);
+}
+
+.photo img{
+  width:100%;
+  height:235px;
+
+  object-fit:contain;
+
+  background:#eee7e3;
+
+  display:block;
+}
+
+.photo-caption{
+  margin-top:9px;
+
+  font-family:var(--script);
+  font-size:17px;
+  font-style:italic;
+}
+
+.gallery-note{
+  position:absolute;
+
+  top:-12px;
+  right:-12px;
+
+  padding:6px 10px;
+
+  background:#f1d477;
+
+  color:#4d4432;
+
+  font-family:var(--script);
+  font-style:italic;
+
+  font-size:13px;
+
+  transform:rotate(7deg);
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.2);
+}
+
+.gallery-count{
+  position:absolute;
+  bottom:0;
+
+  font-size:8px;
+  letter-spacing:3px;
+  color:#8f868d;
+}
+
+/* =========================
+   SCENE 5
+   GIFT
+========================= */
+
+.gift-wrap{
+  height:330px;
+
+  display:grid;
+  place-items:center;
+}
+
+.gift{
+  width:155px;
+  height:150px;
+
+  position:relative;
+
+  cursor:pointer;
+
+  filter:
+    drop-shadow(
+      0 30px 30px rgba(0,0,0,.35)
+    );
+
+  animation:giftFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes giftFloat{
+  50%{
+    transform:translateY(-9px);
+  }
+}
+
+.gift-body{
+  position:absolute;
+
+  left:8px;
+  right:8px;
+  bottom:0;
+
+  height:90px;
+
+  border-radius:5px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #dc8799,
+      #a9576b
+    );
+}
+
+.gift-lid{
+  position:absolute;
+  z-index:5;
+
+  left:0;
+  right:0;
+  top:30px;
+
+  height:32px;
+
+  border-radius:5px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edb2bc,
+      #c9788b
+    );
+
+  transition:
+    transform 1s var(--ease);
+}
+
+.gift.open .gift-lid{
+  transform:
+    translateY(-68px)
+    rotate(-6deg);
+}
+
+.ribbon-v{
+  position:absolute;
+
+  width:13px;
+
+  top:0;
+  bottom:0;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      #d4ad57,
+      #f1d67e,
+      #c89e49
+    );
+}
+
+.ribbon-h{
+  position:absolute;
+
+  height:9px;
+
+  left:0;
+  right:0;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  background:#e5c56d;
+}
+
+.bow{
+  position:absolute;
+  z-index:7;
+
+  top:8px;
+  left:50%;
+
+  width:62px;
+  height:32px;
+
+  transform:translateX(-50%);
+}
+
+.bow:before,
+.bow:after{
+  content:"";
+
+  position:absolute;
+
+  width:31px;
+  height:23px;
+
+  top:0;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f0d379,
+      #b98b3d
+    );
+
+  border-radius:
+    75% 25% 75% 25%;
+}
+
+.bow:before{
+  left:0;
+  transform:rotate(25deg);
+}
+
+.bow:after{
+  right:0;
+  transform:
+    scaleX(-1)
+    rotate(25deg);
+}
+
+/* =========================
+   SCENE 6
+========================= */
+
+.pause-title{
+  font-family:var(--script);
+  font-size:30px;
+  color:#d6ccd1;
+
+  margin-top:25px;
+}
+
+.pause-title strong{
+  color:var(--rose2);
+  font-weight:500;
+}
+
+/* =========================
+   SCENE 7
+   BALLOON POP
+========================= */
+
+.balloon-stage{
+  height:390px;
+
+  position:relative;
+  overflow:hidden;
+
+  margin-top:10px;
+}
+
+.balloon{
+  position:absolute;
+
+  width:67px;
+  height:82px;
+
+  border-radius:
+    50% 50% 45% 45%;
+
+  cursor:pointer;
+
+  box-shadow:
+    inset -10px -12px 18px rgba(0,0,0,.14),
+    inset 8px 7px 15px rgba(255,255,255,.18),
+    0 18px 30px rgba(0,0,0,.18);
+
+  animation:
+    balloonFloat
+    var(--duration)
+    ease-in-out
+    infinite alternate;
+}
+
+.balloon:before{
+  content:"";
+
+  position:absolute;
+
+  width:5px;
+  height:5px;
+
+  bottom:-4px;
+  left:50%;
+
+  transform:translateX(-50%) rotate(45deg);
+
+  background:inherit;
+}
+
+.balloon:after{
+  content:"";
+
+  position:absolute;
+
+  width:1px;
+  height:125px;
+
+  left:50%;
+  top:81px;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,.5),
+      rgba(255,255,255,.08)
+    );
+}
+
+.balloon.b1{
+  left:9%;
+  top:150px;
+  background:#d98699;
+  --duration:3.4s;
+}
+
+.balloon.b2{
+  left:36%;
+  top:75px;
+  background:#b9afd7;
+  --duration:4.1s;
+  animation-delay:-1s;
+}
+
+.balloon.b3{
+  right:10%;
+  top:130px;
+  background:#e0b96c;
+  --duration:3.7s;
+  animation-delay:-.7s;
+}
+
+.balloon.b4{
+  left:62%;
+  top:220px;
+  background:#d98f7c;
+  --duration:4.5s;
+  animation-delay:-1.5s;
+}
+
+.balloon.b5{
+  left:20%;
+  top:260px;
+  background:#a8c3c1;
+  --duration:3.9s;
+  animation-delay:-2s;
+}
+
+@keyframes balloonFloat{
+  to{
+    transform:
+      translateY(-28px)
+      rotate(5deg);
+  }
+}
+
+.balloon.popped{
+  animation:none;
+
+  transform:
+    scale(1.5)
+    rotate(18deg);
+
+  opacity:0;
+
+  transition:
+    transform .32s ease,
+    opacity .35s ease;
+}
+
+.pop-particle{
+  position:absolute;
+
+  width:5px;
+  height:5px;
+
+  border-radius:50%;
+
+  background:#f0c66e;
+
+  pointer-events:none;
+
+  animation:
+    popFly .75s ease-out forwards;
+}
+
+@keyframes popFly{
+  to{
+    transform:
+      translate(
+        var(--x),
+        var(--y)
+      )
+      scale(.2);
+
+    opacity:0;
+  }
+}
+
+.balloon-hint{
+  position:absolute;
+
+  left:50%;
+  bottom:15px;
+
+  transform:translateX(-50%);
+
+  white-space:nowrap;
+
+  color:#8e858c;
+
+  font-family:var(--script);
+  font-style:italic;
+
+  font-size:16px;
+}
+
+/* =========================
+   SCENE 8
+========================= */
+
+.fake-end{
+  opacity:0;
+  transform:translateY(15px);
+}
+
+.scene.active .fake-end{
+  animation:rise 1s .5s forwards;
+}
+
+/* =========================
+   SCENE 9
+========================= */
+
+.reveal-card{
+  width:min(570px,92vw);
+
+  padding:38px 25px;
+
+  border-radius:24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.10),
+      rgba(255,255,255,.035)
+    );
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  backdrop-filter:blur(25px);
+
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.3);
+}
+
+/* =========================
+   SCENE 10
+   CAKE
+========================= */
+
+.cake-wrap{
+  height:390px;
+
+  display:grid;
+  place-items:center;
+}
+
+.cake-stage{
+  width:400px;
+  height:340px;
+
+  position:relative;
+
+  touch-action:none;
+  user-select:none;
+
+  transform-origin:center;
+}
+
+.plate{
+  position:absolute;
+
+  width:290px;
+  height:27px;
+
+  left:50%;
+  bottom:16px;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #fff 0 35%,
+      #ddd5d6 70%,
+      #aaa1a3 100%
+    );
+
+  box-shadow:
+    0 14px 25px rgba(0,0,0,.32),
+    inset 0 2px 4px rgba(255,255,255,.9);
+}
+
+.cake{
+  position:absolute;
+
+  width:225px;
+  height:165px;
+
+  left:50%;
+  bottom:42px;
+
+  transform:translateX(-50%);
+
+  filter:
+    drop-shadow(
+      0 20px 15px rgba(0,0,0,.25)
+    );
+
+  transition:
+    transform .9s var(--ease);
+}
+
+.cake.cut{
+  transform:
+    translateX(-50%)
+    scale(1.015);
+}
+
+.cake-body{
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:108px;
+
+  border-radius:
+    10px 10px 16px 16px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #b96376,
+      #e19aa7 20%,
+      #efb5bd 50%,
+      #dd8e9c 80%,
+      #a9586b
+    );
+
+  box-shadow:
+    inset 0 10px 15px rgba(255,255,255,.25),
+    inset 0 -10px 15px rgba(80,20,30,.16);
+}
+
+.cake-body:before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  top:32px;
+
+  height:5px;
+
+  background:#f9ddd6;
+
+  box-shadow:
+    0 29px 0 #f9ddd6,
+    0 58px 0 #f9ddd6;
+}
+
+.top-cake{
+  position:absolute;
+
+  width:195px;
+  height:52px;
+
+  left:15px;
+  top:10px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 35%,
+      #fffdf8,
+      #f6e4d9 55%,
+      #dfc0b5
+    );
+
+  box-shadow:
+    0 5px 10px rgba(0,0,0,.15),
+    inset 0 5px 7px rgba(255,255,255,.8);
+}
+
+.frosting{
+  position:absolute;
+
+  width:202px;
+  height:33px;
+
+  left:11px;
+  top:36px;
+
+  border-radius:
+    0 0 50% 50%;
+
+  background:
+    linear-gradient(
+      #fffaf2,
+      #f1d9d0
+    );
+
+  box-shadow:
+    inset 0 5px 7px rgba(255,255,255,.8);
+}
+
+.drip{
+  position:absolute;
+
+  width:16px;
+
+  background:
+    linear-gradient(
+      #fffaf1,
+      #ecd0c6
+    );
+
+  border-radius:
+    0 0 10px 10px;
+}
+
+.drip.a{
+  height:25px;
+  left:40px;
+}
+
+.drip.b{
+  height:18px;
+  left:91px;
+}
+
+.drip.c{
+  height:30px;
+  left:140px;
+}
+
+/* candles */
+
+.candle{
+  position:absolute;
+  z-index:7;
+
+  bottom:121px;
+
+  width:11px;
+  height:42px;
+
+  border-radius:5px;
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #c4afd2 0 5px,
+      #f0d9ec 5px 10px
+    );
+
+  box-shadow:
+    0 2px 4px rgba(0,0,0,.2);
+}
+
+.c1{left:74px}
+.c2{left:107px}
+.c3{left:140px}
+
+.flame{
+  position:absolute;
+
+  width:14px;
+  height:20px;
+
+  left:-1.5px;
+  top:-19px;
+
+  border-radius:
+    50% 50% 45% 45%;
+
+  background:
+    radial-gradient(
+      circle at 50% 68%,
+      #fff9ce 0 20%,
+      #efc65f 35% 60%,
+      transparent 65%
+    );
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(240,190,80,.65)
+    );
+
+  animation:
+    flame 0.55s ease-in-out infinite alternate;
+}
+
+@keyframes flame{
+  from{
+    transform:
+      rotate(-4deg)
+      scale(.92);
+  }
+
+  to{
+    transform:
+      rotate(5deg)
+      scale(1.08);
+  }
+}
+
+/* realistic-ish knife */
+
+.knife{
+  position:absolute;
+  z-index:30;
+
+  width:155px;
+  height:16px;
+
+  right:-2px;
+  top:145px;
+
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #e8e8e8 48%,
+      #999 100%
+    );
+
+  box-shadow:
+    0 7px 15px rgba(0,0,0,.32),
+    inset 0 1px 1px white;
+
+  transform:
+    rotate(-42deg);
+
+  transform-origin:
+    100% 50%;
+
+  cursor:grab;
+
+  transition:
+    transform .55s var(--ease);
+}
+
+.knife:before{
+  content:"";
+
+  position:absolute;
+
+  left:8px;
+  top:3px;
+
+  width:105px;
+  height:2px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.85);
+}
+
+.knife:after{
+  content:"";
+
+  position:absolute;
+
+  right:-43px;
+  top:-4px;
+
+  width:48px;
+  height:24px;
+
+  border-radius:
+    5px 8px 8px 5px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #9b7880,
+      #4e363d
+    );
+
+  box-shadow:
+    0 4px 7px rgba(0,0,0,.25);
+}
+
+.knife.dragging{
+  cursor:grabbing;
+}
+
+.cut-line{
+  position:absolute;
+
+  z-index:8;
+
+  width:4px;
+  height:100px;
+
+  left:109px;
+  top:57px;
+
+  background:
+    linear-gradient(
+      rgba(120,50,60,.03),
+      rgba(120,50,60,.4),
+      rgba(120,50,60,.05)
+    );
+
+  opacity:0;
+
+  transform:
+    rotate(4deg)
+    scaleY(.05);
+
+  transform-origin:top;
+
+  transition:
+    transform .9s var(--ease),
+    opacity .4s;
+}
+
+.cake.cut .cut-line{
+  opacity:1;
+
+  transform:
+    rotate(4deg)
+    scaleY(1);
+}
+
+.cut-hint{
+  margin-top:-4px;
+
+  font-family:var(--script);
+  font-size:16px;
+  font-style:italic;
+
+  color:#958c92;
+}
+
+/* =========================
+   SCENE 11
+   BALLOON BIRTHDAY
+========================= */
+
+.birthday-stage{
+  height:430px;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.bday-balloon{
+  position:absolute;
+
+  width:58px;
+  height:70px;
+
+  border-radius:
+    50% 50% 45% 45%;
+
+  opacity:0;
+
+  transform:
+    translateY(130vh);
+
+  animation:
+    birthdayRise
+    2.8s var(--delay)
+    var(--ease)
+    forwards;
+}
+
+.bday-balloon:after{
+  content:"";
+
+  position:absolute;
+
+  width:1px;
+  height:90px;
+
+  left:50%;
+  top:69px;
+
+  background:rgba(255,255,255,.25);
+}
+
+.bday-letter{
+  position:absolute;
+
+  left:50%;
+  top:46%;
+
+  transform:
+    translate(-50%,-50%);
+
+  display:flex;
+  gap:5px;
+
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+  width:min(90vw,580px);
+}
+
+.bday-letter span{
+  font-family:var(--serif);
+
+  font-size:
+    clamp(27px,7vw,49px);
+
+  color:#fff;
+
+  text-shadow:
+    0 8px 25px rgba(0,0,0,.35);
+
+  opacity:0;
+
+  transform:
+    translateY(25px)
+    scale(.8);
+
+  animation:
+    letterDrop .7s
+    calc(var(--i) * .08s + 2.4s)
+    var(--ease)
+    forwards;
+}
+
+.bday-letter span:nth-child(7n){
+  color:var(--rose2);
+}
+
+@keyframes birthdayRise{
+  to{
+    opacity:.9;
+    transform:
+      translateY(-20px)
+      rotate(8deg);
+  }
+}
+
+@keyframes letterDrop{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* =========================
+   SCENE 12
+========================= */
+
+.last-wrap{
+  width:min(650px,92vw);
+}
+
+.last-small{
+  color:#999099;
+
+  font-size:8px;
+  letter-spacing:4px;
+
+  opacity:0;
+}
+
+.scene.active .last-small{
+  animation:fadeIn 1s .4s forwards;
+}
+
+.last-title{
+  margin-top:23px;
+
+  font-family:var(--serif);
+
+  font-size:
+    clamp(35px,8.5vw,61px);
+
+  line-height:1.08;
+
+  opacity:0;
+  transform:translateY(18px);
+}
+
+.scene.active .last-title{
+  animation:rise 1.1s .75s var(--ease) forwards;
+}
+
+.last-message{
+  margin:30px auto 0;
+
+  max-width:550px;
+
+  font-family:var(--script);
+
+  font-size:22px;
+  line-height:1.65;
+
+  color:#d2c9cf;
+}
+
+.last-message span{
+  display:block;
+
+  opacity:0;
+  transform:translateY(12px);
+}
+
+.scene.active .last-message span:nth-child(1){
+  animation:rise .8s 1.8s forwards;
+}
+
+.scene.active .last-message span:nth-child(2){
+  animation:rise .8s 2.6s forwards;
+}
+
+.scene.active .last-message span:nth-child(3){
+  animation:rise .8s 3.4s forwards;
+}
+
+.signature{
+  margin-top:25px;
+
+  font-family:var(--serif);
+  font-style:italic;
+
+  font-size:20px;
+
+  color:var(--rose2);
+
+  opacity:0;
+}
+
+.scene.active .signature{
+  animation:fadeIn 1s 4.3s forwards;
+}
+
+/* flash */
+
+#flash{
+  position:fixed;
+  inset:0;
+
+  z-index:500;
+
+  background:white;
+
+  opacity:0;
+
+  pointer-events:none;
+}
+
+/* confetti */
+
+.confetti{
+  position:fixed;
+
+  top:-20px;
+
+  width:6px;
+  height:10px;
+
+  z-index:400;
+
+  animation:
+    confettiFall
+    var(--duration)
+    linear
+    forwards;
+}
+
+@keyframes confettiFall{
+  to{
+    transform:
+      translate(var(--x),110vh)
+      rotate(700deg);
+
+    opacity:0;
+  }
+}
+
+/* crumbs */
+
+.crumb{
+  position:absolute;
+
+  width:5px;
+  height:5px;
+
+  border-radius:50%;
+
+  background:#e5b5a8;
+
+  animation:
+    crumbFly .9s ease-out forwards;
+}
+
+@keyframes crumbFly{
+  to{
+    transform:
+      translate(var(--x),var(--y))
+      rotate(180deg);
+
+    opacity:0;
+  }
+}
+
+/* mobile */
+
+@media(max-width:600px){
+
+  .scene{
+    padding:15px;
+  }
+
+  .content{
+    width:94vw;
+  }
+
+  .note-card{
+    padding:28px 19px;
+  }
+
+  .note-text{
+    font-size:19px;
+  }
+
+  .gallery{
+    height:340px;
+  }
+
+  .photo{
+    width:75vw;
+  }
+
+  .photo img{
+    height:220px;
+  }
+
+  .balloon-stage{
+    height:370px;
+  }
+
+  .cake-stage{
+    transform:scale(.86);
+  }
+
+  .birthday-stage{
+    height:390px;
+  }
+
+  .last-message{
+    font-size:20px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<div class="aurora a"></div>
+<div class="aurora b"></div>
+<div class="aurora c"></div>
+
+<script>
+for(let i=0;i<45;i++){
+
+  const s=document.createElement("div");
+
+  s.className="star";
+
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+
+  s.style.animationDelay=
+    (-Math.random()*4)+"s";
+
+  s.style.opacity=
+    (.15+Math.random()*.45);
+
+  document.getElementById("app")
+    .appendChild(s);
+}
+</script>
+
+
+<!-- =========================
+     SCENE 1
+========================= -->
+
+<section class="scene active" id="s1">
+
+<div class="content">
+
+<div class="hero">
+
+<div class="hero-kicker">
+A LITTLE SOMETHING · FOR YOU
+</div>
+
+<div class="hero-title">
+
+Aaj ka din
+<em>thoda special hai.</em>
+
+</div>
+
+<div class="hero-line"></div>
+
+<div class="hero-sub">
+Aur maine socha… ise thoda yaadgaar bana dete hain. ✦
+</div>
+
+<button class="btn primary"
+onclick="go(2)">
+SHURU KAREIN →
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 2
+========================= -->
+
+<section class="scene" id="s2">
+
+<div class="content">
+
+<div class="eyebrow">
+A little surprise
+</div>
+
+<h2>
+Pallavi,<br>
+<span class="accent">ye aapke liye hai.</span>
+</h2>
+
+<div class="letter-stage">
+
+<div class="envelope"
+id="envelope"
+onclick="openLetter()">
+
+<div class="env-shadow"></div>
+
+<div class="env-body"></div>
+
+<div class="letter">
+
+<div class="letter-name">
+For Pallavi,
+</div>
+
+<div class="letter-preview">
+“Ek chhoti si baat kehni thi…”
+</div>
+
+</div>
+
+<div class="flap"></div>
+
+<div class="seal">
+P
+</div>
+
+<div class="tap-hint">
+TAP TO OPEN
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 3
+========================= -->
+
+<section class="scene" id="s3">
+
+<div class="content">
+
+<div class="note-card">
+
+<div class="note-label">
+A LITTLE NOTE
+</div>
+
+<div class="note-title">
+Dear Pallavi,
+</div>
+
+<div class="note-text">
+
+<span>
+Sirf “Happy Birthday” bolkar baat khatam karna
+thoda ordinary lag raha tha.
+</span>
+
+<span>
+Isliye socha kuch aisa banaya jaye
+jise aap thoda ruk kar dekhein.
+</span>
+
+<span>
+Kuch memories, kuch surprises…
+aur ek chhoti si wish. 🩵
+</span>
+
+</div>
+
+<button class="btn primary"
+onclick="go(4)">
+MEMORIES ✦
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 4
+========================= -->
+
+<section class="scene" id="s4">
+
+<div class="content">
+
+<div class="eyebrow">
+MEMORIES
+</div>
+
+<h2>
+Kuch moments,<br>
+<span class="accent">jo save rehne chahiye.</span>
+</h2>
+
+<div class="gallery">
+
+<div class="photo"
+id="photo1">
+
+<div class="gallery-note">
+01 ✦
+</div>
+
+<img src="1000244923.png">
+
+<div class="photo-caption">
+Ek khoobsurat memory.
+</div>
+
+</div>
+
+<div class="photo"
+id="photo2"
+style="opacity:0">
+
+<img src="1000244922.png">
+
+<div class="photo-caption">
+Aur ek yaad…
+</div>
+
+</div>
+
+<div class="photo"
+id="photo3"
+style="opacity:0">
+
+<div style="
+height:235px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+background:#eee7e3;
+color:#71666c;
+">
+
+<div style="font-size:30px">
+📷
+</div>
+
+<div style="
+font-family:var(--script);
+font-size:20px;
+margin-top:10px;
+color:#bd7182;
+">
+Humari photo<br>
+abhi baaki hai :)
+</div>
+
+</div>
+
+<div class="photo-caption">
+Maybe someday.
+</div>
+
+</div>
+
+<div class="gallery-count"
+id="galleryCount">
+01 / 03
+</div>
+
+</div>
+
+<button class="btn primary"
+id="memoryButton"
+onclick="nextMemory()">
+NEXT MEMORY →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 5
+========================= -->
+
+<section class="scene" id="s5">
+
+<div class="content">
+
+<div class="eyebrow">
+ONE MORE THING
+</div>
+
+<h2>
+Ye box<br>
+<span class="accent">ignore mat kijiye. 🎁</span>
+</h2>
+
+<div class="gift-wrap">
+
+<div class="gift"
+id="gift"
+onclick="openGift()">
+
+<div class="gift-body">
+
+<div class="ribbon-v"></div>
+
+</div>
+
+<div class="gift-lid">
+
+<div class="ribbon-h"></div>
+
+</div>
+
+<div class="bow"></div>
+
+</div>
+
+</div>
+
+<p>
+Tap karke dekhiye… 👀
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 6
+========================= -->
+
+<section class="scene" id="s6">
+
+<div class="content">
+
+<div class="eyebrow">
+INSIDE THE BOX
+</div>
+
+<h2>
+Surprise abhi<br>
+<span class="accent">khatam nahi hua.</span>
+</h2>
+
+<div class="pause-title">
+Actually…
+<strong>main part abhi baaki hai.</strong>
+</div>
+
+<button class="btn primary"
+onclick="go(7)">
+NEXT ✦
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 7
+     BALLOON POP
+========================= -->
+
+<section class="scene" id="s7">
+
+<div class="content">
+
+<div class="eyebrow">
+ONE LITTLE GAME
+</div>
+
+<h2>
+Ek balloon<br>
+<span class="accent">pop kijiye. 🎈</span>
+</h2>
+
+<div class="balloon-stage">
+
+<div class="balloon b1"
+onclick="popBalloon(this)"></div>
+
+<div class="balloon b2"
+onclick="popBalloon(this)"></div>
+
+<div class="balloon b3"
+onclick="popBalloon(this)"></div>
+
+<div class="balloon b4"
+onclick="popBalloon(this)"></div>
+
+<div class="balloon b5"
+onclick="popBalloon(this)"></div>
+
+<div class="balloon-hint">
+Kisi ek ko tap kijiye ✦
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 8
+========================= -->
+
+<section class="scene" id="s8">
+
+<div class="content">
+
+<div class="fake-end">
+
+<div class="eyebrow">
+THE END
+</div>
+
+<h1>
+Bas itna hi.
+</h1>
+
+<div class="serif"
+style="
+font-size:26px;
+margin-top:22px;
+color:var(--rose2);
+">
+…shayad. 👀
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 9
+========================= -->
+
+<section class="scene" id="s9">
+
+<div class="content">
+
+<div class="reveal-card">
+
+<div class="eyebrow">
+WAIT A SECOND
+</div>
+
+<h2>
+Aapko laga<br>
+<span class="accent">khatam ho gaya? 😂</span>
+</h2>
+
+<p>
+Nahi ji. Abhi sabse important part baaki hai.
+</p>
+
+<button class="btn primary"
+onclick="go(10)">
+ASLI SURPRISE ✦
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 10
+========================= -->
+
+<section class="scene" id="s10">
+
+<div class="content">
+
+<div class="eyebrow">
+THE IMPORTANT PART
+</div>
+
+<h2>
+Cake cut karein,<br>
+<span class="accent">Pallavi? 🎂</span>
+</h2>
+
+<div class="cake-wrap">
+
+<div class="cake-stage"
+id="cakeStage">
+
+<div class="plate"></div>
+
+<div class="cake"
+id="cake">
+
+<div class="cake-body"></div>
+
+<div class="top-cake"></div>
+
+<div class="frosting">
+
+<div class="drip a"></div>
+<div class="drip b"></div>
+<div class="drip c"></div>
+
+</div>
+
+<div class="cut-line"></div>
+
+<div class="candle c1">
+<div class="flame"></div>
+</div>
+
+<div class="candle c2">
+<div class="flame"></div>
+</div>
+
+<div class="candle c3">
+<div class="flame"></div>
+</div>
+
+</div>
+
+<div class="knife"
+id="knife"></div>
+
+</div>
+
+</div>
+
+<div class="cut-hint"
+id="cutHint">
+Knife ko cake ke across smoothly drag kijiye ✦
+</div>
+
+</div>
+
+</section>
