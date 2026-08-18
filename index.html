@@ -182,7 +182,7 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 .ink-line.show{clip-path:inset(0 0 0 0)}
 
-/* SCENE 1 — SEED */
+/* SCENE 3 — SEED */
 
 .seed-wrap{min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center}
 
@@ -210,7 +210,7 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 .scene.active .seed-line .ink-line{transition-delay:1.7s}
 
-/* SCENE 2 — LEAF LETTER */
+/* SCENE 4 — LEAF LETTER */
 
 .leaf-stage{height:290px;display:grid;place-items:center}
 
@@ -289,7 +289,7 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 .leaf-wrap.open .leaf-hint{display:none}
 
-/* SCENE 3 — MESSAGE */
+/* SCENE 6 — MESSAGE */
 
 .message-card{
  width:min(560px,90vw);
@@ -368,7 +368,7 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 .dot.active{background:var(--blush-deep);transform:scale(1.35)}
 
-/* SCENE 7 — BLOOM */
+/* SCENE 14 — BLOOM */
 
 .bloom-stage{height:220px;position:relative;display:grid;place-items:center}
 
@@ -448,7 +448,7 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 @keyframes fall{to{transform:translate(var(--x),108vh) rotate(400deg);opacity:0}}
 
-/* SCENE 5 — WISHING GARDEN */
+/* SCENE 9 — WISHING GARDEN */
 
 .garden-area{
  height:210px;
@@ -493,7 +493,7 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 .garden-hint{margin-top:4px;font-size:8.5px;letter-spacing:1.5px;color:var(--plum-soft)}
 
-/* SCENE 6 — RAIN OF BLESSINGS */
+/* SCENE 12 — RAIN OF BLESSINGS */
 
 .rain-stage{height:230px;position:relative;overflow:hidden}
 
@@ -519,7 +519,7 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
  100%{transform:translateY(240px);opacity:0}
 }
 
-/* SCENE 8 — BUTTERFLY SECRET */
+/* SCENE 18 — BUTTERFLY SECRET */
 
 .butterfly-stage{height:160px;position:relative}
 
@@ -555,7 +555,7 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 .butterfly-hint{margin-top:6px;font-size:8.5px;letter-spacing:1.5px;color:var(--plum-soft)}
 
-/* SCENE 9 — TIME CAPSULE */
+/* SCENE 21 — TIME CAPSULE */
 
 .capsule{
  width:64px;
@@ -621,7 +621,7 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 .jar-text.show{opacity:1}
 
-/* SCENE 10 — FINAL */
+/* SCENE 22 — FINAL */
 
 .final-content{width:min(94vw,660px)}
 
@@ -720,6 +720,160 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 #flash{position:fixed;inset:0;z-index:150;background:#fff;opacity:0;pointer-events:none}
 
+/* SHARED — generic tap-to-reveal system used by several new scenes */
+
+.reveal-item{cursor:pointer;transition:transform .3s var(--ease)}
+
+.reveal-item.picked{opacity:.5}
+
+.reveal-box{min-height:56px;display:flex;align-items:center;justify-content:center;padding:0 10px;margin-top:6px}
+
+.reveal-text{font-family:var(--script);font-size:20px;color:var(--plum);opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+
+.reveal-text.show{opacity:1;transform:none}
+
+.reveal-hint{margin-top:4px;font-size:8.5px;letter-spacing:1.5px;color:var(--plum-soft)}
+
+.reveal-item:focus-visible{outline:2px solid var(--sage-deep);outline-offset:3px}
+
+/* SCENE 1 — GARDEN GATE */
+
+.gate-stage{height:170px;display:grid;place-items:center;margin-top:6px}
+
+.gate{width:160px;height:150px;position:relative;cursor:pointer}
+
+.gate-post{position:absolute;top:20px;bottom:0;width:14px;background:linear-gradient(180deg,var(--sage-deep),var(--sage));border-radius:3px;transition:transform 1s var(--ease),opacity 1s ease}
+
+.gate-post.left{left:20px;transform-origin:left center}
+.gate-post.right{right:20px;transform-origin:right center}
+
+.gate.open .gate-post.left{transform:translateX(-40px) rotate(-8deg);opacity:.3}
+.gate.open .gate-post.right{transform:translateX(40px) rotate(8deg);opacity:.3}
+
+.gate-arch{position:absolute;left:20px;right:20px;top:0;height:40px;border:4px solid var(--sage-deep);border-bottom:none;border-radius:80px 80px 0 0;transition:opacity .8s ease}
+
+.gate.open .gate-arch{opacity:.35}
+
+.gate-hint{margin-top:8px;font-size:9px;letter-spacing:1.5px;color:var(--plum-soft);transition:opacity .4s ease}
+
+.scene.active #gateBtn{animation:none;opacity:0}
+
+/* SCENE 2 — ROOTS */
+
+.roots-stage{height:150px;cursor:pointer;margin-top:6px}
+
+.root-path{fill:none;stroke:var(--sage-deep);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1.4s var(--ease)}
+
+.roots-stage.grown .root-path{stroke-dashoffset:0}
+
+.roots-text{margin-top:14px;font-family:var(--script);font-size:20px;color:var(--plum);max-height:0;overflow:hidden;opacity:0;transition:max-height .8s var(--ease),opacity .6s ease}
+
+.roots-text.show{max-height:100px;opacity:1}
+
+.roots-hint{margin-top:6px;font-size:8.5px;letter-spacing:1.5px;color:var(--plum-soft);transition:opacity .4s ease}
+
+/* SCENE 5 — LEAVE YOUR MARK */
+
+.mark-leaf{width:120px;height:150px;margin:16px auto 0;background:linear-gradient(160deg,#ecf3e8,#dcebd6);border-radius:8px 60px 8px 60px/8px 90px 8px 90px;box-shadow:var(--shadow);position:relative;cursor:pointer}
+
+.mark-glow{position:absolute;left:50%;top:50%;width:0;height:0;border-radius:50%;background:radial-gradient(circle,rgba(217,164,65,.55),transparent 70%);transform:translate(-50%,-50%);transition:width .7s var(--ease),height .7s var(--ease)}
+
+.mark-leaf.marked .mark-glow{width:70px;height:70px}
+
+.mark-text{margin-top:14px;font-family:var(--script);font-size:19px;color:var(--plum);max-height:0;overflow:hidden;opacity:0;transition:max-height .7s var(--ease),opacity .5s ease}
+
+.mark-text.show{max-height:80px;opacity:1}
+
+.mark-hint{margin-top:6px;font-size:8.5px;letter-spacing:1.5px;color:var(--plum-soft);transition:opacity .4s ease}
+
+/* SCENE 8 — TREE RINGS */
+
+.rings-area{position:relative;width:180px;height:180px;margin:14px auto 0}
+
+.tree-ring{position:absolute;left:50%;top:50%;border:2px solid var(--sage);border-radius:50%;transform:translate(-50%,-50%)}
+
+.tree-ring.r1{width:170px;height:170px}
+.tree-ring.r2{width:128px;height:128px}
+.tree-ring.r3{width:86px;height:86px}
+.tree-ring.r4{width:44px;height:44px;background:var(--paper-deep)}
+
+.tree-ring.picked{border-color:var(--blush-deep)}
+
+/* SCENE 10 — COMPASS OF MEMORIES */
+
+.compass-area{position:relative;width:190px;height:190px;margin:16px auto 0}
+
+.compass-dial{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(74,59,71,.25)}
+
+.reveal-item.compass-point{position:absolute;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.7);border:1px solid rgba(74,59,71,.18);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:600;font-size:11px;color:var(--plum)}
+
+.reveal-item.compass-point.picked{background:var(--blush);color:#fff;border-color:transparent}
+
+/* SCENE 11 — PAPER BOATS */
+
+.stream-area{position:relative;height:140px;margin-top:10px;overflow:hidden}
+
+.stream-line{position:absolute;left:0;right:0;bottom:20px;height:2px;background:repeating-linear-gradient(90deg,rgba(127,160,124,.35) 0 8px,transparent 8px 16px)}
+
+.reveal-item.boat{position:absolute;width:36px;height:22px}
+
+.reveal-item.boat:before{content:"";position:absolute;inset:0;background:var(--paper-deep);clip-path:polygon(0 100%,100% 100%,78% 0,22% 0);border:1px solid var(--sage-deep);box-shadow:0 4px 8px rgba(74,59,71,.15)}
+
+.reveal-item.boat.picked{transform:translateX(160px);opacity:0;transition:transform 1.1s ease,opacity 1.1s ease;pointer-events:none}
+
+/* SCENE 13 — GENTLE BREEZE */
+
+.breeze-stage{height:120px;position:relative;margin-top:6px}
+
+.breeze-leaf{position:absolute;top:10px;font-size:22px;opacity:.75;animation:breezeSway 3.4s ease-in-out infinite}
+
+@keyframes breezeSway{0%,100%{transform:translateX(0) rotate(-8deg)}50%{transform:translateX(18px) rotate(8deg)}}
+
+.scene.active #breezeBtn{animation:none;opacity:0}
+
+/* SCENE 15 — SEASONS MONTAGE */
+
+.season-flower{width:100px;height:100px;margin:18px auto 0;position:relative}
+
+.season-petal{position:absolute;width:40px;height:56px;left:50%;top:50%;margin:-40px 0 0 -20px;border-radius:50% 50% 50% 50%/70% 70% 30% 30%;background:var(--blush);transform-origin:bottom center;transform:scale(.5) rotate(var(--r,0deg));opacity:.6;transition:transform 1s var(--ease),opacity 1s ease,background 1s ease}
+
+.season-center{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--gold)}
+
+.season-flower.spring .season-petal{transform:scale(.5) rotate(var(--r,0deg));opacity:.6}
+.season-flower.summer .season-petal{transform:scale(1) rotate(var(--r,0deg));opacity:1}
+.season-flower.autumn .season-petal{transform:scale(1) rotate(var(--r,0deg)) translateY(18px);opacity:.35;background:#c9822f}
+.season-flower.winter .season-petal{transform:scale(.15) rotate(var(--r,0deg));opacity:0}
+
+.season-label{margin-top:10px;font-family:var(--script);font-size:19px;color:var(--plum-soft)}
+
+.scene.active #seasonBtn{animation:none;opacity:0}
+
+/* SCENE 16 — FIREFLIES AT DUSK */
+
+.dusk-area{position:relative;height:220px;margin-top:8px;border-radius:16px;background:linear-gradient(180deg,#3c3550,#5c4f63);overflow:hidden}
+
+.reveal-item.firefly{position:absolute;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff6c8,var(--gold));box-shadow:0 0 10px 3px rgba(217,164,65,.6);animation:fireflyBlink 2.2s ease-in-out infinite}
+
+@keyframes fireflyBlink{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+
+.reveal-item.firefly.picked{animation-play-state:paused;opacity:1}
+
+/* SCENE 17 — STARLINGS FORMATION */
+
+.flock-area{position:relative;height:200px;cursor:pointer;margin-top:6px}
+
+.bird{position:absolute;font-size:20px;transition:left 1.2s var(--ease),top 1.2s var(--ease)}
+
+.flock-hint{margin-top:6px;font-size:8.5px;letter-spacing:1.5px;color:var(--plum-soft);transition:opacity .4s ease}
+
+/* SCENE 20 — WEIGHT OF WORDS */
+
+.chips-area{margin-top:16px}
+
+.reveal-item.chip{display:inline-block;margin:4px;padding:9px 18px;border-radius:100px;background:rgba(255,255,255,.6);border:1px solid rgba(74,59,71,.15);font-family:var(--serif);font-style:italic;font-size:16px;color:var(--plum)}
+
+.reveal-item.chip.picked{background:var(--blush);color:#fff;border-color:transparent}
+
 @media(max-width:600px){
  .scene{padding:14px}
  .seed-wrap{min-height:300px}
@@ -746,6 +900,50 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 <div class="bud" id="budF" style="left:80%"></div>
 <div class="bud" id="budG" style="left:93%"></div>
 </div>
+
+<!-- 01 GARDEN GATE -->
+<section class="scene active" id="s1">
+<div class="content">
+
+<div class="eyebrow">welcome</div>
+<h1>Ek Chhota<br><span class="accent">Bageecha.</span></h1>
+
+<div class="gate-stage">
+<div class="gate" id="gateEl" role="button" tabindex="0" aria-label="Open the gate">
+<div class="gate-post left"></div>
+<div class="gate-post right"></div>
+<div class="gate-arch"></div>
+</div>
+</div>
+
+<div class="gate-hint" id="gateHint">TAP TO ENTER</div>
+
+<button class="btn primary" id="gateBtn" data-goto="next" style="opacity:0;pointer-events:none">ANDAR AAIYE →</button>
+
+</div>
+</section>
+
+<!-- 02 ROOTS -->
+<section class="scene" id="s2">
+<div class="content">
+
+<div class="eyebrow">jadd, zameen ke neeche</div>
+<h2>Ye dosti<br><span class="accent">kaafi purani hai.</span></h2>
+
+<div class="roots-stage" id="rootsStage" role="button" tabindex="0" aria-label="See the roots grow">
+<svg width="100%" height="140" viewBox="0 0 300 140">
+<path class="root-path" d="M150,0 C130,30 90,40 70,80 M150,0 C170,30 210,40 230,80 M150,0 C150,40 150,80 150,120"></path>
+</svg>
+</div>
+
+<div class="roots-text" id="rootsText">Pata nahi exact date, bas itna pata hai — ye kaafi purani aur mazboot hai.</div>
+
+<div class="roots-hint" id="rootsHint">TAP TO SEE</div>
+
+<button class="btn primary" data-goto="next">AAGE →</button>
+
+</div>
+</section>
 
 <!-- 03 SEED -->
 <section class="scene" id="s3">
@@ -783,6 +981,26 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 <div class="leaf-hint">TAP TO UNFOLD</div>
 </div>
 </div>
+
+</div>
+</section>
+
+<!-- 05 LEAVE YOUR MARK -->
+<section class="scene" id="s5">
+<div class="content">
+
+<div class="eyebrow">apna nishaan chhodiye</div>
+<h2>Iss patte pe<br><span class="accent">apna mark chhodiye.</span></h2>
+
+<div class="mark-leaf" id="markLeaf" role="button" tabindex="0" aria-label="Leave your mark">
+<div class="mark-glow" id="markGlow"></div>
+</div>
+
+<div class="mark-text" id="markText">Ab ye patta hamesha yaad rakhega ki aap yahan the. ✿</div>
+
+<div class="mark-hint" id="markHint">TAP TO LEAVE YOUR MARK</div>
+
+<button class="btn primary" data-goto="next">AAGE →</button>
 
 </div>
 </section>
@@ -859,6 +1077,28 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 </div>
 </section>
 
+<!-- 08 TREE RINGS -->
+<section class="scene" id="s8">
+<div class="content">
+
+<div class="eyebrow">saalon ka hisaab</div>
+<h2>Har ring ek<br><span class="accent">alag yaad hai.</span></h2>
+
+<div class="rings-area">
+<div class="tree-ring r1 reveal-item" role="button" tabindex="0" data-text="Jab hasi kabhi rukti nahi thi."></div>
+<div class="tree-ring r2 reveal-item" role="button" tabindex="0" data-text="Jab ghanton baatein hoti thi, bina wajah ke."></div>
+<div class="tree-ring r3 reveal-item" role="button" tabindex="0" data-text="Jab mushkil waqt mein bhi saath tha."></div>
+<div class="tree-ring r4 reveal-item" role="button" tabindex="0" data-text="Jab chhoti si baat pe bhi khushi milti thi."></div>
+</div>
+
+<div class="reveal-box"><div class="reveal-text" id="s8Text"></div></div>
+<div class="reveal-hint">RINGS TAP KIJIYE</div>
+
+<button class="btn primary" data-goto="next">AAGE →</button>
+
+</div>
+</section>
+
 <!-- 09 WISHING GARDEN -->
 <section class="scene" id="s9">
 <div class="content">
@@ -886,6 +1126,53 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 </div>
 </section>
 
+<!-- 10 COMPASS OF MEMORIES -->
+<section class="scene" id="s10">
+<div class="content">
+
+<div class="eyebrow">memories ka compass</div>
+<h2>Har direction mein<br><span class="accent">ek alag yaad hai.</span></h2>
+
+<div class="compass-area">
+<div class="compass-dial"></div>
+<div class="reveal-item compass-point" role="button" tabindex="0" style="left:50%;top:6%;transform:translate(-50%,0)" data-text="North — pehli mulaqat ka din.">N</div>
+<div class="reveal-item compass-point" role="button" tabindex="0" style="left:92%;top:50%;transform:translate(-100%,-50%)" data-text="East — sabse funny din, jab hasi rukti nahi thi.">E</div>
+<div class="reveal-item compass-point" role="button" tabindex="0" style="left:50%;top:92%;transform:translate(-50%,-100%)" data-text="South — mushkil waqt, jab saath khada raha.">S</div>
+<div class="reveal-item compass-point" role="button" tabindex="0" style="left:8%;top:50%;transform:translate(0,-50%)" data-text="West — sabse sukoon wala pal, bina kuch bole.">W</div>
+</div>
+
+<div class="reveal-box"><div class="reveal-text" id="s10Text"></div></div>
+<div class="reveal-hint">EK DIRECTION CHUNIYE</div>
+
+<button class="btn primary" data-goto="next">AAGE →</button>
+
+</div>
+</section>
+
+<!-- 11 PAPER BOATS -->
+<section class="scene" id="s11">
+<div class="content">
+
+<div class="eyebrow">behte hue kuch messages</div>
+<h2>Har boat mein<br><span class="accent">ek chhoti si wish hai.</span></h2>
+
+<div class="stream-area">
+<div class="stream-line"></div>
+<div class="reveal-item boat" role="button" tabindex="0" style="left:14%;top:40%" data-text="Aap jahan bhi jaayein, khush rahein."></div>
+<div class="reveal-item boat" role="button" tabindex="0" style="left:44%;top:55%" data-text="Har mushkil aasaan ho jaaye."></div>
+<div class="reveal-item boat" role="button" tabindex="0" style="left:72%;top:38%" data-text="Aapke sapne poore hon."></div>
+</div>
+
+<div class="reveal-box"><div class="reveal-text" id="s11Text"></div></div>
+<div class="reveal-hint">BOAT KO TAP KIJIYE</div>
+
+<button class="btn primary" data-goto="next">AAGE →</button>
+
+</div>
+</section>
+
+
+
 <!-- 12 RAIN OF BLESSINGS -->
 <section class="scene" id="s12">
 <div class="content">
@@ -899,6 +1186,25 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 </div>
 </section>
+
+<!-- 13 GENTLE BREEZE -->
+<section class="scene" id="s13">
+<div class="content">
+
+<div class="eyebrow">thodi si hawa</div>
+<h2>Ek pal ke liye,<br><span class="accent">bas saans lijiye.</span></h2>
+
+<div class="breeze-stage">
+<div class="breeze-leaf" style="left:20%;animation-delay:0s">🍃</div>
+<div class="breeze-leaf" style="left:50%;animation-delay:.6s">🍃</div>
+<div class="breeze-leaf" style="left:75%;animation-delay:1.1s">🍃</div>
+</div>
+
+<button class="btn primary" id="breezeBtn" data-goto="next" style="opacity:0;pointer-events:none">AAGE →</button>
+
+</div>
+</section>
+
 
 <!-- 14 BLOOM -->
 <section class="scene" id="s14">
@@ -929,6 +1235,77 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 </div>
 </section>
 
+<!-- 15 SEASONS MONTAGE -->
+<section class="scene" id="s15">
+<div class="content">
+
+<div class="eyebrow">chaar mausam</div>
+<h2>Chahe mausam kuch bhi ho,<br><span class="accent">ye dosti khilti rahegi.</span></h2>
+
+<div class="season-flower" id="seasonFlower">
+<div class="season-petal sp1" style="--r:0deg"></div>
+<div class="season-petal sp2" style="--r:90deg"></div>
+<div class="season-petal sp3" style="--r:180deg"></div>
+<div class="season-petal sp4" style="--r:270deg"></div>
+<div class="season-center"></div>
+</div>
+
+<div class="season-label" id="seasonLabel">bahaar…</div>
+
+<button class="btn primary" id="seasonBtn" data-goto="next" style="opacity:0;pointer-events:none">AAGE →</button>
+
+</div>
+</section>
+
+<!-- 16 FIREFLIES AT DUSK -->
+<section class="scene" id="s16">
+<div class="content">
+
+<div class="eyebrow">shaam dhal gayi</div>
+<h2>Kuch jugnu<br><span class="accent">udh rahe hain.</span></h2>
+
+<div class="dusk-area">
+<div class="reveal-item firefly" role="button" tabindex="0" style="left:15%;top:30%" data-text="Wo pal jab bas hasi hi hasi thi."></div>
+<div class="reveal-item firefly" role="button" tabindex="0" style="left:35%;top:60%" data-text="Wo raat jab baatein khatam hi nahi hoti thi."></div>
+<div class="reveal-item firefly" role="button" tabindex="0" style="left:55%;top:25%" data-text="Wo din jab chhoti si baat pe bhi khushi mil gayi."></div>
+<div class="reveal-item firefly" role="button" tabindex="0" style="left:75%;top:55%" data-text="Wo lamha jab bina kuch bole sab samajh aa gaya."></div>
+<div class="reveal-item firefly" role="button" tabindex="0" style="left:88%;top:35%" data-text="Wo waqt jab tum bas tum thi — aur wahi kaafi tha."></div>
+</div>
+
+<div class="reveal-box"><div class="reveal-text" id="s16Text"></div></div>
+<div class="reveal-hint">JUGNU KO TAP KIJIYE</div>
+
+<button class="btn primary" data-goto="next">AAGE →</button>
+
+</div>
+</section>
+
+<!-- 17 STARLINGS FORMATION -->
+<section class="scene" id="s17">
+<div class="content">
+
+<div class="eyebrow">chidiyon ki udaan</div>
+<h2>Sab kuch<br><span class="accent">align ho jaata hai.</span></h2>
+
+<div class="flock-area" id="flockArea" role="button" tabindex="0" aria-label="Tap to align the birds">
+<div class="bird" style="left:10%;top:20%">🕊️</div>
+<div class="bird" style="left:30%;top:60%">🕊️</div>
+<div class="bird" style="left:50%;top:15%">🕊️</div>
+<div class="bird" style="left:65%;top:55%">🕊️</div>
+<div class="bird" style="left:80%;top:30%">🕊️</div>
+<div class="bird" style="left:45%;top:75%">🕊️</div>
+</div>
+
+<div class="flock-hint" id="flockHint">TAP TO ALIGN THEM</div>
+
+<button class="btn primary" data-goto="next">AAGE →</button>
+
+</div>
+</section>
+
+
+
+
 <!-- 18 BUTTERFLY -->
 <section class="scene" id="s18">
 <div class="content">
@@ -951,6 +1328,44 @@ p{max-width:470px;margin:13px auto 0;color:var(--plum-soft);font-size:12.5px;lin
 
 </div>
 </section>
+
+<!-- 19 ECHO -->
+<section class="scene" id="s19">
+<div class="content">
+
+<div class="eyebrow">ek chhota sa pause</div>
+<h2>Iss saal ki<br><span class="accent">sabse achhi yaad kya thi?</span></h2>
+
+<p>Koi jawab yahan nahi likhna — bas ek pal ke liye soch lijiye. Yaad aa gaya? Chaliye aage badhte hain.</p>
+
+<button class="btn primary" data-goto="next">AAGE →</button>
+
+</div>
+</section>
+
+<!-- 20 WEIGHT OF WORDS -->
+<section class="scene" id="s20">
+<div class="content">
+
+<div class="eyebrow">kuch shabd, unke maayne</div>
+<h2>Har shabd ka<br><span class="accent">apna wazan hai.</span></h2>
+
+<div class="chips-area">
+<div class="reveal-item chip" role="button" tabindex="0" data-text="Dost — jo bina bole samajh jaaye.">दोस्त</div>
+<div class="reveal-item chip" role="button" tabindex="0" data-text="Pyaar — jo bina condition ke ho.">प्यार</div>
+<div class="reveal-item chip" role="button" tabindex="0" data-text="Yaadein — jo waqt ke saath aur khoobsurat ho jaayein.">यादें</div>
+<div class="reveal-item chip" role="button" tabindex="0" data-text="Hasi — jo har mushkil ko halka kar de.">हँसी</div>
+</div>
+
+<div class="reveal-box"><div class="reveal-text" id="s20Text"></div></div>
+<div class="reveal-hint">SHABD TAP KIJIYE</div>
+
+<button class="btn primary" data-goto="next">AAGE →</button>
+
+</div>
+</section>
+
+
 
 <!-- 21 TIME CAPSULE -->
 <section class="scene" id="s21">
@@ -1146,7 +1561,7 @@ function openLeaf(){
   });
 });
 
-/* SCENE 4 — MEMORIES */
+/* SCENE 7 — MEMORIES */
 const totalMemories=4;
 let memory=1;
 function nextMemory(){
@@ -1171,7 +1586,7 @@ function nextMemory(){
 }
 document.getElementById("memoryBtn").addEventListener("click",nextMemory);
 
-/* SCENE 5 — WISHING GARDEN */
+/* SCENE 9 — WISHING GARDEN */
 document.querySelectorAll(".garden-bud").forEach(bud=>{
   bud.addEventListener("click",()=>{
     bud.classList.add("picked");
@@ -1185,7 +1600,7 @@ document.querySelectorAll(".garden-bud").forEach(bud=>{
   });
 });
 
-/* SCENE 6 — RAIN OF BLESSINGS */
+/* SCENE 12 — RAIN OF BLESSINGS */
 function startRain(){
   const words=["khushi","pyaar","safalta","sehat","hansi","shanti","barkat","mohabbat","sukoon","ummeed"];
   const stage=document.getElementById("rainStage");
@@ -1205,10 +1620,10 @@ function startRain(){
   },160);
 }
 let rainStarted=false;
-const s6El=document.getElementById("s6");
-if(s6El){
+const s12El=document.getElementById("s12");
+if(s12El){
   const observer=new MutationObserver(()=>{
-    if(s6El.classList.contains("active") && !rainStarted){
+    if(s12El.classList.contains("active") && !rainStarted){
       rainStarted=true;
       startRain();
       setTimeout(()=>{
@@ -1220,10 +1635,10 @@ if(s6El){
       },1600);
     }
   });
-  observer.observe(s6El,{attributes:true,attributeFilter:["class"]});
+  observer.observe(s12El,{attributes:true,attributeFilter:["class"]});
 }
 
-/* SCENE 7 — BLOOM */
+/* SCENE 14 — BLOOM */
 let bloomed=false;
 function waterSeed(){
   if(bloomed) return;
@@ -1252,7 +1667,7 @@ function waterSeed(){
   });
 });
 
-/* SCENE 8 — BUTTERFLY SECRET */
+/* SCENE 18 — BUTTERFLY SECRET */
 let secretShown=false;
 function revealSecret(){
   if(secretShown) return;
@@ -1269,7 +1684,7 @@ function revealSecret(){
   });
 });
 
-/* SCENE 9 — TIME CAPSULE */
+/* SCENE 21 — TIME CAPSULE */
 let capsuleOpened=false;
 function openCapsule(){
   if(capsuleOpened) return;
@@ -1308,6 +1723,166 @@ if(jarBtn){
     },200);
   });
 }
+
+/* GENERIC — wires any scene's .reveal-item elements to fade in
+   their data-text into that scene's .reveal-text box on tap. */
+function wireRevealScene(sceneId){
+  const scene=document.getElementById(sceneId);
+  if(!scene) return;
+  const textEl=document.getElementById(sceneId+"Text");
+  scene.querySelectorAll(".reveal-item").forEach(item=>{
+    function reveal(){
+      item.classList.add("picked");
+      if(!textEl) return;
+      textEl.classList.remove("show");
+      setTimeout(()=>{
+        textEl.textContent=item.dataset.text;
+        textEl.classList.add("show");
+      },200);
+    }
+    item.addEventListener("click",reveal);
+    item.addEventListener("keydown",e=>{
+      if(e.key==="Enter"||e.key===" "){e.preventDefault();reveal();}
+    });
+  });
+}
+
+/* SCENE 1 — GARDEN GATE */
+let gateOpened=false;
+function openGate(){
+  if(gateOpened) return;
+  gateOpened=true;
+  document.getElementById("gateEl").classList.add("open");
+  document.getElementById("gateHint").style.opacity="0";
+  setTimeout(()=>{
+    const b=document.getElementById("gateBtn");
+    if(b){b.style.opacity="1";b.style.pointerEvents="auto";}
+  },700);
+}
+["click","keydown"].forEach(evt=>{
+  document.getElementById("gateEl").addEventListener(evt,e=>{
+    if(evt==="keydown" && e.key!=="Enter" && e.key!==" ") return;
+    if(evt==="keydown") e.preventDefault();
+    openGate();
+  });
+});
+
+/* SCENE 2 — ROOTS */
+let rootsGrown=false;
+function growRoots(){
+  if(rootsGrown) return;
+  rootsGrown=true;
+  document.getElementById("rootsStage").classList.add("grown");
+  document.getElementById("rootsHint").style.opacity="0";
+  setTimeout(()=>{
+    document.getElementById("rootsText").classList.add("show");
+  },500);
+}
+["click","keydown"].forEach(evt=>{
+  document.getElementById("rootsStage").addEventListener(evt,e=>{
+    if(evt==="keydown" && e.key!=="Enter" && e.key!==" ") return;
+    if(evt==="keydown") e.preventDefault();
+    growRoots();
+  });
+});
+
+/* SCENE 5 — LEAVE YOUR MARK */
+let markLeft=false;
+function leaveMark(){
+  if(markLeft) return;
+  markLeft=true;
+  document.getElementById("markLeaf").classList.add("marked");
+  document.getElementById("markHint").style.opacity="0";
+  setTimeout(()=>{
+    document.getElementById("markText").classList.add("show");
+  },400);
+}
+["click","keydown"].forEach(evt=>{
+  document.getElementById("markLeaf").addEventListener(evt,e=>{
+    if(evt==="keydown" && e.key!=="Enter" && e.key!==" ") return;
+    if(evt==="keydown") e.preventDefault();
+    leaveMark();
+  });
+});
+
+/* SCENE 8, 10, 11, 16, 20 — generic reveal-field scenes */
+wireRevealScene("s8");
+wireRevealScene("s10");
+wireRevealScene("s11");
+wireRevealScene("s16");
+wireRevealScene("s20");
+
+/* SCENE 13 — GENTLE BREEZE (auto-reveal continue button) */
+let breezeStarted=false;
+const s13El=document.getElementById("s13");
+if(s13El){
+  const obs13=new MutationObserver(()=>{
+    if(s13El.classList.contains("active") && !breezeStarted){
+      breezeStarted=true;
+      setTimeout(()=>{
+        const b=document.getElementById("breezeBtn");
+        if(b){b.style.opacity="1";b.style.pointerEvents="auto";}
+      },2000);
+    }
+  });
+  obs13.observe(s13El,{attributes:true,attributeFilter:["class"]});
+}
+
+/* SCENE 15 — SEASONS MONTAGE */
+let seasonsStarted=false;
+const s15El=document.getElementById("s15");
+if(s15El){
+  const obs15=new MutationObserver(()=>{
+    if(s15El.classList.contains("active") && !seasonsStarted){
+      seasonsStarted=true;
+      const flower=document.getElementById("seasonFlower");
+      const label=document.getElementById("seasonLabel");
+      const stages=[
+        ["spring","bahaar…"],
+        ["summer","poora khilna…"],
+        ["autumn","patjhad…"],
+        ["winter","sardi…"],
+        ["summer","phir se bahaar. ✿"]
+      ];
+      stages.forEach((stage,i)=>{
+        setTimeout(()=>{
+          flower.className="season-flower "+stage[0];
+          if(label) label.textContent=stage[1];
+        },i*1000);
+      });
+      setTimeout(()=>{
+        const b=document.getElementById("seasonBtn");
+        if(b){b.style.opacity="1";b.style.pointerEvents="auto";}
+      },stages.length*1000+400);
+    }
+  });
+  obs15.observe(s15El,{attributes:true,attributeFilter:["class"]});
+}
+
+/* SCENE 17 — STARLINGS FORMATION */
+let flockAligned=false;
+function alignFlock(){
+  if(flockAligned) return;
+  flockAligned=true;
+  const positions=[
+    {left:35,top:18},{left:65,top:18},
+    {left:16,top:42},{left:84,top:42},
+    {left:50,top:70},{left:50,top:46}
+  ];
+  document.querySelectorAll("#s17 .bird").forEach((bird,i)=>{
+    const p=positions[i%positions.length];
+    bird.style.left=p.left+"%";
+    bird.style.top=p.top+"%";
+  });
+  document.getElementById("flockHint").style.opacity="0";
+}
+["click","keydown"].forEach(evt=>{
+  document.getElementById("flockArea").addEventListener(evt,e=>{
+    if(evt==="keydown" && e.key!=="Enter" && e.key!==" ") return;
+    if(evt==="keydown") e.preventDefault();
+    alignFlock();
+  });
+});
 
 /* IMAGE FALLBACK */
 document.querySelectorAll("img").forEach(img=>{
